@@ -18,6 +18,7 @@ public:
     int cardNumGen();
     int bonusMultiplier();
     int randomCardGen(); //Should return a card (but we do not have the card class yet)
+    int randomNumGen(); //generates a random number
     int pointsEarned();
     int searchList();
 
