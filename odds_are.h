@@ -7,7 +7,7 @@ using namespace std;
 //Class to handle invalid user input
 class BadUserInput {
 public:
-    BadJumbleException(const string&);
+    BadUserInput(const string&);
     string& what();
 private:
     string message;
