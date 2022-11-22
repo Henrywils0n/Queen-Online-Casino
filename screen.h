@@ -1,8 +1,19 @@
-#include <wx/panel.h>
-//wxPanel (wxWindow *parent, wxWindowID id=wxID_ANY, const wxPoint &pos=wxDefaultPosition, const wxSize &size=wxDefaultSize, long style=wxTAB_TRAVERSAL, const wxString &name=wxPanelNameStr)
+#include <wx/wxprec.h>
 
-class MyScreen: public wxPanel
-{
+#ifndef WX_PRECOMP
+#include <wx/wx.h>
+#endif
+
+#include <wx/image.h>
+#include <wx/file.h>
+#include <wx/filename.h>
+#include <wx/mstream.h>
+#include <wx/wfstream.h>
+#include <wx/quantize.h>
+#include <wx/stopwatch.h>
+#include <unistd.h>
+
+class MyScreen: public wxPanel {
 public:
   MyScreen(wxWindow *parent, wxWindowID, const wxPoint &pos, const wxSize &size, long style, const wxString &name);
   //~MyScreen();
