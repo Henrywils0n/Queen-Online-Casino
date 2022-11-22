@@ -1,4 +1,4 @@
-#include "screen.h"
+#include "imagepanel.h"
 
 class MyFrame: public wxFrame {
 public:
@@ -10,7 +10,7 @@ public:
   void OnPlayBlackjack(wxCommandEvent &event);
   void OnPlayOddsAre(wxCommandEvent &event);
   
-  MyScreen *m_screen;
+  //MyScreen *m_screen;
   wxImagePanel* m_title;
   wxButton* roulette_button;
   wxButton* blackjack_button;
