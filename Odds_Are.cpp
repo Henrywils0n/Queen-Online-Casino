@@ -7,13 +7,15 @@ int cardNumGen(){
     int cardsToGuess;
     cout << "How many card would you like to guess?"; 
     cin >> cardsToGuess;
+    //create cardsToGuess number of Card objects and add to a list
     return cardsToGuess;
 }
 
 //Calculate how many points the player has earned based on how many wins they have
-int pointsEarned(int countWin){
+//totalWin
+int pointsEarned(int totalWin){
     //Take countwin value and multiple by base score, each correct guess = 10 points?
-    int score = countWin * 10;
+    int score = totalWin * 10;
     return score;
 }
 

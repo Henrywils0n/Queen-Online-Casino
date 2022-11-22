@@ -25,7 +25,8 @@ public:
 private: //Declaring private variables for the JumblePuzzle class
     int bet;
     int score;
-    int countWin;
+    int countWin; //Number of wins in a row for bonus multiplier
+    int totalWin; //Overall wins, doesnt count wins in a row, just total number
     string playerGuess;
     int cardLayout[];
 };
