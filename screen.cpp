@@ -14,13 +14,13 @@ MyScreen::MyScreen(wxWindow *parent, wxWindowID id,
   wxBitmap bitmap(100, 100);
   
   wxMemoryDC dc;
-  dc.SelectObject( bitmap );
-  dc.SetBrush( wxBrush( "orange" ) );
-  dc.SetPen( *wxBLACK_PEN );
-  dc.DrawRectangle( 0, 0, 100, 100 );
-  dc.SetBrush( *wxWHITE_BRUSH );
-  dc.DrawRectangle( 20, 20, 60, 60 );
-  dc.SelectObject( wxNullBitmap );
+//  dc.SelectObject( bitmap );
+//  dc.SetBrush( wxBrush( "orange" ) );
+//  dc.SetPen( *wxBLACK_PEN );
+//  dc.DrawRectangle( 0, 0, 100, 100 );
+//  dc.SetBrush( *wxWHITE_BRUSH );
+//  dc.DrawRectangle( 20, 20, 60, 60 );
+//  dc.SelectObject( wxNullBitmap );
   
   char buf[1024];
   getcwd(buf, 1024);
