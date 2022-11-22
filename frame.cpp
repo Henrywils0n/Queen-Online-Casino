@@ -10,7 +10,7 @@ EVT_BUTTON(ID_BLACKJACK,  MyFrame::OnPlayBlackjack)
 EVT_BUTTON(ID_ODDSARE,  MyFrame::OnPlayOddsAre)
 wxEND_EVENT_TABLE()
 
-MyFrame::MyFrame() : wxFrame( nullptr, wxID_ANY, "Casino Game", wxPoint(20, 20), wxSize(950, 700)) {
+MyFrame::MyFrame() : wxFrame( nullptr, wxID_ANY, "Casino Game", wxPoint(20, 20), wxSize(1000, 700)) {
   wxMenuBar *menu_bar = new wxMenuBar();
   
   wxMenu *menuImage = new wxMenu;

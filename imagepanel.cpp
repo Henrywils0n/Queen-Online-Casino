@@ -22,51 +22,32 @@ void wxImagePanel::render(wxDC&  dc) {
   int neww, newh;
   dc.GetSize(&neww, &newh);
   
+  // Grab photo ratio to use in scaling.
+  w = image.GetWidth();
+  h = image.GetHeight();
+  resized = wxBitmap(image.Scale(w, h));
+
   if(neww != w || newh != h) {
-    resized = wxBitmap(image.Scale(neww, newh));
-    w = neww;
-    h = newh;
+    int temph = round(neww*((double) h/ (double) w));
+    int tempw = round(newh*((double) w/ (double) h));
+    temph = (temph > newh) ? newh : temph;
+    tempw = (tempw > neww) ? neww : tempw;
+    resized = wxBitmap(image.Scale(tempw, temph));
     dc.DrawBitmap(resized, 0, 0, false);
   }else{
     dc.DrawBitmap(resized, 0, 0, false);
   }
 }
 
-/*
- * Here we call refresh to tell the panel to draw itself again.
- * So when the user resizes the image panel the image should be resized too.
- */
-void wxImagePanel::OnSize(wxSizeEvent& event){
+void wxImagePanel::OnSize(wxSizeEvent& event) {
   Refresh();
   event.Skip();
 }
 
+int wxImagePanel::getWidth() {
+  return w;
+}
 
-//
-//class MyApp: public wxApp
-//{
-//
-//    wxFrame *frame;
-//    wxImagePanel * drawPane;
-//public:
-//    bool OnInit()
-//    {
-//        // make sure to call this first
-//        wxInitAllImageHandlers();
-//
-//        wxBoxSizer* sizer = new wxBoxSizer(wxHORIZONTAL);
-//        frame = new wxFrame(NULL, wxID_ANY, wxT("Hello wxDC"), wxPoint(50,50), wxSize(800,600));
-//
-//        // then simply create like this
-//        drawPane = new wxImagePanel( frame, wxT("image.jpg"), wxBITMAP_TYPE_JPEG);
-//        sizer->Add(drawPane, 1, wxEXPAND);
-//
-//        frame->SetSizer(sizer);
-//
-//        frame->Show();
-//        return true;
-//    }
-//
-//};
-//
-//IMPLEMENT_APP(MyApp)
+int wxImagePanel::getHeight() {
+  return w;
+}
