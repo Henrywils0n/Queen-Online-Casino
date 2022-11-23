@@ -6,6 +6,7 @@ public:
   
   void OnAbout(wxCommandEvent &event);
   void OnQuit(wxCommandEvent &event);
+  void OnReset(wxCommandEvent &event);
   void OnPlayRoulette(wxCommandEvent &event);
   void OnPlayBlackjack(wxCommandEvent &event);
   void OnPlayOddsAre(wxCommandEvent &event);
@@ -21,7 +22,7 @@ private:
   wxDECLARE_DYNAMIC_CLASS(MyFrame);
   wxDECLARE_EVENT_TABLE();
   
-  int clickCount;
+  int balance;
 };
 
 enum {
@@ -30,4 +31,5 @@ enum {
   ID_ROULETTE,
   ID_BLACKJACK,
   ID_ODDSARE,
+  ID_RESETBAL,
 };

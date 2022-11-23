@@ -3,11 +3,12 @@
 
 wxIMPLEMENT_DYNAMIC_CLASS(MyFrame, wxFrame);
 wxBEGIN_EVENT_TABLE(MyFrame, wxFrame)
-EVT_MENU(ID_ABOUT, MyFrame::OnAbout)
-EVT_MENU(ID_QUIT,  MyFrame::OnQuit)
-EVT_BUTTON(ID_ROULETTE,  MyFrame::OnPlayRoulette)
-EVT_BUTTON(ID_BLACKJACK,  MyFrame::OnPlayBlackjack)
-EVT_BUTTON(ID_ODDSARE,  MyFrame::OnPlayOddsAre)
+  EVT_MENU(ID_ABOUT, MyFrame::OnAbout)
+  EVT_MENU(ID_QUIT,  MyFrame::OnQuit)
+  EVT_MENU(ID_RESETBAL,  MyFrame::OnReset)
+  EVT_BUTTON(ID_ROULETTE,  MyFrame::OnPlayRoulette)
+  EVT_BUTTON(ID_BLACKJACK,  MyFrame::OnPlayBlackjack)
+  EVT_BUTTON(ID_ODDSARE,  MyFrame::OnPlayOddsAre)
 wxEND_EVENT_TABLE()
 
 MyFrame::MyFrame() : wxFrame( nullptr, wxID_ANY, "Casino Game", wxPoint(20, 20), wxSize(1000, 700)) {
@@ -17,10 +18,11 @@ MyFrame::MyFrame() : wxFrame( nullptr, wxID_ANY, "Casino Game", wxPoint(20, 20),
   menuImage->Append( ID_ABOUT, "&About\tF1");
   menuImage->AppendSeparator();
   menuImage->Append( ID_QUIT, "&Exit\tCtrl-Q");
+  menuImage->Append( ID_RESETBAL, "&Reset Balance");
   menu_bar->Append(menuImage, "&Menu");
   SetMenuBar(menu_bar);
   
-  clickCount = 0;
+  balance = 500;
   
   //m_screen = new MyScreen(this, wxID_ANY, wxPoint(0,0), wxSize(10,10), wxTAB_TRAVERSAL, "Casino Game");
   
@@ -67,30 +69,34 @@ void MyFrame::OnAbout(wxCommandEvent &WXUNUSED(event)) {
   
   (void)wxMessageBox(wxJoin(array, '\n'), "About Game", wxICON_INFORMATION | wxOK );
 }
+void MyFrame::OnReset(wxCommandEvent &WXUNUSED(event)) {
+  
+  balance = 500;
+}
 
 void MyFrame::OnPlayRoulette(wxCommandEvent &WXUNUSED(event)) {
-  clickCount++;
+  balance++;
   if (m_textCtrl) {
     std::wstringstream contents;
-    contents << L"Button has been clicked " << clickCount << " times";
+    contents << L"Button has been clicked " << balance << " times";
     m_textCtrl->SetValue(contents.str());
   }
 }
 
 void MyFrame::OnPlayBlackjack(wxCommandEvent &WXUNUSED(event)) {
-  clickCount++;
+  balance++;
   if (m_textCtrl) {
     std::wstringstream contents;
-    contents << L"Button has been clicked " << clickCount << " times";
+    contents << L"Button has been clicked " << balance << " times";
     m_textCtrl->SetValue(contents.str());
   }
 }
 
 void MyFrame::OnPlayOddsAre(wxCommandEvent &WXUNUSED(event)) {
-  clickCount++;
+  balance++;
   if (m_textCtrl) {
     std::wstringstream contents;
-    contents << L"Button has been clicked " << clickCount << " times";
+    contents << L"Button has been clicked " << balance << " times";
     m_textCtrl->SetValue(contents.str());
   }
 }
