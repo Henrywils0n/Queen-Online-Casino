@@ -8,7 +8,8 @@ int cardNumGen(){
     cout << "How many card would you like to guess?"; 
     cin >> cardsToGuess;
     //create cardsToGuess number of Card objects and add to a list
-    return cardsToGuess;
+    Card cards[cardsToGuess]; 
+    return cards;
 }
 
 //Calculate how many points the player has earned based on how many wins they have
@@ -42,12 +43,21 @@ int randomNumGen(int cardRange) {
 } //generates a random number
 
 
-int searchList(int arrayList[], int size, int ans) {
-    for (int i =0; i<size; i++){
-        if (arrayList[i]==ans){
+int searchList(Card cards[], Card ans) {
+    for (int i =0; i< sizeof(cards); i++){   //Loop through list of cards 
+        if (cards[i]==ans){                  //If current card is same as the guess, return the card
+            cout << "Card is in the deck!";
             return ans;
         }else {
-            return "not found";
+            return 0;
+            cout << "Not found in deck!";
         } 
     }
+}
+
+void playerGuess(Card cards){
+    cout << "Guess a card";
+    cin >> guess;
+    Card cardGuess = guess;
+    searchList(cards, cardGuess);
 }
