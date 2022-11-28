@@ -31,6 +31,7 @@ MyFrame::MyFrame() : wxFrame( nullptr, wxID_ANY, "Casino Game", wxPoint(20, 20),
   wxString dir = strcat(buf,"/gametitle.png");
   
   m_title = new wxImagePanel(this, dir, wxBITMAP_TYPE_PNG);
+  //m_odds_are = new
   
   roulette_button  = new wxButton(this, ID_ROULETTE,  "PLAY ROULETTE");
   blackjack_button = new wxButton(this, ID_BLACKJACK, "PLAY BLACKJACK");
