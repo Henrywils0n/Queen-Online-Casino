@@ -1,4 +1,4 @@
-#include "screen.h"
+#include "imagepanel.h"
 
 class MyFrame: public wxFrame {
 public:
@@ -6,27 +6,30 @@ public:
   
   void OnAbout(wxCommandEvent &event);
   void OnQuit(wxCommandEvent &event);
+  void OnReset(wxCommandEvent &event);
+  void OnPlayRoulette(wxCommandEvent &event);
+  void OnPlayBlackjack(wxCommandEvent &event);
+  void OnPlayOddsAre(wxCommandEvent &event);
   
-  MyScreen *m_screen;
+  //MyScreen *m_screen;
+  wxImagePanel* m_title;
+  wxButton* roulette_button;
+  wxButton* blackjack_button;
+  wxButton* oddsare_button;
+  wxTextCtrl* m_textCtrl;
   
 private:
   wxDECLARE_DYNAMIC_CLASS(MyFrame);
   wxDECLARE_EVENT_TABLE();
+  
+  int balance;
 };
 
 enum {
-  ID_ROTATE_LEFT = wxID_HIGHEST,
-  ID_ROTATE_RIGHT,
-  ID_RESIZE,
-  ID_ZOOM_x2,
-  ID_ZOOM_DC,
-  ID_ZOOM_NEAREST,
-  ID_ZOOM_BILINEAR,
-  ID_ZOOM_BICUBIC,
-  ID_ZOOM_BOX_AVERAGE,
-  ID_PAINT_BG,
-  //    ID_QUIT  = wxID_EXIT,
-  //    ID_ABOUT = wxID_ABOUT,
-  ID_QUIT,
-  ID_ABOUT,
+  ID_QUIT  = wxID_EXIT,
+  ID_ABOUT = wxID_ABOUT,
+  ID_ROULETTE,
+  ID_BLACKJACK,
+  ID_ODDSARE,
+  ID_RESETBAL,
 };
