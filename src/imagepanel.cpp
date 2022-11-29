@@ -1,4 +1,4 @@
-#include "imagepanel.h"
+#include "../include/imagepanel.h"
 
 BEGIN_EVENT_TABLE(ImagePanel, wxPanel)
   EVT_PAINT(ImagePanel::paintEvent)

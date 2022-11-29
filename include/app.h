@@ -1,4 +1,4 @@
-#include "header.h"
+#pragma once
 #include "game.h"
 
 class CasinoApp: public wxApp {

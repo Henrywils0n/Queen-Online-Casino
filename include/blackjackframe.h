@@ -1,4 +1,4 @@
-#include "frame.h"
+#pragma once
 #include "game.h"
 
 class BlackjackFrame: public wxFrame {
@@ -9,11 +9,13 @@ public:
   void OnQuit(wxCommandEvent &event);
   void setRouter(Game* router);
   
-  wxImagePanel* m_title;
+  /*
+  ImagePanel* m_title;
   wxButton* roulette_button;
   wxButton* blackjack_button;
   wxButton* oddsare_button;
   wxTextCtrl* m_textCtrl;
+   */
   
 private:
   wxDECLARE_DYNAMIC_CLASS(BlackjackFrame);
@@ -22,7 +24,6 @@ private:
 };
 
 enum {
-  ID_QUIT  = wxID_EXIT,
-  ID_ABOUT = wxID_ABOUT,
+  ID_BJQUIT,
+  ID_BJABOUT,
 };
-

@@ -1,14 +1,12 @@
-#include "frameBJ.h"
-#include "game.h"
-#include <sstream>
+#include "../include/oddsareframe.h"
 
-wxIMPLEMENT_DYNAMIC_CLASS(BlackjackFrame, wxFrame);
-wxBEGIN_EVENT_TABLE(BlackjackFrame, wxFrame)
-  EVT_MENU(ID_ABOUT, BlackjackFrame::OnAbout)
-  EVT_MENU(ID_QUIT,  BlackjackFrame::OnQuit)
+wxIMPLEMENT_DYNAMIC_CLASS(OddsAreFrame, wxFrame);
+wxBEGIN_EVENT_TABLE(OddsAreFrame, wxFrame)
+  EVT_MENU(ID_OAABOUT, OddsAreFrame::OnAbout)
+  EVT_MENU(ID_OAQUIT,  OddsAreFrame::OnQuit)
 wxEND_EVENT_TABLE()
 
-BlackjackFrame::BlackjackFrame() : wxFrame( nullptr, wxID_ANY, "Balckjack", wxPoint(30, 30), wxSize(1000, 700)) {
+OddsAreFrame::OddsAreFrame() : wxFrame( nullptr, wxID_ANY, "Balckjack", wxPoint(30, 30), wxSize(1000, 700)) {
   
   wxMenuBar *menu_bar = new wxMenuBar();
   
@@ -40,18 +38,18 @@ BlackjackFrame::BlackjackFrame() : wxFrame( nullptr, wxID_ANY, "Balckjack", wxPo
   */
 }
 
-void setRouter(Game* router){
+void OddsAreFrame::setRouter(Game* router){
     router = router;
 }
 
-void BlackjackFrame::OnQuit(wxCommandEvent &WXUNUSED(event)) {
+void OddsAreFrame::OnQuit(wxCommandEvent &WXUNUSED(event)) {
   router->returnToMenu();
 }
 
-void BlackjackFrame::OnAbout(wxCommandEvent &WXUNUSED(event)) {
+void OddsAreFrame::OnAbout(wxCommandEvent &WXUNUSED(event)) {
   wxArrayString array;
   
-  array.Add("Black Jack Game");
+  array.Add("Odds Are Game");
   array.Add("(c) Team 23 Montreal 2022");
   array.Add(wxEmptyString);
   array.Add("Version of libraries used:");

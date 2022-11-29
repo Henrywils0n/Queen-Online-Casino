@@ -1,4 +1,6 @@
+#pragma once
 #include "imagepanel.h"
+#include <sstream>
 
 class MyFrame: public wxFrame {
 public:

@@ -1,3 +1,4 @@
+#pragma once
 #include "frame.h"
 
 class Game {

@@ -1,4 +1,7 @@
-#include "game.h"
+#include "../include/rouletteframe.h"
+#include "../include/oddsareframe.h"
+#include "../include/blackjackframe.h"
+
 
 Game::Game() {
   balance = 500;

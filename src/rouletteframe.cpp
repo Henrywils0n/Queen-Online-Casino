@@ -1,14 +1,12 @@
-#include "frameOA.h"
-#include "game.h"
-#include <sstream>
+#include "../include/rouletteframe.h"
 
-wxIMPLEMENT_DYNAMIC_CLASS(OddsAreFrame, wxFrame);
-wxBEGIN_EVENT_TABLE(OddsAreFrame, wxFrame)
-  EVT_MENU(ID_ABOUT, OddsAreFrame::OnAbout)
-  EVT_MENU(ID_QUIT,  OddsAreFrame::OnQuit)
+wxIMPLEMENT_DYNAMIC_CLASS(RouletteFrame, wxFrame);
+wxBEGIN_EVENT_TABLE(RouletteFrame, wxFrame)
+  EVT_MENU(ID_RTABOUT, RouletteFrame::OnAbout)
+  EVT_MENU(ID_RTQUIT,  RouletteFrame::OnQuit)
 wxEND_EVENT_TABLE()
 
-OddsAreFrame::OddsAreFrame() : wxFrame( nullptr, wxID_ANY, "Balckjack", wxPoint(30, 30), wxSize(1000, 700)) {
+RouletteFrame::RouletteFrame() : wxFrame( nullptr, wxID_ANY, "Balckjack", wxPoint(30, 30), wxSize(1000, 700)) {
   
   wxMenuBar *menu_bar = new wxMenuBar();
   
@@ -40,15 +38,15 @@ OddsAreFrame::OddsAreFrame() : wxFrame( nullptr, wxID_ANY, "Balckjack", wxPoint(
   */
 }
 
-void setRouter(Game* router){
+void RouletteFrame::setRouter(Game* router){
     router = router;
 }
 
-void OddsAreFrame::OnQuit(wxCommandEvent &WXUNUSED(event)) {
+void RouletteFrame::OnQuit(wxCommandEvent &WXUNUSED(event)) {
   router->returnToMenu();
 }
 
-void OddsAreFrame::OnAbout(wxCommandEvent &WXUNUSED(event)) {
+void RouletteFrame::OnAbout(wxCommandEvent &WXUNUSED(event)) {
   wxArrayString array;
   
   array.Add("Odds Are Game");

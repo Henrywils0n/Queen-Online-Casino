@@ -1,5 +1,4 @@
-#include "frame.h"
-#include <sstream>
+#include "../include/frame.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(MyFrame, wxFrame);
 wxBEGIN_EVENT_TABLE(MyFrame, wxFrame)
@@ -24,7 +23,7 @@ MyFrame::MyFrame() : wxFrame( nullptr, wxID_ANY, "Casino Game", wxPoint(30, 30),
   
   balance = 500;
   
-  wxString dir = "./gametitle.png";
+  wxString dir = "../resources/gametitle.png";
   
   m_title = new ImagePanel(this, dir, wxBITMAP_TYPE_PNG);
   
@@ -50,7 +49,7 @@ MyFrame::MyFrame() : wxFrame( nullptr, wxID_ANY, "Casino Game", wxPoint(30, 30),
 }
 
 void MyFrame::OnQuit(wxCommandEvent &WXUNUSED(event)) {
-  Close(true);
+  exit(0);
 }
 
 void MyFrame::OnAbout(wxCommandEvent &WXUNUSED(event)) {
