@@ -1,14 +1,16 @@
 #include "game.h";
 
-class FrameRT : public wxFrame {
+class RouletteFrame : public wxFrame {
 public:
-	FrameRT();
+	RouletteFrame();
+    void setRouter(Game* router);
 	void OnQuit(wxCommandEvent& event);
-	void OnReset(wxCommandEvent& event);
+	void OnAbout(wxCommandEvent& event);
 
 	wxTextCtrl* m_textCtrl;
 
 private:
-	wxDECLARE_DYNAMIC_CLASS(FrameRT);
+	wxDECLARE_DYNAMIC_CLASS(RouletteFrame);
 	wxDECLARE_EVENT_TABLE();
+    Game* router;
 };
