@@ -1,11 +1,11 @@
 #include "imagepanel.h"
 
-BEGIN_EVENT_TABLE(wxImagePanel, wxPanel)
-  EVT_PAINT(wxImagePanel::paintEvent)
-  EVT_SIZE(wxImagePanel::OnSize)
+BEGIN_EVENT_TABLE(ImagePanel, wxPanel)
+  EVT_PAINT(ImagePanel::paintEvent)
+  EVT_SIZE(ImagePanel::OnSize)
 END_EVENT_TABLE()
 
-wxImagePanel::wxImagePanel(wxFrame* parent, wxString file, wxBitmapType format) : wxPanel(parent) {
+ImagePanel::ImagePanel(wxFrame* parent, wxString file, wxBitmapType format) : wxPanel(parent) {
   if (!image.LoadFile(file, format)) {
     wxLogError("Can't load PNG image.");
   }
@@ -13,12 +13,12 @@ wxImagePanel::wxImagePanel(wxFrame* parent, wxString file, wxBitmapType format) 
   h = -1;
 }
 
-void wxImagePanel::paintEvent(wxPaintEvent & evt) {
+void ImagePanel::paintEvent(wxPaintEvent & evt) {
   wxPaintDC dc(this);
   render(dc);
 }
 
-void wxImagePanel::render(wxDC&  dc) {
+void ImagePanel::render(wxDC&  dc) {
   int neww, newh;
   dc.GetSize(&neww, &newh);
   
@@ -39,15 +39,15 @@ void wxImagePanel::render(wxDC&  dc) {
   }
 }
 
-void wxImagePanel::OnSize(wxSizeEvent& event) {
+void ImagePanel::OnSize(wxSizeEvent& event) {
   Refresh();
   event.Skip();
 }
 
-int wxImagePanel::getWidth() {
+int ImagePanel::getWidth() {
   return w;
 }
 
-int wxImagePanel::getHeight() {
+int ImagePanel::getHeight() {
   return w;
 }

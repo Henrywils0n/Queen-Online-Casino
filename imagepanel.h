@@ -1,13 +1,13 @@
 #include "header.h"
 
-class wxImagePanel : public wxPanel
+class ImagePanel : public wxPanel
 {
   wxImage image;
   wxBitmap resized;
   int w, h;
   
 public:
-  wxImagePanel(wxFrame* parent, wxString file, wxBitmapType format);
+  ImagePanel(wxFrame* parent, wxString file, wxBitmapType format);
   
   void paintEvent(wxPaintEvent & evt);
   void paintNow();

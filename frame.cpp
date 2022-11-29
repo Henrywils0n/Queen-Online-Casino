@@ -26,7 +26,7 @@ MyFrame::MyFrame() : wxFrame( nullptr, wxID_ANY, "Casino Game", wxPoint(30, 30),
   
   wxString dir = "./gametitle.png";
   
-  m_title = new wxImagePanel(this, dir, wxBITMAP_TYPE_PNG);
+  m_title = new ImagePanel(this, dir, wxBITMAP_TYPE_PNG);
   
   roulette_button  = new wxButton(this, ID_ROULETTE,  "PLAY ROULETTE");
   blackjack_button = new wxButton(this, ID_BLACKJACK, "PLAY BLACKJACK");
