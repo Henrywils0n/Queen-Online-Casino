@@ -1,12 +1,13 @@
 #include "frame.h"
+#include "game.h"
 
-class RouletteFrame: public wxFrame {
+class BlackjackFrame: public wxFrame {
 public:
-  RouletteFrame();
+  BlackjackFrame();
   
   void OnAbout(wxCommandEvent &event);
   void OnQuit(wxCommandEvent &event);
-  void OnReset(wxCommandEvent &event);
+  void setRouter(Game* router);
   
   wxImagePanel* m_title;
   wxButton* roulette_button;
@@ -15,8 +16,9 @@ public:
   wxTextCtrl* m_textCtrl;
   
 private:
-  wxDECLARE_DYNAMIC_CLASS(RouletteFrame);
+  wxDECLARE_DYNAMIC_CLASS(BlackjackFrame);
   wxDECLARE_EVENT_TABLE();
+  Game *router;
 };
 
 enum {

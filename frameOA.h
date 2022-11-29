@@ -1,14 +1,16 @@
 #include "game.h";
 
-class FrameOA : public wxFrame {
+class OddsAreFrame : public wxFrame {
 public:
-	FrameOA();
+	OddsAreFrame();
+    void setRouter(Game* router);
 	void OnQuit(wxCommandEvent& event);
-	void OnReset(wxCommandEvent& event);
+	void OnAbout(wxCommandEvent& event);
 
 	wxTextCtrl* m_textCtrl;
 
 private:
-	wxDECLARE_DYNAMIC_CLASS(FrameOA);
+	wxDECLARE_DYNAMIC_CLASS(OddsAreFrame);
 	wxDECLARE_EVENT_TABLE();
+    Game* router;
 };

@@ -16,6 +16,7 @@ public:
   void playRoutlette();
   void playBlackjack();
   void playOddsAre();
+  void returnToMenu();
   
 private:
   int balance;
