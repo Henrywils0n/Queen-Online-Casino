@@ -11,7 +11,7 @@ wxBEGIN_EVENT_TABLE(MyFrame, wxFrame)
   EVT_BUTTON(ID_ODDSARE,  MyFrame::OnPlayOddsAre)
 wxEND_EVENT_TABLE()
 
-MyFrame::MyFrame() : wxFrame( nullptr, wxID_ANY, "Casino Game", wxPoint(20, 20), wxSize(1000, 700)) {
+MyFrame::MyFrame() : wxFrame( nullptr, wxID_ANY, "Casino Game", wxPoint(30, 30), wxSize(1000, 700)) {
   wxMenuBar *menu_bar = new wxMenuBar();
   
   wxMenu *menuImage = new wxMenu;
@@ -23,7 +23,6 @@ MyFrame::MyFrame() : wxFrame( nullptr, wxID_ANY, "Casino Game", wxPoint(20, 20),
   SetMenuBar(menu_bar);
   
   balance = 500;
-  
   
   wxString dir = "./gametitle.png";
   
