@@ -11,7 +11,6 @@ public:
   void OnPlayBlackjack(wxCommandEvent &event);
   void OnPlayOddsAre(wxCommandEvent &event);
   
-  //MyScreen *m_screen;
   wxImagePanel* m_title;
   wxButton* roulette_button;
   wxButton* blackjack_button;

@@ -12,7 +12,6 @@
 #include <wx/quantize.h>
 #include <wx/stopwatch.h>
 #include <wx/sizer.h>
-#include <unistd.h>
 
 class wxImagePanel : public wxPanel
 {

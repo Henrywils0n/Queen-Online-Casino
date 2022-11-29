@@ -24,11 +24,8 @@ MyFrame::MyFrame() : wxFrame( nullptr, wxID_ANY, "Casino Game", wxPoint(20, 20),
   
   balance = 500;
   
-  //m_screen = new MyScreen(this, wxID_ANY, wxPoint(0,0), wxSize(10,10), wxTAB_TRAVERSAL, "Casino Game");
   
-  char buf[1024];
-  getcwd(buf, 1024);
-  wxString dir = strcat(buf,"/gametitle.png");
+  wxString dir = "./gametitle.png";
   
   m_title = new wxImagePanel(this, dir, wxBITMAP_TYPE_PNG);
   
