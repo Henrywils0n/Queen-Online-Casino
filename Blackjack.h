@@ -8,42 +8,75 @@
 #include <vector>
 #include <string>
 #include <iostream>
+#include <algorithm>
+#include <ctime>
 #pragma once
 using namespace std;
 
-
-class Suit {
-private:
-    string name;
-    Suit(string nameValue);
+class Card{
 public:
-    const static Suit CLUBS = new Suit("Clubs");
-    const static Suit DIAMONDS = new Suit("Diamonds");
-    const static Suit HEARTS = new Suit("Hearts");
-    const static Suit SPADES = new Suit("Spades");
-    string getName();
+    enum rank {ACE=1, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN,
+        JACK, QUEEN, KING};
+    enum suit {CLUBS, DIAMONDS, HEARTS, SPADES};
+    Card(rank r, suit s, bool faceUp);
+    int getValue() const;
+    string getSuit() const;
+    string getRank() const;
+    void flip();
+private:
+    rank Rank;
+    suit Suit;
+    bool facedUp;
 };
 
-class Rank{
-private:
-    string name;
-    Rank(string nameValue);
+class Deck{
 public:
-    const static Rank ACE = new Rank("Ace");
-    const static Rank TWO = new Rank("Two");
-    const static Rank THREE = new Rank("Three");
-    const static Rank FOUR = new Rank("Four");
-    const static Rank FIVE = new Rank("Five");
-    const static Rank SIX = new Rank("Six");
-    const static Rank SEVEN = new Rank("Seven");
-    const static Rank EIGHT = new Rank("Eight");
-    const static Rank NINE = new Rank("Nine");
-    const static Rank TEN = new Rank("Ten");
-    const static Rank JACK = new Rank("Jack");
-    const static Rank QUEEN = new Rank("Queen");
-    const static Rank KING = new Rank("King");
-    string getName();
+    Deck();
+    void init();
+    void newDeck();
+    void shuffle();
+    void deal(Hand hand);
+    void anotherCard(GenericParticipant participant);
+private:
+    vector <Card*> deck;
 };
+
+class Hand{
+public:
+    Hand();
+    //virtual ~Hand();
+    void addCard(Card* c);
+    void newHand();
+    int sumOfHand();
+private:
+    vector <Card*> hand;
+};
+
+class GenericParticipant{
+public:
+    GenericParticipant();
+    virtual bool IsHitting() const = 0;
+    bool IsBusted() const;
+    void Bust() const;
+};
+
+class Dealer : public GenericParticipant{
+public:
+    Dearler();
+    bool hit() const;
+    void flipCard();
+};
+
+class Player : public GenericParticipant{
+public:
+    Player();
+    bool hit() const;
+    void win() const;
+    void lose() const;
+    void push() const;
+};
+
+
 
 class Chip{ //extends Button
 private:
@@ -54,23 +87,24 @@ public:
     int getValue();
 };
 
-class Card{
-private:
-    Suit suit;
-    Rank rank;
-    int cardValue;
+class Blackjack {
 public:
-    Card();
-    Card(Suit suit, Rank rank);
-    Suit getSuit();
-    Rank getRank();
-    int getValue();
-    void setAceValue(int i);
+    int winCheck(int playerHandSum, int dealerHandSum);
+    int sumOfHand(Hand hand);
+    void dealHand();
+    void hit();
+    void stand();
+    int win();
+    int lose();
 
-};
-
-class Blackjack{
-
+private: //Declaring private variables for the JumblePuzzle class
+    int bet;
+    int score;
+    int countWin; //Number of wins in a row for bonus multiplier
+    int totalWin; //Overall wins, doesnt count wins in a row, just total number
+    string guess;
+    Card cards[];
+    Card cardGuess; //Players guess converted to a Card object
 };
 
 class MinimumBetException {
