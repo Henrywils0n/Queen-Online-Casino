@@ -1,5 +1,5 @@
 These arguments are necessary to build a C++ project with wxWidgets:
-g++ -o main *.cpp `wx-config --cxxflags --libs`
+g++ -std=c++11 -o main *.cpp `wx-config --cxxflags --libs`
 
 For installing wxWidgets on mac, you can use:
 brew install wxwidgets
