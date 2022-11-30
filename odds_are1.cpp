@@ -1,5 +1,5 @@
 #include <iostream>
-#include <odds_are1.h>
+#include "odds_are1.h"
 using namespace  std;
 
 BadUserInput::BadUserInput(const string& message) : message(message) {}
@@ -7,48 +7,24 @@ BadUserInput::BadUserInput(const string& message) : message(message) {}
         return message; 
         }
 
-void OddsAre(const int& accountBalance){
+OddsAre::OddsAre(int accountBalance){
     accountBalance = accountBalance;
-    //cardNumGen();
-    //playerGuess();
-    //pointsEarned();
-
+    numGen(accountBalance); //Calls first function to get input regarding game
 }
 
 //Asks user how many cards they want to guess, returns number
-int OddsAre::numGen(){
+int OddsAre::numGen(int accountBalance){
     int numsToGuess;
-    cout << "How much would you like to bet";
+    int bet;
+    cout << "How much would you like to bet ";
     cin >> bet;
     if( bet > accountBalance){
         throw BadUserInput ("Invalid bet amount");
     }
-    cout << "How many numbers would you like to guess from?"; 
+    cout << "How many numbers would you like to guess from? "; 
     cin >> numsToGuess;
     //create cardsToGuess number of Card objects and add to a list
     randomNumGen(numsToGuess);
-}
-
-//If player has multiple wins in a row, multiply their score by the bonus points 
-//and return final score.
-int OddsAre::bonusMultiplier(int countWin, int bet) {
-    int bonusAmount;
-    int updateBet;
-    if (countWin == 1) {
-        bonusAmount = 2 * countWin;
-        updateBet = bonusAmount * bet;
-    } else if (countWin == 2) {
-        bonusAmount = 4 * countWin;
-        updateBet = bonusAmount * bet;
-    } else if (countWin > 2) {
-        bonusAmount = 10 * countWin;
-        updateBet = bonusAmount * bet;
-    } else {
-        bonusAmount = 1 * countWin;
-        updateBet = balanceAmount - bet;
-        
-    }
-    return updateBet;
 }
 
 void OddsAre::randomNumGen(int numsToGuess) {
@@ -59,18 +35,49 @@ void OddsAre::randomNumGen(int numsToGuess) {
 } //generates a random number
 
 void OddsAre::playerGuess(int ans, int numsToGuess){
-    cout << "Guess a number within the range";
+    cout << "Guess a number within the range ";
     cin >> guess;
     int win = 0;
-    if (guess > numsToGuess || guess < numsToGuess){
+    if (guess > numsToGuess || guess < 0){
         throw BadUserInput("Invalid Input");
     }else{
         if(ans == guess){
             win++;
-            bonusMultiplier(win, bet);
+            cout << "You win! \n";
+            bonusMultiplier(win, bet, accountBalance);
         }else{
-            bonusMultiplier(0, bet);
+            cout << "You lost! \n";
+            bonusMultiplier(0, bet, accountBalance);
             
         }
     }
+}
+
+//If player has multiple wins in a row, multiply their score by the bonus points 
+//and return final score.
+int OddsAre::bonusMultiplier(int countWin, int bet, int balanceAmount) {
+    int bonusAmount;
+    int updateBalance;
+    if (countWin == 1) {
+        bonusAmount = 2 * countWin;
+        updateBalance = bonusAmount * bet;
+    } else if (countWin == 2) {
+        bonusAmount = 4 * countWin;
+        updateBalance = bonusAmount * bet;
+    } else if (countWin > 2) {
+        bonusAmount = 10 * countWin;
+        updateBalance = bonusAmount * bet;
+    } else {
+        bonusAmount = 1 * countWin;
+        updateBalance = balanceAmount - bet;
+        
+    }
+    cout << "Your updated account balance: " << updateBalance;
+    return updateBalance; //Player's credit balance after the game (shows if they won or lost)
+}
+
+//Just put here for testing through the terminal, delete later
+int main(){
+    OddsAre(100); //Setting account balance to 100 for testing
+    return 0;
 }

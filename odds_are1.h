@@ -15,9 +15,9 @@ private:
 
 class OddsAre {
 public:
-    void OddsAre(const int&);
-    int numGen();
-    int bonusMultiplier(int, int);
+    OddsAre(int);
+    int numGen(int);
+    int bonusMultiplier(int, int, int);
     void randomNumGen(int); //generates a random number
     //int searchList();  //Search card deck for player's guess
     void playerGuess(int, int);  //Feed in player guess and call searchList()
