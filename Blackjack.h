@@ -30,100 +30,103 @@ private:
     bool facedUp;
 };
 
-class Deck : public Hand{
-public:
-    Deck();
-    ~Deck();
-    void init();
-    void shuffle();
-    void deal(Hand& hand); //deal one card
-    void anotherCard(GenericParticipant& participant); //give additional cards
-private:
-    vector <Card*> deck;
-};
 
 class Hand{
 public:
     Hand();
-    ~Hand();
+    virtual ~Hand();
     void addCard(Card* c);
     void clear();
     int sumOfHand() const;
-private:
-    vector <Card*> hand;
+protected:
+    vector<Card*> cards;
 };
+
 
 class GenericParticipant : public Hand{
     friend ostream& operator << (ostream& os, const GenericParticipant& participant);
 public:
     GenericParticipant();
-    ~GenericParticipant();
+    virtual ~GenericParticipant();
     virtual bool isHitting() const = 0; //indicates if player wants to keep hitting
     bool isBusted() const; //if total >21, isBusted = true
     void bust() const;
 };
 
+class Deck : public Hand {
+public:
+    Deck();
+    virtual ~Deck();
+    void init();
+    void shuffle();
+    void deal(Hand& hand); //deal one card
+    void anotherCard(GenericParticipant& participant); //give additional cards
+};
+
 class Dealer : public GenericParticipant{
 public:
     Dealer();
-    bool hit() const;
+    ~Dealer();
+    virtual bool isHitting() const;
     void flipCard();
 };
 
 class Player : public GenericParticipant{
 public:
     Player();
-    bool hit() const;
+    ~Player();
+    virtual bool isHitting() const;
     void win() const;
     void lose() const;
     void push() const;
 };
 
-class Blackjack {
+class BlackjackGame {
 public:
-    Blackjack();
+    BlackjackGame();
+    ~BlackjackGame();
     void Play();
 private:
-    Deck deck;
-    Dealer dealer;
-    Player player;
+    Deck game_deck;
+    Dealer game_dealer;
+    Player game_player;
 };
 
-class Chip{ //extends Button
-private:
-    int value;
-    //include private image
-public:
-    Chip(int val);
-    int getValue();
-};
+//class Chip{ //extends Button
+//private:
+//    int value;
+//    //include private image
+//public:
+//    Chip(int val);
+//    int getValue();
+//};
 
-class MinimumBetException {
-public:
-    MinimumBetException(const string& message);
-    string& what();
-private:
-    string message;
-}
-
-// maximum bet exception
-// when player provides excesive funds for maximum bet requirement
-class MaximumBetException {
-public:
-    MaximumBetException(const string& message);
-    string& what();
-private:
-    string message;
-}
-
-// insufficient funds exception
-// when player does not possess sufficient funds to play game
-class InsufficientFundsException {
-public:
-    InsufficientFundsException(const string& message);
-    string& what();
-private:
-    string message;
-}
+//class MinimumBetException {
+//public:
+//    MinimumBetException(const string& message);
+//    string& what();
+//private:
+//    string message;
+//}
+//
+//// maximum bet exception
+//// when player provides excessive funds for maximum bet requirement
+//class MaximumBetException {
+//public:
+//    MaximumBetException(const string& message);
+//    string& what();
+//private:
+//    string message;
+//}
+//
+//// insufficient funds exception
+//// when player does not possess sufficient funds to play game
+//class InsufficientFundsException {
+//public:
+//    InsufficientFundsException(const string& message);
+//    string& what();
+//private:
+//    string message;
+//}
 
 #endif //TEAM_23_MONTREAL_BLACKJACK_H
