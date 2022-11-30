@@ -1,6 +1,7 @@
 #pragma once
 #include "header.h"
 #include "gameframe.h"
+#include "imagepanel.h"
 
 class BlackjackPanel : public wxPanel {
 public:
@@ -21,12 +22,12 @@ private:
 	*/
 	wxBoxSizer* buttonSizer;
 
-	wxBoxSizer* betSizer;
+	ImagePanel* dlrPan1;
 
 	/**
 	* For now the game is run through text
 	*/
-	wxTextCtrl* tempText;
+	//wxTextCtrl* tempText;
 	wxTextCtrl* tempText2;
 
 	wxButton* dealButton;

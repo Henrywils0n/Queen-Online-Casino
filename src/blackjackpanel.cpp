@@ -15,29 +15,42 @@ BlackjackPanel::BlackjackPanel(GameFrame* par) : wxPanel(par) {
     playerSizer = new wxBoxSizer(wxHORIZONTAL);
     buttonSizer = new wxBoxSizer(wxHORIZONTAL);
 
-    tempText = new wxTextCtrl(this, -1, "Dealer Hand", wxDefaultPosition, wxSize(500, 100), wxTE_MULTILINE);
+    // Filler for player and dealer hands
+    //tempText = new wxTextCtrl(this, -1, "Dealer Hand", wxDefaultPosition, wxSize(500, 100), wxTE_MULTILINE);
     tempText2 = new wxTextCtrl(this, -1, "My Hand", wxDefaultPosition, wxSize(500, 100), wxTE_MULTILINE);
 
+    wxString nullCard = "../resources/Cards/red_joker.png";
+
+    dlrPan1 = new ImagePanel(this, nullCard, wxBITMAP_TYPE_PNG);
+
+    dealerSizer->Add(dlrPan1, 0, wxEXPAND | wxALL, 10);
+
+
+
+    // Declare buttons
     dealButton = new wxButton(this, ID_BJDEAL, "DEAL");
     betOneButton = new wxButton(this, ID_BJONECHIP, "1$ CHIP");
     betFiveButton = new wxButton(this, ID_BJFIVECHIP, "5$ CHIP");
     betTwentyFiveButton = new wxButton(this, ID_BJTWENTYFIVECHIP, "25$ CHIP");
 
-    // 1 to stretch up and down; wxEXPAND to stretch sideways
-    //gameSizer->Add(tempText, 1, wxEXPAND | wxALL, 10);
-    dealerSizer->Add(tempText, 0, wxEXPAND | wxALL, 10);
+    // Populate dealer and player sizers
+    //dealerSizer->Add(tempText, 0, wxEXPAND | wxALL, 10);
     playerSizer->Add(tempText2, 0, wxEXPAND | wxALL, 10);
 
+    // Populate button sizer
     buttonSizer->Add(betOneButton, 0, wxALL, 10);
     buttonSizer->Add(betFiveButton, 0, wxALL, 10);
     buttonSizer->Add(betTwentyFiveButton, 0, wxALL, 10);
     buttonSizer->Add(dealButton, 0, wxALL, 10);
 
+    // Add sub-sizers to gameSizer
     gameSizer->Add(dealerSizer, wxEXPAND | wxALL, wxALIGN_CENTER);
     gameSizer->Add(playerSizer, wxEXPAND | wxALL, wxALIGN_CENTER);
     gameSizer->Add(buttonSizer, 0, wxALIGN_CENTER); 
 
     SetSizerAndFit(gameSizer);
+
+    dealerSizer->SetSizeHints(this);
 }
 
 void BlackjackPanel::onDeal(wxCommandEvent& WXUNUSED(event)) {
