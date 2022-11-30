@@ -22,6 +22,7 @@ public:
     int getValue() const;
     string getSuit() const;
     string getRank() const;
+    friend ostream& operator << (ostream& os, const Card& aCard);
     void flip();
 private:
     rank Rank;
@@ -32,10 +33,11 @@ private:
 class Deck : public Hand{
 public:
     Deck();
+    ~Deck();
     void init();
     void shuffle();
-    void deal(Hand& hand);
-    void anotherCard(GenericParticipant& participant);
+    void deal(Hand& hand); //deal one card
+    void anotherCard(GenericParticipant& participant); //give additional cards
 private:
     vector <Card*> deck;
 };
@@ -43,20 +45,22 @@ private:
 class Hand{
 public:
     Hand();
-    //virtual ~Hand();
+    ~Hand();
     void addCard(Card* c);
     void clear();
-    int sumOfHand();
+    int sumOfHand() const;
 private:
     vector <Card*> hand;
 };
 
 class GenericParticipant : public Hand{
+    friend ostream& operator << (ostream& os, const GenericParticipant& participant);
 public:
     GenericParticipant();
-    virtual bool isHitting() const = 0;
-    bool isBusted() const;
-    void Bust() const;
+    ~GenericParticipant();
+    virtual bool isHitting() const = 0; //indicates if player wants to keep hitting
+    bool isBusted() const; //if total >21, isBusted = true
+    void bust() const;
 };
 
 class Dealer : public GenericParticipant{
@@ -121,6 +125,5 @@ public:
 private:
     string message;
 }
-
 
 #endif //TEAM_23_MONTREAL_BLACKJACK_H
