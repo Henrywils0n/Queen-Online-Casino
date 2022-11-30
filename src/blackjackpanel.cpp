@@ -7,7 +7,7 @@ END_EVENT_TABLE()
 
 BlackjackPanel::BlackjackPanel(GameFrame* par) : wxPanel(par) {  
   parent = par;
-  m_textCtrl = new wxTextCtrl(this, wxID_ANY, "ODDS ARE", wxDefaultPosition, wxSize(100, wxDefaultCoord));
+  m_textCtrl = new wxTextCtrl(this, wxID_ANY, "BLACKJACK", wxDefaultPosition, wxSize(100, wxDefaultCoord));
   exit_button  = new wxButton(this, ID_BJQUIT,  "MENU");
 
   wxBoxSizer* menuBox = new wxBoxSizer(wxHORIZONTAL);

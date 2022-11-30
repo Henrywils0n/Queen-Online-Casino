@@ -33,7 +33,7 @@ MenuPanel::MenuPanel(GameFrame* par) : wxPanel(par) {
   
   vertBox->Add(m_title, 10, wxEXPAND);
   vertBox->Add(inputBox, 1, wxEXPAND);
-  vertBox->AddSpacer(40);
+  vertBox->AddSpacer(20);
   
   SetSizer(vertBox);
   
