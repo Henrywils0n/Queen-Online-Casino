@@ -56,7 +56,7 @@ void Card::flip(){
 
 Deck::Deck()
 {
-    deck.reserve(52);
+    cards.reserve(52);
     init();
 }
 
@@ -64,24 +64,24 @@ Deck::~Deck(){}
 
 void Deck::init(){
     clear();
-        for (int i = Card::CLUBS; i <= Card::SPADES; ++i)
-            for (int j = Card::ACE; j <= Card::KING; ++j)
-                Add (new Card(static_cast<Card::rank>(i), static_cast<Card::suit>(j)));
+    for (int i = Card::CLUBS; i <= Card::SPADES; ++i)
+        for (int j = Card::ACE; j <= Card::KING; ++j)
+            addCard(new Card(static_cast<Card::rank>(i), static_cast<Card::suit>(j)));
 }
 
 void Deck::shuffle()
 {
-    random_shuffle(deck.begin(), deck.end());
+    random_shuffle(cards.begin(), cards.end());
 }
 
-void Deck::Deal(Hand& h)
+void Deck::deal(Hand& h)
 {
-    if (deck.empty())
+    if (cards.empty())
     {
         init();
     }
-    h.Add(deck.back());
-    deck.pop_back();
+    h.addCard(cards.back());
+    cards.pop_back();
 }
 
 void Deck::anotherCard(GenericParticipant& participant)
@@ -89,12 +89,67 @@ void Deck::anotherCard(GenericParticipant& participant)
     cout << endl;
     while (!(participant.isBusted()) && participant.isHitting())
     {
-        Deal(participant);
+        deal(participant);
         cout << participant << endl;
 
         if (participant.isBusted())
-           participant.bust();
+            participant.bust();
     }
+}
+//-----------------------------------------------------------------------------------------------------------
+BlackjackGame::BlackjackGame(){
+    srand(time(0));
+    game_deck.init();
+    game_deck.shuffle();
+}
+
+BlackjackGame::~BlackjackGame(){}
+
+void BlackjackGame::Play() {
+    //deal two cards to each person
+    for (int i = 0; i < 2; i++) {
+        game_deck.deal(game_player);
+        game_deck.deal(game_dealer);
+    }
+    game_dealer.flipCard(); //hide dealer's first card
+
+    //display hands
+    cout << game_player << endl;
+    cout << game_dealer << endl;
+
+//deal additional cards to players
+    game_deck.anotherCard(game_player);
+
+//reveal dealer's first card
+    game_dealer.flipCard();
+    cout << endl << game_dealer;
+
+//deal additional cards to dealer
+    game_deck.anotherCard(game_dealer);
+
+    if (game_dealer.isBusted())
+    {
+        //player wins
+        if (!(game_player.isBusted()))
+            game_player.win();
+    }
+    else
+    {
+//compare player to house
+
+        if(!(game_player.isBusted())) {
+            if(game_player.sumOfHand() > game_dealer.sumOfHand())
+                game_player.win();
+            else if (game_player.sumOfHand() < game_dealer.sumOfHand())
+                game_player.lose();
+            else
+                game_player.push();
+        }
+    }
+
+//remove cards
+    game_player.clear();
+    game_dealer.clear();
 }
 
 //-----------------------------------------------------------------------------------------------------------
@@ -115,7 +170,7 @@ void GenericParticipant::bust() const
 Hand::Hand()
 {
     //largest possible hand in blackjack has 11 cards
-    hand.reserve(11);
+    cards.reserve(11);
 }
 
 Hand::~Hand()
@@ -125,38 +180,38 @@ Hand::~Hand()
 
 void Hand::addCard(Card* card)
 {
-    hand.push_back(card);
+    cards.push_back(card);
 }
 
 void Hand::clear() {
-    vector<Card*>::iterator iter = hand.begin();
+    vector<Card*>::iterator iter = cards.begin();
 
-    for (iter = hand.begin(); iter != hand.end(); ++iter)
+    for (iter = cards.begin(); iter != cards.end(); ++iter)
     {
         delete *iter;
         *iter = 0;
     }
-    hand.clear();
+    cards.clear();
 }
 
 int Hand::sumOfHand() const {
-    if(hand.empty())
+    if(cards.empty())
         return 0;
     //If first card has value of 0, then card is face down; return 0
-    if(hand[0]->getValue() == 0)
+    if(cards[0]->getValue() == 0)
         return 0;
 
     int total = 0;
     vector<Card*>::const_iterator iter;
     //treat each ace as a 1
-    for(iter = hand.begin(); iter != hand.end(); ++iter)
+    for(iter = cards.begin(); iter != cards.end(); ++iter)
         total += (*iter)->getValue();
 
     //now, check to see if ace should be 11
     bool containsAce = false;
-    for (iter = hand.begin(); iter != hand.end(); ++iter)
+    for (iter = cards.begin(); iter != cards.end(); ++iter)
         if ((*iter)->getValue() == Card::ACE)
-    containsAce = true;
+            containsAce = true;
 
     //now check to see if total is less than 11
     if(containsAce && total <= 11)
@@ -164,38 +219,48 @@ int Hand::sumOfHand() const {
 
     return total;
 }
+//---------------------------------------------------------------------------------------------------------------
+Dealer::Dealer(){
+    GenericParticipant();
+}
+Dealer::~Dealer(){}
+
+bool Dealer::isHitting() const{
+    return (sumOfHand() <= 16);
+}
+
+void Dealer::flipCard()
+{
+    if(!(cards.empty()))
+        cards[0]->flip();
+    else
+        cout << "No card to flip!\n";
+}
 
 //-----------------------------------------------------------------------------------------------------------
-Blackjack::Blackjack(){
-    this->player= new Player();
-    this->dealer = new Dealer();
-    srand(time(0));
-    this->deck.init();
-    this->deck.shuffle();
+Player::Player(){
+    GenericParticipant();
+}
+Player::~Player(){}
+
+bool Player::isHitting() const{
+    cout << "Do you want a hit (Y/N): ";
+    char response;
+    cin >> response;
+    return (response == 'y' || response == 'Y');
 }
 
-void Blackjack::Play() {
-    //deal two cards to each person
-    for (int i = 0; i < 2; i++) {
-        deck.deal(*player);
-        deck.deal(dealer);
-    }
-    dealer.flipCard(); //hide dealer's first card
-
-    //display hands:
-    //
-    //
-
-    //add cards while player is hitting
-    while (player.hit()) {
-        deck.addCard(*player);
-    }
-
-    //show dealer's first card
-    dealer.flipCard();
-
-    //add cards to dealer hand
-    //
+void Player::win() const
+{
+    cout << "Player wins!\n";
 }
 
+void Player::lose() const
+{
+    cout << "Player loses!\n";
+}
 
+void Player::push() const
+{
+    cout << "Player pushes!\n";
+}
