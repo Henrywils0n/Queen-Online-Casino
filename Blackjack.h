@@ -29,14 +29,13 @@ private:
     bool facedUp;
 };
 
-class Deck{
+class Deck : public Hand{
 public:
     Deck();
     void init();
-    void newDeck();
     void shuffle();
-    void deal(Hand hand);
-    void anotherCard(GenericParticipant participant);
+    void deal(Hand& hand);
+    void anotherCard(GenericParticipant& participant);
 private:
     vector <Card*> deck;
 };
@@ -46,23 +45,23 @@ public:
     Hand();
     //virtual ~Hand();
     void addCard(Card* c);
-    void newHand();
+    void clear();
     int sumOfHand();
 private:
     vector <Card*> hand;
 };
 
-class GenericParticipant{
+class GenericParticipant : public Hand{
 public:
     GenericParticipant();
-    virtual bool IsHitting() const = 0;
-    bool IsBusted() const;
+    virtual bool isHitting() const = 0;
+    bool isBusted() const;
     void Bust() const;
 };
 
 class Dealer : public GenericParticipant{
 public:
-    Dearler();
+    Dealer();
     bool hit() const;
     void flipCard();
 };
@@ -76,7 +75,15 @@ public:
     void push() const;
 };
 
-
+class Blackjack {
+public:
+    Blackjack();
+    void Play();
+private:
+    Deck deck;
+    Dealer dealer;
+    Player player;
+};
 
 class Chip{ //extends Button
 private:
@@ -85,26 +92,6 @@ private:
 public:
     Chip(int val);
     int getValue();
-};
-
-class Blackjack {
-public:
-    int winCheck(int playerHandSum, int dealerHandSum);
-    int sumOfHand(Hand hand);
-    void dealHand();
-    void hit();
-    void stand();
-    int win();
-    int lose();
-
-private: //Declaring private variables for the JumblePuzzle class
-    int bet;
-    int score;
-    int countWin; //Number of wins in a row for bonus multiplier
-    int totalWin; //Overall wins, doesnt count wins in a row, just total number
-    string guess;
-    Card cards[];
-    Card cardGuess; //Players guess converted to a Card object
 };
 
 class MinimumBetException {
