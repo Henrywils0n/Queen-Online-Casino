@@ -5,9 +5,14 @@
 
 class OddsArePanel : public wxPanel {
 public:
-	OddsArePanel(GameFrame* parent);
+	OddsArePanel(GameFrame* par);
 
 	wxTextCtrl* m_textCtrl;
-
+	wxButton* exit_button;
+	
+private:
+	GameFrame* parent;
+	void onExitOddsAre(wxCommandEvent &WXUNUSED(event));
+	
 	DECLARE_EVENT_TABLE()
 };

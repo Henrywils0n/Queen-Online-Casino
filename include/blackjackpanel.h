@@ -5,8 +5,14 @@
 class BlackjackPanel : public wxPanel {
 public:
   BlackjackPanel(GameFrame* parent);
+  
 
   wxTextCtrl* m_textCtrl;
+  wxButton* exit_button;
 
-  DECLARE_EVENT_TABLE()
+private:
+  GameFrame* parent;
+  void onQuitBlackjack(wxCommandEvent &WXUNUSED(event));
+
+  DECLARE_EVENT_TABLE();
 };

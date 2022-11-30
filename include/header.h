@@ -25,4 +25,6 @@ enum {
   ID_RESETBAL,
   ID_OAQUIT,
   ID_OAABOUT,
+  ID_RLQUIT,
+  ID_BJQUIT,
 };
