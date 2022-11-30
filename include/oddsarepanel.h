@@ -1,15 +1,15 @@
 #pragma once
 #include "header.h"
 #include "gameframe.h"
-
+#include "imagebutton.h"
 
 class OddsArePanel : public wxPanel {
 public:
 	OddsArePanel(GameFrame* par);
 
-	wxTextCtrl* m_textCtrl;
-	wxButton* exit_button;
-	
+  wxStaticText* m_textCtrl;
+  ImageButton* exit_button;
+
 private:
 	GameFrame* parent;
 	void onExitOddsAre(wxCommandEvent &WXUNUSED(event));
