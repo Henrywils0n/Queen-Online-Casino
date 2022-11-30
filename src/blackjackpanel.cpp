@@ -5,6 +5,7 @@ BEGIN_EVENT_TABLE(BlackjackPanel, wxPanel)
     EVT_BUTTON(ID_BJONECHIP, BlackjackPanel::onBetOne)
     EVT_BUTTON(ID_BJFIVECHIP, BlackjackPanel::onBetFive)
     EVT_BUTTON(ID_BJTWENTYFIVECHIP, BlackjackPanel::onBetTwentyFive)
+    EVT_BUTTON(ID_BJRESETBET, BlackjackPanel::onResetBet)
 END_EVENT_TABLE()
 
 BlackjackPanel::BlackjackPanel(GameFrame* par) : wxPanel(par) {  
@@ -16,31 +17,32 @@ BlackjackPanel::BlackjackPanel(GameFrame* par) : wxPanel(par) {
     buttonSizer = new wxBoxSizer(wxHORIZONTAL);
 
     // Filler for player and dealer hands
-    //tempText = new wxTextCtrl(this, -1, "Dealer Hand", wxDefaultPosition, wxSize(500, 100), wxTE_MULTILINE);
-    tempText2 = new wxTextCtrl(this, -1, "My Hand", wxDefaultPosition, wxSize(500, 100), wxTE_MULTILINE);
+    tempText = new wxTextCtrl(this, -1, "Dealer Hand", wxDefaultPosition, wxSize(5000, 100), wxTE_MULTILINE);
+    tempText2 = new wxTextCtrl(this, -1, "My Hand", wxDefaultPosition, wxSize(5000, 100), wxTE_MULTILINE);
 
-    wxString nullCard = "../resources/Cards/red_joker.png";
-
-    dlrPan1 = new ImagePanel(this, nullCard, wxBITMAP_TYPE_PNG);
-
-    dealerSizer->Add(dlrPan1, 0, wxEXPAND | wxALL, 10);
-
-
+    // Attempt to use images failed
+    //wxString nullCard = "../resources/Cards/red_joker.png";
+    //dlrPan1 = new ImagePanel(this, nullCard, wxBITMAP_TYPE_PNG);
+    //dealerSizer->Add(dlrPan1, 10, wxEXPAND);
 
     // Declare buttons
     dealButton = new wxButton(this, ID_BJDEAL, "DEAL");
+    resetBetButton = new wxButton(this, ID_BJRESETBET, "RESET BET");
+    
     betOneButton = new wxButton(this, ID_BJONECHIP, "1$ CHIP");
     betFiveButton = new wxButton(this, ID_BJFIVECHIP, "5$ CHIP");
     betTwentyFiveButton = new wxButton(this, ID_BJTWENTYFIVECHIP, "25$ CHIP");
 
     // Populate dealer and player sizers
-    //dealerSizer->Add(tempText, 0, wxEXPAND | wxALL, 10);
+    dealerSizer->Add(tempText, 0, wxEXPAND | wxALL, 10);
     playerSizer->Add(tempText2, 0, wxEXPAND | wxALL, 10);
 
-    // Populate button sizer
+    // Populate button sizer    
     buttonSizer->Add(betOneButton, 0, wxALL, 10);
     buttonSizer->Add(betFiveButton, 0, wxALL, 10);
     buttonSizer->Add(betTwentyFiveButton, 0, wxALL, 10);
+
+    buttonSizer->Add(resetBetButton, 0, wxALL, 10);
     buttonSizer->Add(dealButton, 0, wxALL, 10);
 
     // Add sub-sizers to gameSizer
@@ -55,19 +57,24 @@ BlackjackPanel::BlackjackPanel(GameFrame* par) : wxPanel(par) {
 
 void BlackjackPanel::onDeal(wxCommandEvent& WXUNUSED(event)) {
     this->dealButton->Destroy();
+    this->resetBetButton->Destroy();
     this->betOneButton->Destroy();
     this->betFiveButton->Destroy();
     this->betTwentyFiveButton->Destroy();
 }
 
 void BlackjackPanel::onBetOne(wxCommandEvent& WXUNUSED(event)) {
-
+    tempText->AppendText("\nBet +1");
 }
 
 void BlackjackPanel::onBetFive(wxCommandEvent& WXUNUSED(event)) {
-
+    tempText->AppendText("\nBet +5");
 }
 
 void BlackjackPanel::onBetTwentyFive(wxCommandEvent& WXUNUSED(event)) {
+    tempText->AppendText("\nBet +25");
+}
 
+void BlackjackPanel::onResetBet(wxCommandEvent& event) {
+    tempText->AppendText("\nBet reset");
 }

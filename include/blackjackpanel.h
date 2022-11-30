@@ -22,15 +22,16 @@ private:
 	*/
 	wxBoxSizer* buttonSizer;
 
-	ImagePanel* dlrPan1;
+	//ImagePanel* dlrPan1;
 
 	/**
 	* For now the game is run through text
 	*/
-	//wxTextCtrl* tempText;
+	wxTextCtrl* tempText;
 	wxTextCtrl* tempText2;
 
 	wxButton* dealButton;
+	wxButton* resetBetButton;
 	wxButton* betOneButton;
 	wxButton* betFiveButton;
 	wxButton* betTwentyFiveButton;
@@ -43,6 +44,7 @@ private:
 	void onBetOne(wxCommandEvent& event);
 	void onBetFive(wxCommandEvent& event);
 	void onBetTwentyFive(wxCommandEvent& event);
+	void onResetBet(wxCommandEvent& event);
 
   DECLARE_EVENT_TABLE()
 };
