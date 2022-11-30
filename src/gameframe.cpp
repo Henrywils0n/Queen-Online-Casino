@@ -37,6 +37,12 @@ GameFrame::GameFrame() : wxFrame(nullptr, wxID_ANY, "Casino Game", wxPoint(30, 3
   roulettePanel = new RoulettePanel(this);
   oddsArePanel = new OddsArePanel(this);
 
+  menuPanel->SetBackgroundColour(wxColour(* wxGREEN));
+  blackjackPanel->SetBackgroundColour(wxColour(* wxGREEN));
+  roulettePanel->SetBackgroundColour(wxColour(* wxGREEN));
+  oddsArePanel->SetBackgroundColour(wxColour(* wxGREEN));
+
+
   menuPanel->Show(true);
   blackjackPanel->Show(false);
   roulettePanel->Show(false);

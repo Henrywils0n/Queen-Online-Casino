@@ -15,7 +15,7 @@ OddsArePanel::OddsArePanel(GameFrame* par) : wxPanel(par) {
   menuBox->Add(m_textCtrl, 1, wxSTRETCH_NOT);
   menuBox->Add(exit_button, 1, wxSTRETCH_NOT);
 
-  vertBox->Add(menuBox, 1, wxEXPAND);
+  vertBox->Add(menuBox, 7, wxEXPAND);
   
   SetSizer(vertBox);
   vertBox->SetSizeHints(this);
