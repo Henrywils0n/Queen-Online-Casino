@@ -3,14 +3,13 @@
 using namespace  std;
 
 BadUserInput::BadUserInput(const string& message) : message(message) {}
-    string& BadUserInput::what() { 
-        return message; 
-        }
+string& BadUserInput::what() {
+    return message;
+}
 
 OddsAre::OddsAre(int accountBalance){
     numGen(accountBalance); //Calls first function to get input regarding game
 }
-
 //Asks user how many cards they want to guess, returns number
 int OddsAre::numGen(int accountBalance){
     int numsToGuess;
@@ -21,22 +20,28 @@ int OddsAre::numGen(int accountBalance){
         throw BadUserInput ("Invalid bet amount!");
     }
     else if (cin.fail()) {
-        cout << "Error";
-        //throw BadUserInput("Please enter a number!");
+        throw BadUserInput("Please enter a number!");
     }
+    //Asks uses for number range
     cout << "Please enter how many numbers would you like to guess from: ";
     cin >> numsToGuess;
-    //create cardsToGuess number of Card objects and add to a list
+    if (numsToGuess == 1 || numsToGuess == 0) {
+        throw BadUserInput("Please enter a number greater than one and zero.");
+    }
+    if (cin.fail()) {
+        throw BadUserInput("Please enter a valid number.");
+    }
     randomNumGen(numsToGuess, accountBalance, bet);
 }
 
+//function generates a random number between 1 and the upper bound.
 void OddsAre::randomNumGen(int numsToGuess, int accountBal, int betAmt) {
     int ans;
     ans = rand()%numsToGuess + 1;
     playerGuess(ans, numsToGuess, accountBal, betAmt);
-    //return ans;
-} //generates a random number
+}
 
+//function asks users to guess a number
 void OddsAre::playerGuess(int ans, int numsToGuess, int accountBal, int betAmt){
     cout << "Guess a number within the range:";
     cin >> guess;
@@ -52,7 +57,6 @@ void OddsAre::playerGuess(int ans, int numsToGuess, int accountBal, int betAmt){
             win = 0;
             cout << "You lost! \n";
             bonusMultiplier(win, bet, accountBal, betAmt);
-            
         }
     }
 }
