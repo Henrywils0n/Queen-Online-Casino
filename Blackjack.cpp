@@ -60,6 +60,8 @@ Deck::Deck()
     init();
 }
 
+Deck::~Deck(){}
+
 void Deck::init(){
     clear();
         for (int i = Card::CLUBS; i <= Card::SPADES; ++i)
@@ -84,13 +86,29 @@ void Deck::Deal(Hand& h)
 
 void Deck::anotherCard(GenericParticipant& participant)
 {
+    cout << endl;
     while (!(participant.isBusted()) && participant.isHitting())
     {
         Deal(participant);
+        cout << participant << endl;
 
         if (participant.isBusted())
-           participant.Bust();
+           participant.bust();
     }
+}
+
+//-----------------------------------------------------------------------------------------------------------
+GenericParticipant::GenericParticipant(){}
+
+GenericParticipant::~GenericParticipant(){}
+
+bool GenericParticipant::isBusted() const {
+    return (sumOfHand()>21);
+}
+
+void GenericParticipant::bust() const
+{
+    cout << "busted.\n";
 }
 
 //-----------------------------------------------------------------------------------------------------------
@@ -100,6 +118,52 @@ Hand::Hand()
     hand.reserve(11);
 }
 
+Hand::~Hand()
+{
+    clear();
+}
+
+void Hand::addCard(Card* card)
+{
+    hand.push_back(card);
+}
+
+void Hand::clear() {
+    vector<Card*>::iterator iter = hand.begin();
+
+    for (iter = hand.begin(); iter != hand.end(); ++iter)
+    {
+        delete *iter;
+        *iter = 0;
+    }
+    hand.clear();
+}
+
+int Hand::sumOfHand() const {
+    if(hand.empty())
+        return 0;
+    //If first card has value of 0, then card is face down; return 0
+    if(hand[0]->getValue() == 0)
+        return 0;
+
+    int total = 0;
+    vector<Card*>::const_iterator iter;
+    //treat each ace as a 1
+    for(iter = hand.begin(); iter != hand.end(); ++iter)
+        total += (*iter)->getValue();
+
+    //now, check to see if ace should be 11
+    bool containsAce = false;
+    for (iter = hand.begin(); iter != hand.end(); ++iter)
+        if ((*iter)->getValue() == Card::ACE)
+    containsAce = true;
+
+    //now check to see if total is less than 11
+    if(containsAce && total <= 11)
+        total +=10;
+
+    return total;
+}
 
 //-----------------------------------------------------------------------------------------------------------
 Blackjack::Blackjack(){
