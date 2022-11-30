@@ -2,25 +2,23 @@
 #include <odds_are1.h>
 using namespace  std;
 
-void BadUserInput::BadUserInput(const string& prompt){
-    message = prompt
-}
-string& BadUserInput::what(){
-    return message;
-}
+BadUserInput::BadUserInput(const string& message) : message(message) {}
+    string& BadUserInput::what() { 
+        return message; 
+        }
 
-void OddsAre(int accountBalance){
+void OddsAre(const int& accountBalance){
     accountBalance = accountBalance;
-    cardNumGen();
-    playerGuess();
-    pointsEarned();
+    //cardNumGen();
+    //playerGuess();
+    //pointsEarned();
 
 }
 
 //Asks user how many cards they want to guess, returns number
 int OddsAre::numGen(){
-    int cardsToGuess;
-    cout << "How much would you like to bet"
+    int numsToGuess;
+    cout << "How much would you like to bet";
     cin >> bet;
     if( bet > accountBalance){
         throw BadUserInput ("Invalid bet amount");
@@ -55,7 +53,7 @@ int OddsAre::bonusMultiplier(int countWin, int bet) {
 
 void OddsAre::randomNumGen(int numsToGuess) {
     int ans;
-    ans = rand()%cardRange + 1;
+    ans = rand()%numsToGuess + 1;
     playerGuess(ans, numsToGuess);
     //return ans;
 } //generates a random number
@@ -63,14 +61,15 @@ void OddsAre::randomNumGen(int numsToGuess) {
 void OddsAre::playerGuess(int ans, int numsToGuess){
     cout << "Guess a number within the range";
     cin >> guess;
+    int win = 0;
     if (guess > numsToGuess || guess < numsToGuess){
         throw BadUserInput("Invalid Input");
     }else{
         if(ans == guess){
-            int win += 1;
-            bonusMultiplier(win);
+            win++;
+            bonusMultiplier(win, bet);
         }else{
-            bonusMultiplier(0);
+            bonusMultiplier(0, bet);
             
         }
     }
