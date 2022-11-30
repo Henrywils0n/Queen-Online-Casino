@@ -25,4 +25,5 @@ enum {
   ID_RESETBAL,
   ID_OAQUIT,
   ID_OAABOUT,
+  ID_BJDEAL
 };
