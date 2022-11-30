@@ -5,7 +5,7 @@ BEGIN_EVENT_TABLE(ImagePanel, wxPanel)
   EVT_SIZE(ImagePanel::OnSize)
 END_EVENT_TABLE()
 
-ImagePanel::ImagePanel(wxFrame* parent, wxString file, wxBitmapType format) : wxPanel(parent) {
+ImagePanel::ImagePanel(wxWindow* parent, wxString file, wxBitmapType format) : wxPanel(parent) {
   if (!image.LoadFile(file, format)) {
     wxLogError("Can't load PNG image.");
   }

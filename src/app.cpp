@@ -1,4 +1,5 @@
 #include "../include/app.h"
+#include "../include/gameframe.h"
 
 IMPLEMENT_APP(CasinoApp)
 
@@ -9,7 +10,8 @@ bool CasinoApp::OnInit() {
   
   wxInitAllImageHandlers();
   
-  Game *myGame = new Game();
+  GameFrame *myGame = new GameFrame();
+  myGame->Show(true);
 
   return true;
 }

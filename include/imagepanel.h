@@ -1,14 +1,14 @@
 #pragma once
 #include "header.h"
+#include "gameframe.h"
 
-class ImagePanel : public wxPanel
-{
+class ImagePanel : public wxPanel {
   wxImage image;
   wxBitmap resized;
   int w, h;
   
 public:
-  ImagePanel(wxFrame* parent, wxString file, wxBitmapType format);
+  ImagePanel(wxWindow* parent, wxString file, wxBitmapType format);
   
   void paintEvent(wxPaintEvent & evt);
   void paintNow();

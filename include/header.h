@@ -1,4 +1,4 @@
-// For preprocessing support
+// Import every external library
 #pragma once
 #include <wx/wxprec.h>
 
@@ -14,3 +14,15 @@
 #include <wx/quantize.h>
 #include <wx/stopwatch.h>
 #include <wx/sizer.h>
+
+// This is where all program enums should go, to maintain consistent formatting
+enum {
+  ID_QUIT  = wxID_EXIT,
+  ID_ABOUT = wxID_ABOUT,
+  ID_ROULETTE,
+  ID_BLACKJACK,
+  ID_ODDSARE,
+  ID_RESETBAL,
+  ID_OAQUIT,
+  ID_OAABOUT,
+};
