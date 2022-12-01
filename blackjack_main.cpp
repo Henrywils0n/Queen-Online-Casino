@@ -1,6 +1,5 @@
 #include "Blackjack.h"
 
-
 ostream& operator << (ostream& os, const Card& aCard);
 ostream& operator << (ostream& os, const GenericParticipant& aGenericPlayer);
 
@@ -8,13 +7,29 @@ int main()
 {
     cout << "\t\tWELCOME TO BLACKJACK!\n\n";
 
+    int numPlayers = 0;
+    while (numPlayers < 1 || numPlayers > 7)
+    {
+        cout << "How many Players? (1−7): ";
+        cin >> numPlayers;
+    }
+
+    vector<string> names;
+    string name;
+    for (int i = 0; i < numPlayers; ++i)
+    {
+        cout << "Enter player name: ";
+        cin >> name;
+        names.push_back(name);
+    }
+    cout << endl;
 
 
-    BlackjackGame *game = new BlackjackGame();
+    BlackjackGame aGame(names);
     char again = 'y';
     while (again != 'n' && again != 'N')
     {
-        game->Play();
+        aGame.Play();
         cout << "\nDo you want to play again? (Y/N): ";
         cin >> again;
     }
@@ -22,31 +37,26 @@ int main()
     return 0;
 }
 
-/*
-============================================================
-Overloads << operator so Card object can be sent to cout
-============================================================
-*/
+
 ostream& operator <<(ostream& os, const Card& aCard)
 {
-    const string RANKS[] = {"0", "A", "2", "3", "4", "5", "6", "7", "8", "9",
+    const string RANKS[] = {"A", "2", "3", "4", "5", "6", "7", "8", "9",
                             "10", "J", "Q", "K"};
     const string SUITS[] = {"c", "d", "h", "s"};
 
     if (aCard.facedUp)
-        os << RANKS[aCard.Rank] << SUITS[aCard.Suit];
+        os << RANKS[aCard.Rank-1] << SUITS[aCard.Suit-1];
     else
         os << "XX";
+
     return os;
 }
 
-/*
-======================================================================
-Overloads << operator so a Generic Player object can be sent to cout
-======================================================================
-*/
+
 ostream& operator<<(ostream& os, const GenericParticipant& aGenericPlayer)
 {
+    os << aGenericPlayer.m_name << ":\t";
+
     vector<Card*>::const_iterator pCard;
     if (!aGenericPlayer.cards.empty())
     {
