@@ -19,6 +19,7 @@ public:
         JACK, QUEEN, KING};
     enum suit {CLUBS, DIAMONDS, HEARTS, SPADES};
     Card(rank r, suit s, bool faceUp);
+    Card(rank r, suit s);
     int getValue() const;
     string getSuit() const;
     string getRank() const;
