@@ -66,7 +66,7 @@ void Deck::init(){
     clear();
     for (int i = Card::CLUBS; i <= Card::SPADES; ++i)
         for (int j = Card::ACE; j <= Card::KING; ++j)
-            addCard(new Card(static_cast<Card::rank>(i), static_cast<Card::suit>(j)));
+            addCard(new Card(static_cast<Card::rank>(i), static_cast<Card::suit>(j), true));
 }
 
 void Deck::shuffle()
@@ -220,9 +220,8 @@ int Hand::sumOfHand() const {
     return total;
 }
 //---------------------------------------------------------------------------------------------------------------
-Dealer::Dealer(){
-    GenericParticipant();
-}
+Dealer::Dealer(){}
+
 Dealer::~Dealer(){}
 
 bool Dealer::isHitting() const{
@@ -238,9 +237,8 @@ void Dealer::flipCard()
 }
 
 //-----------------------------------------------------------------------------------------------------------
-Player::Player(){
-    GenericParticipant();
-}
+Player::Player(){}
+
 Player::~Player(){}
 
 bool Player::isHitting() const{
@@ -264,3 +262,7 @@ void Player::push() const
 {
     cout << "Player pushes!\n";
 }
+
+
+
+
