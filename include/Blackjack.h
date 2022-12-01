@@ -39,6 +39,7 @@ public:
     void addCard(Card* c);
     void clear();
     int sumOfHand() const;
+    vector<Card*> getHand();
 protected:
     vector<Card*> cards;
 };
@@ -82,6 +83,14 @@ public:
     void win() const;
     void lose() const;
     void push() const;
+
+    /**
+    * Set player bet or get reference to current bet
+    */
+    void setBet(int);
+    int getBet();
+private:
+    int bet;
 };
 
 class BlackjackGame {

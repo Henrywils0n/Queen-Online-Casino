@@ -1,4 +1,4 @@
-#include "../include/Blackjack.h"
+#include "../include/blackjack.h"
 #include <vector>
 #include <string>
 #include <iostream>
@@ -248,7 +248,9 @@ void Dealer::flipCard()
 }
 
 //-----------------------------------------------------------------------------------------------------------
-Player::Player(const string& name): GenericParticipant(name){}
+Player::Player(const string& name): GenericParticipant(name) {
+    this->bet = 0;
+}
 
 Player::~Player(){}
 
@@ -274,6 +276,10 @@ void Player::push() const
     cout << "Player pushes!\n";
 }
 
+void Player::setBet(int b) {
+    this->bet = b;
+}
 
-
-
+int Player::getBet() {
+    return this->bet;
+}

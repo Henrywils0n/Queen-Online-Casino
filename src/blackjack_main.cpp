@@ -1,4 +1,4 @@
-#include "../include/Blackjack.h"
+#include "../include/blackjack.h"
 
 
 ostream& operator << (ostream& os, const Card& aCard);

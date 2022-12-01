@@ -1,4 +1,5 @@
 #include "../include/blackjackpanel.h"
+#include "../include/blackjack.h"
 
 BEGIN_EVENT_TABLE(BlackjackPanel, wxPanel)
 	EVT_BUTTON(ID_BJDEAL, BlackjackPanel::onDeal)
@@ -8,7 +9,10 @@ BEGIN_EVENT_TABLE(BlackjackPanel, wxPanel)
     EVT_BUTTON(ID_BJRESETBET, BlackjackPanel::onResetBet)
 END_EVENT_TABLE()
 
-BlackjackPanel::BlackjackPanel(GameFrame* par) : wxPanel(par) {  
+BlackjackPanel::BlackjackPanel(GameFrame* par) : wxPanel(par) { 
+
+    // Temporary until game object is fixed
+    p = new Player();
 
     // Declare sizers
     masterSizer = new wxBoxSizer(wxVERTICAL);
@@ -72,17 +76,27 @@ void BlackjackPanel::onDeal(wxCommandEvent& WXUNUSED(event)) {
 }
 
 void BlackjackPanel::onBetOne(wxCommandEvent& WXUNUSED(event)) {
-    playerText->SetLabel("\nBet +1");
+    p->setBet(p->getBet() + 1);
+    this->reloadTxt();
 }
 
 void BlackjackPanel::onBetFive(wxCommandEvent& WXUNUSED(event)) {
-    playerText->SetLabel("\nBet +5");
+    p->setBet(p->getBet() + 5);
+    this->reloadTxt();
 }
 
 void BlackjackPanel::onBetTwentyFive(wxCommandEvent& WXUNUSED(event)) {
-    playerText->SetLabel("\nBet +25");
+    p->setBet(p->getBet() + 25);
+    this->reloadTxt();
 }
 
 void BlackjackPanel::onResetBet(wxCommandEvent& event) {
-    playerText->SetLabel("\nBet reset");
+    p->setBet(0);
+    this->reloadTxt();
+}
+
+void BlackjackPanel::reloadTxt() {
+    wxString pTxt = "Player :\n";
+    pTxt << "Current bet: " << p->getBet();
+    playerText->SetLabel(pTxt);
 }

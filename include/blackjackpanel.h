@@ -1,5 +1,6 @@
 #pragma once
 #include "header.h"
+#include "blackjack.h"
 #include "gameframe.h"
 #include "imagepanel.h"
 
@@ -9,6 +10,11 @@ public:
 
 
 private:
+	/**
+	* Temporary until game object is fixed
+	*/
+	Player* p;
+
 	/**
 	* Main game sizer contains all others
 	*/
@@ -47,6 +53,8 @@ private:
 	void onBetFive(wxCommandEvent& event);
 	void onBetTwentyFive(wxCommandEvent& event);
 	void onResetBet(wxCommandEvent& event);
+
+	void reloadTxt();
 
   DECLARE_EVENT_TABLE()
 };
