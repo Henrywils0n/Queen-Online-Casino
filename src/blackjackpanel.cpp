@@ -20,8 +20,8 @@ BlackjackPanel::BlackjackPanel(GameFrame* par) : wxPanel(par) {
     buttonSizer = new wxBoxSizer(wxHORIZONTAL);
 
     // Filler for player and dealer hands
-    tempText = new wxTextCtrl(this, -1, "Dealer Hand", wxDefaultPosition, wxSize(5000, 100), wxTE_MULTILINE);
-    tempText2 = new wxTextCtrl(this, -1, "My Hand", wxDefaultPosition, wxSize(5000, 100), wxTE_MULTILINE);
+    dealerText = new wxStaticText(this, -1, "Dealer Hand", wxDefaultPosition, wxSize(5000, 100));
+    playerText = new wxStaticText(this, -1, "My Hand", wxDefaultPosition, wxSize(5000, 100), wxTE_MULTILINE);
     gameText = new wxTextCtrl(this, -1, "Game", wxDefaultPosition, wxSize(5000, 100), wxTE_MULTILINE);
 
     // Attempt to use images failed
@@ -38,8 +38,8 @@ BlackjackPanel::BlackjackPanel(GameFrame* par) : wxPanel(par) {
     betTwentyFiveButton = new wxButton(this, ID_BJTWENTYFIVECHIP, "25$ CHIP");
 
     // Populate dealer and player sizers
-    dealerSizer->Add(tempText, 0, wxEXPAND | wxALL, 10);
-    playerSizer->Add(tempText2, 0, wxEXPAND | wxALL, 10);
+    dealerSizer->Add(dealerText, 0, wxEXPAND | wxALL, 10);
+    playerSizer->Add(playerText, 0, wxEXPAND | wxALL, 10);
 
     // Populate button sizer    
     buttonSizer->Add(betOneButton, 0, wxALL, 10);
@@ -72,17 +72,17 @@ void BlackjackPanel::onDeal(wxCommandEvent& WXUNUSED(event)) {
 }
 
 void BlackjackPanel::onBetOne(wxCommandEvent& WXUNUSED(event)) {
-    tempText->AppendText("\nBet +1");
+    playerText->SetLabel("\nBet +1");
 }
 
 void BlackjackPanel::onBetFive(wxCommandEvent& WXUNUSED(event)) {
-    tempText->AppendText("\nBet +5");
+    playerText->SetLabel("\nBet +5");
 }
 
 void BlackjackPanel::onBetTwentyFive(wxCommandEvent& WXUNUSED(event)) {
-    tempText->AppendText("\nBet +25");
+    playerText->SetLabel("\nBet +25");
 }
 
 void BlackjackPanel::onResetBet(wxCommandEvent& event) {
-    tempText->AppendText("\nBet reset");
+    playerText->SetLabel("\nBet reset");
 }

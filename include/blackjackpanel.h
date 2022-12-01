@@ -28,8 +28,8 @@ private:
 	/**
 	* For now the game is run through text
 	*/
-	wxTextCtrl* tempText;
-	wxTextCtrl* tempText2;
+	wxStaticText* dealerText;
+	wxStaticText* playerText;
 	wxTextCtrl* gameText;
 
 	wxButton* dealButton;
