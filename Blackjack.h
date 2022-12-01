@@ -17,7 +17,7 @@ class Card{
 public:
     enum rank {ACE=1, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN,
         JACK, QUEEN, KING};
-    enum suit {CLUBS, DIAMONDS, HEARTS, SPADES};
+    enum suit {CLUBS=1, DIAMONDS, HEARTS, SPADES};
     Card(rank r, suit s, bool faceUp);
     Card(rank r, suit s);
     int getValue() const;
@@ -47,11 +47,13 @@ protected:
 class GenericParticipant : public Hand{
     friend ostream& operator << (ostream& os, const GenericParticipant& participant);
 public:
-    GenericParticipant();
+    GenericParticipant(const string& name = "");
     virtual ~GenericParticipant();
     virtual bool isHitting() const = 0; //indicates if player wants to keep hitting
     bool isBusted() const; //if total >21, isBusted = true
     void bust() const;
+protected:
+    string m_name;
 };
 
 class Deck : public Hand {
@@ -66,7 +68,7 @@ public:
 
 class Dealer : public GenericParticipant{
 public:
-    Dealer();
+    Dealer(const string& name = "Dealer");
     ~Dealer();
     virtual bool isHitting() const;
     void flipCard();
@@ -74,7 +76,7 @@ public:
 
 class Player : public GenericParticipant{
 public:
-    Player();
+    Player(const string& name = "");
     ~Player();
     virtual bool isHitting() const;
     void win() const;
@@ -84,13 +86,13 @@ public:
 
 class BlackjackGame {
 public:
-    BlackjackGame();
+    BlackjackGame(const vector<string>& names);
     ~BlackjackGame();
     void Play();
 private:
     Deck game_deck;
     Dealer game_dealer;
-    Player game_player;
+    vector<Player> game_players;
 };
 
 //class Chip{ //extends Button
