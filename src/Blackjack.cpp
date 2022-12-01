@@ -1,4 +1,4 @@
-#include "Blackjack.h"
+#include "../include/Blackjack.h"
 #include <vector>
 #include <string>
 #include <iostream>
