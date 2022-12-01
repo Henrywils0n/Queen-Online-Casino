@@ -106,6 +106,10 @@ private:
 class BlackjackGame {
 public:
     BlackjackGame(const vector<string>& names);
+    /**
+     * Hack fix for single player game 
+     */
+    BlackjackGame(Player*);
     ~BlackjackGame();
     void Play();
 private:

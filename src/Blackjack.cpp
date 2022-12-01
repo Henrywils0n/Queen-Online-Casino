@@ -116,6 +116,13 @@ BlackjackGame::BlackjackGame(const vector<string>& names){
     game_deck.shuffle();
 }
 
+BlackjackGame::BlackjackGame(Player* p) {
+    game_players.push_back(*p);
+    srand(time(0));
+    game_deck.init();
+    game_deck.shuffle();
+}
+
 BlackjackGame::~BlackjackGame(){}
 
 void BlackjackGame::Play() {

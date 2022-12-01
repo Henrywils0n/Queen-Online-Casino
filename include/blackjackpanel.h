@@ -14,6 +14,8 @@ private:
 	* Temporary until game object is fixed
 	*/
 	Player* p;
+	BlackjackGame* game;
+
 
 	/**
 	* Main game sizer contains all others

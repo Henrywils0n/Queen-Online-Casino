@@ -13,7 +13,7 @@ BlackjackPanel::BlackjackPanel(GameFrame* par) : wxPanel(par) {
 
     // Temporary until game object is fixed
     p = new Player();
-
+    game = new BlackjackGame(p);
     // Declare sizers
     masterSizer = new wxBoxSizer(wxVERTICAL);
 
@@ -73,6 +73,8 @@ void BlackjackPanel::onDeal(wxCommandEvent& WXUNUSED(event)) {
     this->betOneButton->Destroy();
     this->betFiveButton->Destroy();
     this->betTwentyFiveButton->Destroy();
+
+    game->Play();
 }
 
 void BlackjackPanel::onBetOne(wxCommandEvent& WXUNUSED(event)) {
