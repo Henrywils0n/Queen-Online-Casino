@@ -53,7 +53,11 @@ void Card::flip(){
 }
 
 string Card::toString() {
-    return this->getRank() + " of " + this->getSuit();
+    string res;
+    if (this->facedUp) {
+        return this->getRank() + " of " + this->getSuit();
+    }
+    return "Face down card";
 }
 
 //ostream& operator<<(ostream& os, const Card& card) {
@@ -138,41 +142,41 @@ void BlackjackGame::Play() {
     game_dealer.flipCard(); //hide dealer's first card
 
     //display hands
-    for (pPlayer = game_players.begin(); pPlayer != game_players.end(); ++pPlayer)
-        cout << *pPlayer << endl;
-    cout << game_dealer << endl;
+    //for (pPlayer = game_players.begin(); pPlayer != game_players.end(); ++pPlayer)
+    //    cout << *pPlayer << endl;
+    //cout << game_dealer << endl;
 
-//deal additional cards to players
-    for (pPlayer = game_players.begin(); pPlayer != game_players.end(); ++pPlayer)
-        game_deck.anotherCard(*pPlayer);
+    // deal additional cards to players
+    //for (pPlayer = game_players.begin(); pPlayer != game_players.end(); ++pPlayer)
+      //  game_deck.anotherCard(*pPlayer);
 
-//reveal dealer's first card
-    game_dealer.flipCard();
-    cout << endl << game_dealer;
+    //reveal dealer's first card
+    //game_dealer.flipCard();
+    //cout << endl << game_dealer;
 
-//deal additional cards to dealer
-    game_deck.anotherCard(game_dealer);
+    //deal additional cards to dealer
+    //game_deck.anotherCard(game_dealer);
 
-    if (game_dealer.isBusted())
-    {
+    //if (game_dealer.isBusted())
+    //{
         //players win
-        for (pPlayer = game_players.begin(); pPlayer != game_players.end(); ++pPlayer)
-            if (!(pPlayer->isBusted()))
-                pPlayer->win();
-    }
-    else
-    {
+    //    for (pPlayer = game_players.begin(); pPlayer != game_players.end(); ++pPlayer)
+    //        if (!(pPlayer->isBusted()))
+    //            pPlayer->win();
+    //}
+    //else
+    //{
         //compare players' hands to dealer hand
-        for (pPlayer = game_players.begin(); pPlayer != game_players.end(); ++pPlayer)
-            if(!(pPlayer->isBusted())) {
-                if(pPlayer->sumOfHand() > game_dealer.sumOfHand())
-                    pPlayer->win();
-                else if (pPlayer->sumOfHand() < game_dealer.sumOfHand())
-                    pPlayer->lose();
-                else
-                    pPlayer->push();
-            }
-    }
+    //    for (pPlayer = game_players.begin(); pPlayer != game_players.end(); ++pPlayer)
+    //        if(!(pPlayer->isBusted())) {
+    //            if(pPlayer->sumOfHand() > game_dealer.sumOfHand())
+    //                pPlayer->win();
+    //            else if (pPlayer->sumOfHand() < game_dealer.sumOfHand())
+    //                pPlayer->lose();
+    //            else
+    //               pPlayer->push();
+    //        }
+    //}
 
 //remove cards
     for (pPlayer = game_players.begin(); pPlayer != game_players.end(); ++pPlayer)
@@ -246,6 +250,10 @@ int Hand::sumOfHand() const {
         total +=10;
 
     return total;
+}
+
+vector<Card*> Hand::getCards() {
+    return this->cards;
 }
 //---------------------------------------------------------------------------------------------------------------
 Dealer::Dealer(const string& name): GenericParticipant(name){}

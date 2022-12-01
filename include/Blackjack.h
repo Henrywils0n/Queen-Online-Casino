@@ -50,6 +50,7 @@ public:
     void addCard(Card* c);
     void clear();
     int sumOfHand() const;
+    vector<Card*> getCards();
 protected:
     vector<Card*> cards;
 };

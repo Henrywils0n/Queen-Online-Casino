@@ -75,6 +75,7 @@ void BlackjackPanel::onDeal(wxCommandEvent& WXUNUSED(event)) {
     this->betTwentyFiveButton->Destroy();
 
     game->Play();
+    this->reloadTxt();
 }
 
 void BlackjackPanel::onBetOne(wxCommandEvent& WXUNUSED(event)) {
@@ -98,7 +99,11 @@ void BlackjackPanel::onResetBet(wxCommandEvent& event) {
 }
 
 void BlackjackPanel::reloadTxt() {
-    wxString pTxt = "Player :\n";
-    pTxt << "Current bet: " << p->getBet();
+    wxString pTxt = "Player :\t";
+    pTxt << "Current bet: " << p->getBet() << "\n";
+    for (Card *card : p->getCards()) {
+        pTxt << card->toString();
+    }
+    
     playerText->SetLabel(pTxt);
 }
