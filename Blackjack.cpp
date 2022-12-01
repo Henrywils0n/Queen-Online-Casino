@@ -97,7 +97,10 @@ void Deck::anotherCard(GenericParticipant& participant)
     }
 }
 //-----------------------------------------------------------------------------------------------------------
-BlackjackGame::BlackjackGame(){
+BlackjackGame::BlackjackGame(const vector<string>& names){
+    vector<string>::const_iterator pName;
+    for (pName = names.begin(); pName != names.end(); ++pName)
+        game_players.push_back(Player(*pName));
     srand(time(0));
     game_deck.init();
     game_deck.shuffle();
@@ -107,18 +110,24 @@ BlackjackGame::~BlackjackGame(){}
 
 void BlackjackGame::Play() {
     //deal two cards to each person
-    for (int i = 0; i < 2; i++) {
-        game_deck.deal(game_player);
+    vector<Player>::iterator pPlayer;
+    for (int i = 0; i < 2; ++i)
+    {
+        for (pPlayer = game_players.begin(); pPlayer != game_players.end();++pPlayer)
+            game_deck.deal(*pPlayer);
         game_deck.deal(game_dealer);
     }
+
     game_dealer.flipCard(); //hide dealer's first card
 
     //display hands
-    cout << game_player << endl;
+    for (pPlayer = game_players.begin(); pPlayer != game_players.end(); ++pPlayer)
+        cout << *pPlayer << endl;
     cout << game_dealer << endl;
 
 //deal additional cards to players
-    game_deck.anotherCard(game_player);
+    for (pPlayer = game_players.begin(); pPlayer != game_players.end(); ++pPlayer)
+        game_deck.anotherCard(*pPlayer);
 
 //reveal dealer's first card
     game_dealer.flipCard();
@@ -129,31 +138,33 @@ void BlackjackGame::Play() {
 
     if (game_dealer.isBusted())
     {
-        //player wins
-        if (!(game_player.isBusted()))
-            game_player.win();
+        //players win
+        for (pPlayer = game_players.begin(); pPlayer != game_players.end(); ++pPlayer)
+            if (!(pPlayer->isBusted()))
+                pPlayer->win();
     }
     else
     {
-//compare player to house
-
-        if(!(game_player.isBusted())) {
-            if(game_player.sumOfHand() > game_dealer.sumOfHand())
-                game_player.win();
-            else if (game_player.sumOfHand() < game_dealer.sumOfHand())
-                game_player.lose();
-            else
-                game_player.push();
-        }
+        //compare players' hands to dealer hand
+        for (pPlayer = game_players.begin(); pPlayer != game_players.end(); ++pPlayer)
+            if(!(pPlayer->isBusted())) {
+                if(pPlayer->sumOfHand() > game_dealer.sumOfHand())
+                    pPlayer->win();
+                else if (pPlayer->sumOfHand() < game_dealer.sumOfHand())
+                    pPlayer->lose();
+                else
+                    pPlayer->push();
+            }
     }
 
 //remove cards
-    game_player.clear();
+    for (pPlayer = game_players.begin(); pPlayer != game_players.end(); ++pPlayer)
+        pPlayer->clear();
     game_dealer.clear();
 }
 
 //-----------------------------------------------------------------------------------------------------------
-GenericParticipant::GenericParticipant(){}
+GenericParticipant::GenericParticipant(const string& name): m_name(name){}
 
 GenericParticipant::~GenericParticipant(){}
 
@@ -169,8 +180,8 @@ void GenericParticipant::bust() const
 //-----------------------------------------------------------------------------------------------------------
 Hand::Hand()
 {
-    //largest possible hand in blackjack has 11 cards
-    cards.reserve(11);
+    //largest possible hand in blackjack has 7 cards
+    cards.reserve(7);
 }
 
 Hand::~Hand()
@@ -220,7 +231,7 @@ int Hand::sumOfHand() const {
     return total;
 }
 //---------------------------------------------------------------------------------------------------------------
-Dealer::Dealer(){}
+Dealer::Dealer(const string& name): GenericParticipant(name){}
 
 Dealer::~Dealer(){}
 
@@ -237,7 +248,7 @@ void Dealer::flipCard()
 }
 
 //-----------------------------------------------------------------------------------------------------------
-Player::Player(){}
+Player::Player(const string& name): GenericParticipant(name){}
 
 Player::~Player(){}
 
