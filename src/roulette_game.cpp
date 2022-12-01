@@ -1,10 +1,11 @@
 // ROULETTE IMPLEMENTATION FILE
 // for american roulette (including double 0)
 
-#include "roulette.h"
+#include "roullette_game.h"
 #include <vector>
 #include <string>
 #include <iostream>
+
 using namespace std;
 
 // constructors
@@ -23,146 +24,10 @@ int RouletteController :: getRolledNumber() const { return rolledNumber; }
 int Chips :: currentChipTotal() const { return chipTotal; }
 	
 // functions
-// FRAMEWORK METHODS
+// FRAMEWORK METHODS have been moved to roulettepanel.cpp
 	// roulette buttons
 		// outside bets
-void RouletteFrame :: OnBetDoubleZero(wxCommandEvent event) {
-}
-void RouletteFrame :: OnBetZero(wxCommand &event) {
-}
-void RouletteFrame :: OnBetLoThird(wxCommand &event) {
-}
-void RouletteFrame :: OnBetMidThird(wxCommand &event) {
-}
-void RouletteFrame :: OnBetHiThird(wxCommand &event {
-}
-void RouletteFrame :: OnBetLoHalf(wxCommand &event) {
-}
-void RouletteFrame :: OnBetHiHalf(wxCommand &event) {
-}
-void RouletteFrame :: OnBetEven(wxCommand &event) {
-}
-void RouletteFrame :: OnBetOdd(wxCommand &event) {
-}
-void RouletteFrame :: OnBetRed(wxCommand &event) {
-}
-void RouletteFrame :: OnBetBlack(wxCommand &event) {
-}
-void RouletteFrame :: OnBetColumnOne(wxCommand &event) {
-}
-void RouletteFrame :: OnBetColumnTwo(wxCommand &event) {
-}
-void RouletteFrame :: OnBetColumnThree(wxCommand &event) {
-}
-void RouletteFrame :: OnBetStreet1(wxCommand &event) {
-}
-void RouletteFrame :: OnBetStreet4(wxCommand &event) {
-}
-void RouletteFrame :: OnBetStreet7(wxCommand &event) {
-}
-void RouletteFrame :: OnBetStreet10(wxCommand &event) {
-}
-void RouletteFrame :: OnBetStreet13(wxCommand &event) {
-}
-void RouletteFrame :: OnBetStreet16(wxCommand &event) { 
-}
-void RouletteFrame :: OnBetStreet19(wxCommand &event) {
-}
-void RouletteFrame :: OnBetStreet22(wxCommand &event) {
-}
-void RouletteFrame :: OnBetStreet25(wxCommand &event) {
-}
-void RouletteFrame :: OnBetStreet28(wxCommand &event) {
-}
-void RouletteFrame :: OnBetStreet31(wxCommand &event) {
-}
-void RouletteFrame :: OnBetStreet34(wxCommand &event) {
-}
 
-		// inside bets
-void RouletteFrame :: OnBet1(wxCommand &event) {
-}
-void RouletteFrame :: OnBet2(wxCommand &event) {
-}
-void RouletteFrame :: OnBet3(wxCommand &event) {
-}
-void RouletteFrame :: OnBet4(wxCommand &event) {
-}
-void RouletteFrame :: OnBet5(wxCommand &event) {
-}
-void RouletteFrame :: OnBet6(wxCommand &event) {
-}
-void RouletteFrame :: OnBet7(wxCommand &event) {
-}
-void RouletteFrame :: OnBet8(wxCommand &event) {
-}
-void RouletteFrame :: OnBet9(wxCommand &event) {
-}
-void RouletteFrame :: OnBet10(wxCommand &event) {
-}
-void RouletteFrame :: OnBet11(wxCommand &event) {
-}
-void RouletteFrame :: OnBet12(wxCommand &event) {
-}
-void RouletteFrame :: OnBet13(wxCommand &event) {
-}
-void RouletteFrame :: OnBet14(wxCommand &event) {
-}
-void RouletteFrame :: OnBet15(wxCommand &event) {
-}
-void RouletteFrame :: OnBet16(wxCommand &event) {
-}
-void RouletteFrame :: OnBet17(wxCommand &event) {
-}
-void RouletteFrame :: OnBet18(wxCommand &event) {
-}
-void RouletteFrame :: OnBet19(wxCommand &event) {
-}
-void RouletteFrame :: OnBet20(wxCommand &event) {
-}
-void RouletteFrame :: OnBet21(wxCommand &event) {
-}
-void RouletteFrame :: OnBet22(wxCommand &event) {
-}
-void RouletteFrame :: OnBet23(wxCommand &event) {
-}
-void RouletteFrame :: OnBet24(wxCommand &event) {
-}
-void RouletteFrame :: OnBet25(wxCommand &event) {
-}
-void RouletteFrame :: OnBet26(wxCommand &event) {
-}
-void RouletteFrame :: OnBet27(wxCommand &event) {
-}
-void RouletteFrame :: OnBet28(wxCommand &event) {
-}
-void RouletteFrame :: OnBet29(wxCommand &event) {
-}
-void RouletteFrame :: OnBet30(wxCommand &event) {
-}
-void RouletteFrame :: OnBet31(wxCommand &event) {
-}
-void RouletteFrame :: OnBet32(wxCommand &event) {
-}
-void RouletteFrame :: OnBet33(wxCommand &event) {
-}
-void RouletteFrame :: OnBet34(wxCommand &event) {
-}
-void RouletteFrame :: OnBet35(wxCommand &event) {
-}
-void RouletteFrame :: OnBet36(wxCommand &event) {
-}
-	// functional buttons
-void RouletteFrame :: OnSubmitBet(wxCommand &event) {
-}
-void RouletteFrame :: OnSpinWheel(wxCommand &event) {
-}
-void RouletteFrame :: OnInformation(wxCommand &event) {
-}
-void RouletteFrame :: OnPlayAgain(wxCommand &event) {
-}
-void RouletteFrame :: OnExit(wxCommand &event) {
-}
 	
 
 // GAME METHODS
@@ -171,85 +36,112 @@ void RouletteController :: storeBets(string "bet_type", int money_bet) {
 	switch ("bet_type") {
 		case "street1":
 			newBet = Bet(threeNM, money_bet, street1);
+            placedBets.pushback(newBet);
 			break;
 		case "street4":
 			newBet = Bet(threeNM, money_bet, street4);
+            placedBets.pushback(newBet);
 			break;
 		case "street7":
 			newBet = Bet(threeNM, money_bet, street7);
+            placedBets.pushback(newBet);
 			break;
 		case "street10":
 			newBet = Bet(threeNM, money_bet, street10);
+            placedBets.pushback(newBet);
 			break;
 		case "street13":
 			newBet = Bet(threeNM, money_bet, street13);
+            placedBets.pushback(newBet);
 			break;
 		case "street16":
 			newBet = Bet(threeNM, money_bet, street16);
+            placedBets.pushback(newBet);
 			break;
 		case "street19":
 			newBet = Bet(threeNM, money_bet, street19);
+            placedBets.pushback(newBet);
 			break;
 		case "street22":
 			newBet = Bet(threeNM, money_bet, street22);
+            placedBets.pushback(newBet);
 			break;
 		case "street25":
 			newBet = Bet(threeNM, money_bet, street25);
+            placedBets.pushback(newBet);
 			break;
 		case "street28":
 			newBet = Bet(threeNM, money_bet, street28);
+            placedBets.pushback(newBet);
 			break;
 		case "street31":
 			newBet = Bet(threeNM, money_bet, street31);
+            placedBets.pushback(newBet);
 			break;
 		case "street34":
 			newBet = Bet(threeNM, money_bet, street34);
+            placedBets.pushback(newBet);
 			break;
 		case "loHalf":
 			newBet = Bet(halfM, money_bet, loHalf);
+            placedBets.pushback(newBet);
 			break;
 		case "hiHalf":
 			newBet = Bet(halfM, money_bet, hiHalf);
+            placedBets.pushback(newBet);
 			break;
 		case "loThird":
 			newBet = Bet(thirdM, money_bet, loThird);
+            placedBets.pushback(newBet);
 			break;
 		case "midThird":
 			newBet = Bet(thirdM, money_bet, midThird);
+            placedBets.pushback(newBet);
 			break;
 		case "hiThird":
 			newBet = Bet(thirdM, money_bet, hiThird);
+            placedBets.pushback(newBet);
 			break;
 		case "odd":
 			newBet = Bet(oeM, money_bet, odd);
+            placedBets.pushback(newBet);
 			break;
 		case "even":
 			newBet = Bet(oeM, money_bet, even);
+            placedBets.pushback(newBet);
 			break;
 		case "col1":
 			newBet = Bet(colM, money_bet, col1);
+            placedBets.pushback(newBet);
 			break;
 		case "col2":
 			newBet = Bet(colM, money_bet, col2);
+            placedBets.pushback(newBet);
 			break;
 		case "col3":
 			newBet = Bet(colM, money_bet, col3);
+            placedBets.pushback(newBet);
 			break;
 		case "red":
 			newBet = Bet(colourM, money_bet, red);
+            placedBets.pushback(newBet);
 			break;
 		case "black":
 			newBet = Bet(colourM, money_bet, black);
+            placedBets.pushback(newBet);
 			break;
 		case "zero":
 			newBet = Bet(oneNM, money_bet, zero);
+            placedBets.pushback(newBet);
 			break;
 		case "doubleZero":
 			newBet = Bet(oneNM, money_bet, doubleZero);
+            placedBets.pushback(newBet);
 			break;
 		// single numbers
 		default:
 			newBet = Bet(colourM, money_bet, bet_type);
+            placedBets.pushback(newBet);
 			break;
 	}
 	placedBets.add(newBet);
@@ -263,7 +155,7 @@ void RouletteController :: spinBall() {
 }
 
 void RouletteController :: ballOnWheel() {
-	int num = RoulettController.getRolledNumber();
+	int num = RouletteController.getRolledNumber();
 	switch (num) {
 		case 0:
 			break;
