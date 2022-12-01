@@ -12,8 +12,9 @@ private:
 	/**
 	* Main game sizer contains all others
 	*/
-	wxBoxSizer* gameSizer;
+	wxBoxSizer* masterSizer;
 
+	wxBoxSizer* personsSizer;
 	wxBoxSizer* dealerSizer;
 	wxBoxSizer* playerSizer;
 
@@ -29,6 +30,7 @@ private:
 	*/
 	wxTextCtrl* tempText;
 	wxTextCtrl* tempText2;
+	wxTextCtrl* gameText;
 
 	wxButton* dealButton;
 	wxButton* resetBetButton;

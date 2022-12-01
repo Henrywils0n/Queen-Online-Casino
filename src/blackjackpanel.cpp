@@ -11,14 +11,18 @@ END_EVENT_TABLE()
 BlackjackPanel::BlackjackPanel(GameFrame* par) : wxPanel(par) {  
 
     // Declare sizers
-    gameSizer = new wxBoxSizer(wxVERTICAL);
+    masterSizer = new wxBoxSizer(wxVERTICAL);
+
+    personsSizer = new wxBoxSizer(wxVERTICAL);
     dealerSizer = new wxBoxSizer(wxHORIZONTAL);
     playerSizer = new wxBoxSizer(wxHORIZONTAL);
+
     buttonSizer = new wxBoxSizer(wxHORIZONTAL);
 
     // Filler for player and dealer hands
     tempText = new wxTextCtrl(this, -1, "Dealer Hand", wxDefaultPosition, wxSize(5000, 100), wxTE_MULTILINE);
     tempText2 = new wxTextCtrl(this, -1, "My Hand", wxDefaultPosition, wxSize(5000, 100), wxTE_MULTILINE);
+    gameText = new wxTextCtrl(this, -1, "Game", wxDefaultPosition, wxSize(5000, 100), wxTE_MULTILINE);
 
     // Attempt to use images failed
     //wxString nullCard = "../resources/Cards/red_joker.png";
@@ -45,12 +49,16 @@ BlackjackPanel::BlackjackPanel(GameFrame* par) : wxPanel(par) {
     buttonSizer->Add(resetBetButton, 0, wxALL, 10);
     buttonSizer->Add(dealButton, 0, wxALL, 10);
 
-    // Add sub-sizers to gameSizer
-    gameSizer->Add(dealerSizer, wxEXPAND | wxALL, wxALIGN_CENTER);
-    gameSizer->Add(playerSizer, wxEXPAND | wxALL, wxALIGN_CENTER);
-    gameSizer->Add(buttonSizer, 0, wxALIGN_CENTER); 
+    // Add text boxes
+    personsSizer->Add(dealerSizer, wxEXPAND | wxALL, wxALIGN_CENTER);
+    personsSizer->Add(playerSizer, wxEXPAND | wxALL, wxALIGN_CENTER);
+    masterSizer->Add(gameText, wxEXPAND | wxALL, wxALIGN_CENTER);
 
-    SetSizerAndFit(gameSizer);
+    // Add sub-sizers to masterSizer
+    masterSizer->Add(personsSizer, 0, wxALIGN_CENTER);
+    masterSizer->Add(buttonSizer, 0, wxALIGN_CENTER); 
+
+    SetSizerAndFit(masterSizer);
 
     dealerSizer->SetSizeHints(this);
 }
