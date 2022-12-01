@@ -6,8 +6,8 @@
 #include <ctime>
 using namespace std;
 
-Card::Card(rank r, suit s, bool ifu): Rank(r), Suit(s), facedUp(ifu)
-{}
+Card::Card(rank r, suit s, bool ifu=true): Rank(r), Suit(s), facedUp(ifu){}
+Card::Card(rank r, suit s) : Rank(r), Suit(s) { this->facedUp = true; }
 
 int Card::getValue() const{
     //0 if card is not faced up
@@ -51,6 +51,16 @@ string Card::getSuit() const{
 void Card::flip(){
     facedUp = !(facedUp);
 }
+
+string Card::toString() {
+    return this->getRank() + " of " + this->getSuit();
+}
+
+//ostream& operator<<(ostream& os, const Card& card) {
+//   string res = card.getRank() + " of " + card.getSuit();
+//    os << res;
+//    return os;
+//}
 
 //-----------------------------------------------------------------------------------------------------------
 

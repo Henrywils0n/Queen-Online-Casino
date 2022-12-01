@@ -17,20 +17,31 @@ class Card{
 public:
     enum rank {ACE=1, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN,
         JACK, QUEEN, KING};
+
     enum suit {CLUBS=1, DIAMONDS, HEARTS, SPADES};
+
     Card(rank r, suit s, bool faceUp);
     Card(rank r, suit s);
     int getValue() const;
     string getSuit() const;
     string getRank() const;
-    friend ostream& operator << (ostream& os, const Card& aCard);
     void flip();
+
+    friend ostream& operator << (ostream& os, const Card& card);
+
+    // TODO: Replace this
+    /**
+     * Insertion overloading is not working with wxString and I do not have time
+     * to figure out why
+     */
+    string toString();
 private:
     rank Rank;
     suit Suit;
     bool facedUp;
-};
 
+    //friend ostream& operator << (ostream& os, const Card& card);
+};
 
 class Hand{
 public:
@@ -39,7 +50,6 @@ public:
     void addCard(Card* c);
     void clear();
     int sumOfHand() const;
-    vector<Card*> getHand();
 protected:
     vector<Card*> cards;
 };
