@@ -11,7 +11,10 @@ public:
   wxButton* roulette_button;
   wxButton* blackjack_button;
   wxButton* oddsare_button;
-  wxTextCtrl* m_textCtrl;
+  wxStaticText* score_static;
+  
+  void updateBalance(wxShowEvent &event);
+  
 private:
   GameFrame* parent;
   
