@@ -12,7 +12,7 @@ Card::Card(rank r, suit s) : Rank(r), Suit(s) { this->facedUp = true; }
 int Card::getValue() const{
     //0 if card is not faced up
     int value = 0;
-    if (this->facedUp) {
+    if (facedUp) {
         value = Rank;
         //jack, queen, and king are = 10
         if (value > 10)
@@ -22,7 +22,7 @@ int Card::getValue() const{
 }
 
 string Card::getRank() const{
-    switch (this->Rank){
+    switch (Rank){
         case rank::ACE: return "Ace";
         case rank::TWO: return "Two";
         case rank::THREE: return "Three";
@@ -40,7 +40,7 @@ string Card::getRank() const{
 }
 
 string Card::getSuit() const{
-    switch (this->Suit){
+    switch (Suit){
         case suit::CLUBS: return "Clubs";
         case suit::DIAMONDS: return "Diamonds";
         case suit::SPADES: return "Spades";
@@ -69,17 +69,18 @@ string Card::toString() {
 
 Deck::Deck()
 {
-    cards.reserve(52);
-    //init();
+    cards.reserve(3*52);
+    init();
 }
 
 void Deck::init(){
     clear();
-    for (int i = Card::CLUBS; i <= Card::SPADES; ++i) {
-        for (int j = Card::ACE; j <= Card::KING; ++j) {
-            Card* c = new Card(static_cast<Card::rank>(i), static_cast<Card::suit>(j), true);
-            addCard(c);
-            //OutputDebugStringW(L"" + to_string(i) + " " + to_string(j) + "\n");
+    for (int k = 0; k<2; k++){
+        for (int i = Card::CLUBS; i <= Card::SPADES; ++i){
+            for (int j = Card::ACE; j <= Card::KING; ++j) {
+                addCard(new Card(static_cast<Card::rank>(j), static_cast<Card::suit>(i), true));
+                //OutputDebugStringW(L"" + to_string(i) + " " + to_string(j) + "\n");
+            }
         }
     }
 }
@@ -91,13 +92,19 @@ void Deck::shuffle()
 
 void Deck::deal(Hand& h)
 {
-    if (cards.empty())
+    if (!cards.empty())
     {
-        init();
-        wxLogError("Deck was empty");
+        h.addCard(cards.back());
+        cards.pop_back();
     }
-    h.addCard(cards.back());
-    cards.pop_back();
+    else
+    {
+        cout << "shuffling a new deck\n";
+        init();
+        shuffle();
+        h.addCard(cards.back());
+        cards.pop_back();
+    }
 }
 
 void Deck::anotherCard(GenericParticipant& participant)
@@ -123,7 +130,17 @@ BlackjackGame::BlackjackGame(){
     game_deck->shuffle();
 }
 
+BlackjackGame::BlackjackGame(){}
+
+BlackjackGame::~BlackjackGame(){}
+
 void BlackjackGame::Play() {
+
+    cout << "Place your bet: ";
+    int bet;
+    cin >> bet;
+    game_players->placeBet(bet);
+
     // Deal
     for (int i = 0; i < 2; ++i)
     {
@@ -134,51 +151,50 @@ void BlackjackGame::Play() {
     //hide dealer's first card
     game_dealer->flipCard();
 
-    //display hands
-    //for (pPlayer = game_players.begin(); pPlayer != game_players.end(); ++pPlayer)
-    //    cout << *pPlayer << endl;
-    //cout << game_dealer << endl;
-
-    // deal additional cards to players
-    //for (pPlayer = game_players.begin(); pPlayer != game_players.end(); ++pPlayer)
-      //  game_deck.anotherCard(*pPlayer);
-
-    //reveal dealer's first card
-    //game_dealer.flipCard();
-    //cout << endl << game_dealer;
-
-    //deal additional cards to dealer
-    //game_deck.anotherCard(game_dealer);
-
-    //if (game_dealer.isBusted())
-    //{
-        //players win
-    //    for (pPlayer = game_players.begin(); pPlayer != game_players.end(); ++pPlayer)
-    //        if (!(pPlayer->isBusted()))
-    //            pPlayer->win();
-    //}
-    //else
-    //{
-        //compare players' hands to dealer hand
-    //    for (pPlayer = game_players.begin(); pPlayer != game_players.end(); ++pPlayer)
-    //        if(!(pPlayer->isBusted())) {
-    //            if(pPlayer->sumOfHand() > game_dealer.sumOfHand())
-    //                pPlayer->win();
-    //            else if (pPlayer->sumOfHand() < game_dealer.sumOfHand())
-    //                pPlayer->lose();
-    //            else
-    //               pPlayer->push();
-    //        }
-    //}
-
-//remove cards
-    //for (pPlayer = game_players.begin(); pPlayer != game_players.end(); ++pPlayer)
-    //    pPlayer->clear();
-    //game_dealer.clear();
+//    //display hands
+//    for (pPlayer = game_players.begin(); pPlayer != game_players.end(); ++pPlayer)
+//        cout << *pPlayer << endl;
+//    cout << game_dealer << endl;
+//
+////deal additional cards to players
+//    for (pPlayer = game_players.begin(); pPlayer != game_players.end(); ++pPlayer)
+//        game_deck.anotherCard(*pPlayer);
+//
+////reveal dealer's first card
+//    game_dealer.flipCard();
+//    cout << endl << game_dealer;
+//
+////deal additional cards to dealer
+//    game_deck.anotherCard(game_dealer);
+//    for (pPlayer = game_players.begin(); pPlayer != game_players.end(); ++pPlayer) {
+//
+//        if (pPlayer->isBusted()) {
+//            pPlayer->lose();
+//        } else {
+//            if (game_dealer.isBusted()) {
+//                pPlayer->win();
+//            } else {
+//                //compare players' hands to dealer hand
+//                if (pPlayer->sumOfHand() > game_dealer.sumOfHand())
+//                    pPlayer->win();
+//                else if (pPlayer->sumOfHand() < game_dealer.sumOfHand())
+//                    pPlayer->lose();
+//                else
+//                    pPlayer->push();
+//            }
+//        }
+//    }
+//
+////remove cards
+//    for (pPlayer = game_players.begin(); pPlayer != game_players.end(); ++pPlayer)
+//        pPlayer->clear();
+//    game_dealer.clear();
 }
 
 //-----------------------------------------------------------------------------------------------------------
 GenericParticipant::GenericParticipant() {}
+
+GenericParticipant::GenericParticipant(const string& name): m_name(name){}
 
 bool GenericParticipant::isBusted() const {
     return (sumOfHand()>21);
@@ -263,35 +279,74 @@ void Dealer::flipCard()
 
 //-----------------------------------------------------------------------------------------------------------
 Player::Player(): GenericParticipant() {
-    this->bet = 0;
+    bet = 0;
+    setBalance(100); //NEED TO REPLACE THIS WITH A CALL TO A VARIABLE THAT HOLDS THE GLOBAL BALANCE
 }
 
 bool Player::isHitting() const{
-    cout << "Do you want a hit (Y/N): ";
-    char response;
-    cin >> response;
-    return (response == 'y' || response == 'Y');
+    if (sumOfHand() == 21){
+        return false;
+    }
+    else {
+        cout << "Do you want a hit (Y/N): ";
+        char response;
+        cin >> response;
+        return (response == 'y' || response == 'Y');
+    }
 }
 
-void Player::win() const
+void Player::win()
 {
     cout << "Player wins!\n";
+    balance+= (bet*2);
+    cout << "balance is: $" << balance << "\n";
 }
 
-void Player::lose() const
+void Player::lose()
 {
     cout << "Player loses!\n";
+    cout << "balance is: $" << balance << "\n";
 }
 
-void Player::push() const
+void Player::push()
 {
     cout << "Player pushes!\n";
+    balance+= bet;
+    cout << "balance is: $" << balance << "\n";
 }
 
-void Player::setBet(int b) {
-    this->bet = b;
+void Player::placeBet(int b){
+//    if (bet > balance){
+//        throw InsufficientFundsException("Not enough funds");
+//    }
+//    else if (bet < 0){
+//        throw MinimumBetException("Bet must be a positive number");
+//    }
+//    else if (bet > 10000){
+//        throw MaximumBetException("Bet must be less than $10,000");
+//    }
+//    else {
+    bet = b;
+    balance -= bet;
+//    }
 }
 
 int Player::getBet() {
-    return this->bet;
+    return bet;
 }
+
+void Player::setBalance(int amount) {
+    balance = amount;
+}
+
+InsufficientFundsException::InsufficientFundsException(const string& message) : message(message) {}
+
+string& InsufficientFundsException::what() { return message; }
+
+MaximumBetException::MaximumBetException(const string& message) : message(message) {}
+
+string& MaximumBetException::what() { return message; }
+
+MinimumBetException::MinimumBetException(const string& message) : message(message) {}
+
+string& MinimumBetException::what() { return message; }
