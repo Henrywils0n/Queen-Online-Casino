@@ -96,8 +96,8 @@ public:
     void push() const;
 
     /**
-    * Set player bet or get reference to current bet
-    */
+     * Set player bet or get reference to current bet
+     */
     void setBet(int);
     int getBet();
 private:
