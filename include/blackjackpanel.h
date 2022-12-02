@@ -22,6 +22,8 @@ private:
 	*/
 	wxBoxSizer* masterSizer;
 
+	wxBoxSizer* menuBox;
+
 	wxBoxSizer* personsSizer;
 	wxBoxSizer* dealerSizer;
 	wxBoxSizer* playerSizer;

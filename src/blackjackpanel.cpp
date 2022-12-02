@@ -16,28 +16,16 @@ END_EVENT_TABLE()
 
 BlackjackPanel::BlackjackPanel(GameFrame* par) : wxPanel(par) { 
 
-    //parent = par;
-    //wxString backpng = "../resources/back_button.png";
-
-    //m_textCtrl = new wxStaticText(this, wxID_ANY, "BLACKJACK", wxDefaultPosition, wxSize(100, wxDefaultCoord));
-    //exit_button = new ImageButton(this, ID_BJQUIT, "MENU", backpng, wxBITMAP_TYPE_PNG, 40, 40);
-
-    //wxBoxSizer* menuBox = new wxBoxSizer(wxHORIZONTAL);
-    //wxBoxSizer* vertBox = new wxBoxSizer(wxVERTICAL);
-
-    //menuBox->Add(exit_button, 1, wxSHAPED);
-    //menuBox->Add(m_textCtrl, 1, wxSTRETCH_NOT);
-
-    //vertBox->Add(menuBox, 7, wxEXPAND);
-
-    //SetSizer(vertBox);
-    //vertBox->SetSizeHints(this);
+    parent = par;
+    wxString backpng = "../resources/back_button.png";
 
     // Temporary until game object is fixed
     p = new Player();
     //game = new BlackjackGame();
     // Declare sizers
     masterSizer = new wxBoxSizer(wxVERTICAL);
+
+    menuBox = new wxBoxSizer(wxHORIZONTAL);
 
     personsSizer = new wxBoxSizer(wxVERTICAL);
     dealerSizer = new wxBoxSizer(wxHORIZONTAL);
@@ -56,6 +44,7 @@ BlackjackPanel::BlackjackPanel(GameFrame* par) : wxPanel(par) {
     //dealerSizer->Add(dlrPan1, 10, wxEXPAND);
 
     // Declare buttons
+    exit_button = new ImageButton(this, ID_BJQUIT, "MENU", backpng, wxBITMAP_TYPE_PNG, 40, 40);
     dealButton = new wxButton(this, ID_BJDEAL, "DEAL");
     resetBetButton = new wxButton(this, ID_BJRESETBET, "RESET BET");
     
@@ -70,6 +59,9 @@ BlackjackPanel::BlackjackPanel(GameFrame* par) : wxPanel(par) {
     // Populate dealer and player sizers
     dealerSizer->Add(dealerText, 0, wxEXPAND | wxALL, 10);
     playerSizer->Add(playerText, 0, wxEXPAND | wxALL, 10);
+
+    // Populate menue sizer
+    menuBox->Add(exit_button, 1, wxSHAPED);
 
     // Populate button sizer    
     buttonSizer->Add(betOneButton, 0, wxALL, 10);
@@ -89,6 +81,9 @@ BlackjackPanel::BlackjackPanel(GameFrame* par) : wxPanel(par) {
     // Add text boxes
     personsSizer->Add(dealerSizer, wxEXPAND | wxALL, wxALIGN_CENTER);
     personsSizer->Add(playerSizer, wxEXPAND | wxALL, wxALIGN_CENTER);
+
+    masterSizer->Add(menuBox, 7, wxEXPAND);
+
     masterSizer->Add(gameText, wxEXPAND | wxALL, wxALIGN_CENTER);
 
     // Add sub-sizers to masterSizer
@@ -144,7 +139,7 @@ void BlackjackPanel::onStand(wxCommandEvent& event) {
 }
 
 void BlackjackPanel::onAgain(wxCommandEvent& event) {
-
+    wxLogError("Please no.");
 }
 
 void BlackjackPanel::reloadTxt() {
