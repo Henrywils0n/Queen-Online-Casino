@@ -2,19 +2,23 @@
 #include "header.h"
 #include "gameframe.h"
 #include "roullette_game.h"
+#include "imagebutton.h"
+
 
 class RoulettePanel : public wxPanel {
 public:
   RoulettePanel(GameFrame* parent);
 
-  wxTextCtrl* m_textCtrl;
-
+  wxStaticText* m_textCtrl;
+  ImageButton* exit_button;
   DECLARE_EVENT_TABLE();
 private:
+
     GameFrame* parent;
     RouletteController* controller;
 	Table* table = new Table();
 	int moneyBet;
+
 	
 	// buttons 
 	// roulette table buttons
@@ -89,4 +93,5 @@ private:
 	void OnInformation(wxCommandEvent &event);
 	void OnPlayAgain(wxCommandEvent &event);
 	void OnExit(wxCommandEvent &event);
+	void onQuitRoulette(wxCommandEvent &WXUNUSED(event));
 };

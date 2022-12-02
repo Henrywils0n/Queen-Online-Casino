@@ -69,9 +69,23 @@ BEGIN_EVENT_TABLE(RoulettePanel, wxPanel)
     EVT_BUTTON(ID_ROULETTEINFORMATION, RoulettePanel :: OnInformation)
     EVT_BUTTON(ID_PLAYROULETTEAGAIN, RoulettePanel :: OnPlayAgain)
     EVT_BUTTON(ID_EXITROULETTE, RoulettePanel :: OnExit)
+    EVT_BUTTON(ID_RLQUIT, RoulettePanel::onQuitRoulette)
 END_EVENT_TABLE()
 
-RoulettePanel::RoulettePanel(GameFrame* parent) : wxPanel(parent) {
+RoulettePanel::RoulettePanel(GameFrame* par) : wxPanel(par) {
+    parent = par;
+    wxString backpng = "../resources/back_button.png";
+
+    m_textCtrl = new wxStaticText(this, wxID_ANY, "ROULETTE", wxDefaultPosition, wxSize(100, wxDefaultCoord));
+    exit_button  = new ImageButton(this, ID_RLQUIT,  "MENU", backpng, wxBITMAP_TYPE_PNG, 40, 40);
+  
+    wxBoxSizer* menuBox = new wxBoxSizer(wxHORIZONTAL);
+    wxBoxSizer* vertBox = new wxBoxSizer(wxVERTICAL);
+
+    menuBox->Add(exit_button, 1, wxSHAPED);
+    menuBox->Add(m_textCtrl, 1, wxSTRETCH_NOT);
+
+    vertBox->Add(menuBox, 7, wxEXPAND);
     controller = new RouletteController();
     wxButton* button_00 = new wxButton(this, ID_00, "00");
     wxButton* button_0 = new wxButton(this, ID_0, "0");
@@ -135,16 +149,9 @@ RoulettePanel::RoulettePanel(GameFrame* parent) : wxPanel(parent) {
     wxButton* button_34 = new wxButton(this, ID_34, "34");
     wxButton* button_35 = new wxButton(this, ID_35, "35");
     wxButton* button_36 = new wxButton(this, ID_36, "36");
-    
-    
-  m_textCtrl = new wxTextCtrl(this, wxID_ANY, "ROULETTE", wxDefaultPosition, wxSize(200, wxDefaultCoord));
-  
-    // Set up sizers
-  wxBoxSizer* vertBox = new wxBoxSizer(wxVERTICAL);
-  vertBox->Add(m_textCtrl, 1, wxEXPAND);
-  SetSizer(vertBox);
-  
-  vertBox->SetSizeHints(this);
+
+    SetSizer(vertBox);
+    vertBox->SetSizeHints(this);
 }
 
 // button implementation
@@ -385,4 +392,8 @@ void RoulettePanel :: OnInformation(wxCommandEvent &WXUNUSED(event)) {
 void RoulettePanel :: OnPlayAgain(wxCommandEvent &WXUNUSED(event)) {  
 }
 void RoulettePanel :: OnExit(wxCommandEvent &WXUNUSED(event)) {
+}
+void RoulettePanel::onQuitRoulette(wxCommandEvent &WXUNUSED(event)){
+  parent->returnToMenu();
+
 }

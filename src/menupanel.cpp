@@ -9,27 +9,29 @@ END_EVENT_TABLE()
 MenuPanel::MenuPanel(GameFrame* par) : wxPanel(par) {
   parent = par;
   
-  wxString dir = "../resources/gametitle.png";
+  wxString gametitle = "../resources/gametitle.png";
   
-  m_title = new ImagePanel(this, dir, wxBITMAP_TYPE_PNG);
+  m_title = new ImagePanel(this, gametitle, wxBITMAP_TYPE_PNG);
   
   roulette_button  = new wxButton(this, ID_ROULETTE,  "PLAY ROULETTE");
   blackjack_button = new wxButton(this, ID_BLACKJACK, "PLAY BLACKJACK");
   oddsare_button   = new wxButton(this, ID_ODDSARE,   "PLAY ODDS ARE");
   
-  m_textCtrl = new wxTextCtrl(this, wxID_ANY, "Button has never been clicked.", wxDefaultPosition, wxSize(200, wxDefaultCoord));
-  
   // Set up the sizers
   wxBoxSizer* inputBox = new wxBoxSizer(wxHORIZONTAL);
   wxBoxSizer* vertBox = new wxBoxSizer(wxVERTICAL);
-  
+
+  inputBox->AddSpacer(20);
   inputBox->Add(roulette_button,  1, wxEXPAND);
+  inputBox->AddSpacer(20);
   inputBox->Add(blackjack_button, 1, wxEXPAND);
+  inputBox->AddSpacer(20);
   inputBox->Add(oddsare_button,   1, wxEXPAND);
+  inputBox->AddSpacer(20);
   
   vertBox->Add(m_title, 10, wxEXPAND);
   vertBox->Add(inputBox, 1, wxEXPAND);
-  vertBox->Add(m_textCtrl, 1, wxEXPAND);
+  vertBox->AddSpacer(20);
   
   SetSizer(vertBox);
   
