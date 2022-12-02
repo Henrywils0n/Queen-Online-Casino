@@ -128,9 +128,6 @@ RoulettePanel::RoulettePanel(GameFrame* parent) : wxPanel(parent) {
     wxButton* button_27 = new wxButton(this, ID_27, "27");
     wxButton* button_28 = new wxButton(this, ID_28, "28");
     wxButton* button_29 = new wxButton(this, ID_29, "29");
-    wxButton* button_29 = new wxButton(this, ID_29, "29");
-    wxButton* button_29 = new wxButton(this, ID_29, "29");
-    wxButton* button_29 = new wxButton(this, ID_29, "29");
     wxButton* button_30 = new wxButton(this, ID_30, "30");
     wxButton* button_31 = new wxButton(this, ID_31, "31");
     wxButton* button_32 = new wxButton(this, ID_32, "32");

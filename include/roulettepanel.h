@@ -72,8 +72,6 @@ private:
 	void OnBet24(wxCommandEvent &event);
 	void OnBet25(wxCommandEvent &event);
 	void OnBet26(wxCommandEvent &event);
-	void OnBet26(wxCommandEvent &event);
-	void OnBet26(wxCommandEvent &event);
 	void OnBet27(wxCommandEvent &event);
 	void OnBet28(wxCommandEvent &event);
 	void OnBet29(wxCommandEvent &event);
