@@ -149,9 +149,99 @@ RoulettePanel::RoulettePanel(GameFrame* par) : wxPanel(par) {
     wxButton* button_34 = new wxButton(this, ID_34, "34");
     wxButton* button_35 = new wxButton(this, ID_35, "35");
     wxButton* button_36 = new wxButton(this, ID_36, "36");
+    wxButton* button_nothing = new wxButton(this, ID_NOTHING, " ");
 
-    SetSizer(vertBox);
+    // create array for inside bets
+    const int numRowsI = 4;
+    const int numColsI = 13;
+    wxFlexGridSizer *fgs = new wxFlexGridSizer( numRowsI, numColsI, 5, 5 );
+    fgs->Add(button_s1, wxEXPAND);
+    fgs->Add(button_s4, wxEXPAND);
+    fgs->Add(button_s7, wxEXPAND);
+    fgs->Add(button_s10, wxEXPAND);
+    fgs->Add(button_s13, wxEXPAND);
+    fgs->Add(button_s16, wxEXPAND);
+    fgs->Add(button_s19, wxEXPAND);
+    fgs->Add(button_s22, wxEXPAND);
+    fgs->Add(button_s25, wxEXPAND);
+    fgs->Add(button_s28, wxEXPAND);
+    fgs->Add(button_s31, wxEXPAND);
+    fgs->Add(button_34, wxEXPAND); 
+    fgs->Add(button_nothing, wxEXPAND); 
+    fgs->Add(button_1, wxEXPAND);
+    fgs->Add(button_2, wxEXPAND);
+    fgs->Add(button_3, wxEXPAND);
+    fgs->Add(button_4, wxEXPAND);
+    fgs->Add(button_5, wxEXPAND);
+    fgs->Add(button_6, wxEXPAND);
+    fgs->Add(button_7, wxEXPAND);
+    fgs->Add(button_8, wxEXPAND);
+    fgs->Add(button_9, wxEXPAND);
+    fgs->Add(button_10, wxEXPAND);
+    fgs->Add(button_11, wxEXPAND);
+    fgs->Add(button_12, wxEXPAND);
+    fgs->Add(button_13, wxEXPAND);
+    fgs->Add(button_14, wxEXPAND);
+    fgs->Add(button_15, wxEXPAND);
+    fgs->Add(button_16, wxEXPAND);
+    fgs->Add(button_17, wxEXPAND);
+    fgs->Add(button_18, wxEXPAND);
+    fgs->Add(button_19, wxEXPAND);
+    fgs->Add(button_20, wxEXPAND);
+    fgs->Add(button_21, wxEXPAND);
+    fgs->Add(button_22, wxEXPAND);
+    fgs->Add(button_23, wxEXPAND);
+    fgs->Add(button_24, wxEXPAND);
+    fgs->Add(button_25, wxEXPAND);
+    fgs->Add(button_26, wxEXPAND);
+    fgs->Add(button_27, wxEXPAND);
+    fgs->Add(button_28, wxEXPAND);
+    fgs->Add(button_29, wxEXPAND);
+    fgs->Add(button_30, wxEXPAND);
+    fgs->Add(button_31, wxEXPAND);
+    fgs->Add(button_32, wxEXPAND);
+    fgs->Add(button_33, wxEXPAND);
+    fgs->Add(button_34, wxEXPAND);
+    fgs->Add(button_35, wxEXPAND);
+    fgs->Add(button_36, wxEXPAND);
+    fgs->Add(button_c1, wxEXPAND);
+    fgs->Add(button_c2, wxEXPAND);
+    fgs->Add(button_c3, wxEXPAND);
+
+    // create array of buttons for right side outside bets (0, 00)
+    int const numColsOR = 1;
+    int const numRowsOR = 2;
+    wxFlexGridSizer *fgs1 = new wxFlexGridSizer( numRowsOR, numColsOR, 5, 7.5);
+    fgs1->Add(button_00, wxEXPAND);
+    fgs1->Add(button_0, wxEXPAND);
+
+    // create array of buttons for lower bottom side outside bets (third bets)
+    int const numColsOL3 = 3;
+    int const numRowsOL3 = 1;
+    wxFlexGridSizer *fgs2 = new wxFlexGridSizer( numRowsOL3, numColsOL3, 20, 5);
+    fgs2->Add(button_1to12, wxEXPAND);
+    fgs2->Add(button_13to24, wxEXPAND);
+    fgs2->Add(button_25to36, wxEXPAND);
+
+    int const numColsOL = 6;
+    int const numRowsOL = 1;
+    wxFlexGridSizer *fgs3 = new wxFlexGridSizer( numRowsOL, numColsOL, 10, 5);
+    fgs3->Add(button_1to18, wxEXPAND);
+    fgs3->Add(button_even, wxEXPAND);
+    fgs3->Add(button_red, wxEXPAND);
+    fgs3->Add(button_black, wxEXPAND);
+    fgs3->Add(button_odd, wxEXPAND);
+    fgs3->Add(button_19to36, wxEXPAND);
+
+    fgs->Show(true);
+    fgs1->Show(true);
+    fgs2->Show(true);
+    fgs3->Show(true);
+
+    SetSizer(fgs);
+
     vertBox->SetSizeHints(this);
+
 }
 
 // button implementation
