@@ -108,6 +108,7 @@ public:
     void push();
     void placeBet(int b);
     void setBalance(int amount);
+    int getBet();
 private:
     int bet;
     int balance;
