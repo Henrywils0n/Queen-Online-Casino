@@ -106,7 +106,7 @@ void Deck::anotherCard(GenericParticipant& participant)
     while (!(participant.isBusted()) && participant.isHitting())
     {
         deal(participant);
-        cout << participant << endl;
+        //cout << participant << endl;
 
         if (participant.isBusted())
             participant.bust();

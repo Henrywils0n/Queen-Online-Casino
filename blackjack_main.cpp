@@ -26,7 +26,7 @@ int main()
     cout << endl;
 
 
-    BlackjackGame aGame();
+    BlackjackGame aGame;
     char again = 'y';
     while (again != 'n' && again != 'N')
     {
