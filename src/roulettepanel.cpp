@@ -78,7 +78,7 @@ RoulettePanel::RoulettePanel(GameFrame* par) : wxPanel(par) {
 
     m_textCtrl = new wxStaticText(this, wxID_ANY, "ROULETTE", wxDefaultPosition, wxSize(100, wxDefaultCoord));
     exit_button  = new ImageButton(this, ID_RLQUIT,  "MENU", backpng, wxBITMAP_TYPE_PNG, 40, 40);
-  
+    m_textCtrl = new wxTextCtrl(this, wxID_ANY, "$ BET AMOUNT", wxDefaultPosition, wxSize(200, wxDefault));
     wxBoxSizer* menuBox = new wxBoxSizer(wxHORIZONTAL);
     wxBoxSizer* vertBox = new wxBoxSizer(wxVERTICAL);
     
@@ -302,10 +302,7 @@ RoulettePanel::RoulettePanel(GameFrame* par) : wxPanel(par) {
     vertBox->Add(specialBox, 0, wxEXPAND);
     vertBox->AddSpacer(15);
 
-    // fgs->Show(true);
-    // fgs1->Show(true);
-    // fgs2->Show(true);
-    // fgs3->Show(true);
+    
 
     SetSizer(vertBox);
 
