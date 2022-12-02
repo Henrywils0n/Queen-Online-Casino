@@ -143,7 +143,7 @@ RoulettePanel::RoulettePanel(GameFrame* parent) : wxPanel(parent) {
     // Set up sizers
   wxBoxSizer* vertBox = new wxBoxSizer(wxVERTICAL);
   vertBox->Add(m_textCtrl, 1, wxEXPAND);
-  SetSizer(vertBox);
+ 
   
     // create array for inside bets
     const int numRowsI = 4;
