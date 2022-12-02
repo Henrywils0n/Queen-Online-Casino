@@ -3,11 +3,11 @@
 #include "blackjack.h"
 #include "gameframe.h"
 #include "imagepanel.h"
+#include "imagebutton.h"
 
 class BlackjackPanel : public wxPanel {
 public:
   BlackjackPanel(GameFrame* parent);
-
 
 private:
 	/**
@@ -65,5 +65,12 @@ private:
 	void loadTwo();
 	void loadThree();
 
-  DECLARE_EVENT_TABLE()
+	wxStaticText* m_textCtrl;
+	ImageButton* exit_button;
+
+private:
+  GameFrame* parent;
+  void onQuitBlackjack(wxCommandEvent &WXUNUSED(event));
+
+  DECLARE_EVENT_TABLE();
 };
