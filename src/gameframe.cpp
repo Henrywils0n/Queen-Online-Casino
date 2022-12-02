@@ -1,3 +1,4 @@
+#pragma once
 #include "../include/gameframe.h"
 #include "../include/menupanel.h"
 #include "../include/roulettepanel.h"

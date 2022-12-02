@@ -9,82 +9,86 @@ public:
 
   wxTextCtrl* m_textCtrl;
 
-  DECLARE_EVENT_TABLE()
-      private:
+  DECLARE_EVENT_TABLE();
+private:
     GameFrame* parent;
-    RouletteController* RouletteController;
+    RouletteController* controller;
+	Table* table = new Table();
+	int moneyBet;
 	
-// buttons 
+	// buttons 
 	// roulette table buttons
-		// outside bets
-		void OnBetDoubleZero(wxCommand &event);
-		void OnBetZero(wxCommand &event);
-		void OnBetLoThird(wxCommand &event);
-		void OnBetMidThird(wxCommand &event);
-		void OnBetHiThird(wxCommand &event);
-		void OnBetLoHalf(wxCommand &event);
-		void OnBetHiHalf(wxCommand &event);
-		void OnBetEven(wxCommand &event);
-		void OnBetOdd(wxCommand &event);
-		void OnBetRed(wxCommand &event);
-		void OnBetBlack(wxCommand &event);
-		void OnBetColumnOne(wxCommand &event);
-		void OnBetColumnTwo(wxCommand &event);
-		void OnBetColumnThree(wxCommand &event);
-		void OnBetStreet1(wxCommand &event);
-		void OnBetStreet4(wxCommand &event);
-		void OnBetStreet7(wxCommand &event);
-		void OnBetStreet10(wxCommand &event);
-		void OnBetStreet13(wxCommand &event);
-		void OnBetStreet16(wxCommand &event);
-		void OnBetStreet19(wxCommand &event);
-		void OnBetStreet22(wxCommand &event);
-		void OnBetStreet25(wxCommand &event);
-		void OnBetStreet28(wxCommand &event);
-		void OnBetStreet31(wxCommand &event);
-		void OnBetStreet34(wxCommand &event);
-		// inside bets
-		void OnBet1(wxCommand &event);
-		void OnBet2(wxCommand &event);
-		void OnBet3(wxCommand &event);
-		void OnBet4(wxCommand &event);
-		void OnBet5(wxCommand &event);
-		void OnBet6(wxCommand &event);
-		void OnBet7(wxCommand &event);
-		void OnBet8(wxCommand &event);
-		void OnBet9(wxCommand &event);
-		void OnBet10(wxCommand &event);
-		void OnBet11(wxCommand &event);
-		void OnBet12(wxCommand &event);
-		void OnBet13(wxCommand &event);
-		void OnBet14(wxCommand &event);
-		void OnBet15(wxCommand &event);
-		void OnBet16(wxCommand &event);
-		void OnBet17(wxCommand &event);
-		void OnBet18(wxCommand &event);
-		void OnBet19(wxCommand &event);
-		void OnBet20(wxCommand &event);
-		void OnBet21(wxCommand &event);
-		void OnBet22(wxCommand &event);
-		void OnBet23(wxCommand &event);
-		void OnBet24(wxCommand &event);
-		void OnBet25(wxCommand &event);
-		void OnBet26(wxCommand &event);
-		void OnBet27(wxCommand &event);
-		void OnBet28(wxCommand &event);
-		void OnBet29(wxCommand &event);
-		void OnBet30(wxCommand &event);
-		void OnBet31(wxCommand &event);
-		void OnBet32(wxCommand &event);
-		void OnBet33(wxCommand &event);
-		void OnBet34(wxCommand &event);
-		void OnBet35(wxCommand &event);
-		void OnBet36(wxCommand &event);
+	// outside bets
+	void OnBetDoubleZero(wxCommandEvent &event);
+	void OnBetZero(wxCommandEvent &event);
+	void OnBetLoThird(wxCommandEvent &event);
+	void OnBetMidThird(wxCommandEvent &event);
+	void OnBetHiThird(wxCommandEvent &event);
+	void OnBetLoHalf(wxCommandEvent &event);
+	void OnBetHiHalf(wxCommandEvent &event);
+	void OnBetEven(wxCommandEvent &event);
+	void OnBetOdd(wxCommandEvent &event);
+	void OnBetRed(wxCommandEvent &event);
+	void OnBetBlack(wxCommandEvent &event);
+	void OnBetColumnOne(wxCommandEvent &event);
+	void OnBetColumnTwo(wxCommandEvent &event);
+	void OnBetColumnThree(wxCommandEvent &event);
+	void OnBetStreet1(wxCommandEvent &event);
+	void OnBetStreet4(wxCommandEvent &event);
+	void OnBetStreet7(wxCommandEvent &event);
+	void OnBetStreet10(wxCommandEvent &event);
+	void OnBetStreet13(wxCommandEvent &event);
+	void OnBetStreet16(wxCommandEvent &event);
+	void OnBetStreet19(wxCommandEvent &event);
+	void OnBetStreet22(wxCommandEvent &event);
+	void OnBetStreet25(wxCommandEvent &event);
+	void OnBetStreet28(wxCommandEvent &event);
+	void OnBetStreet31(wxCommandEvent &event);
+	void OnBetStreet34(wxCommandEvent &event);
+	// inside bets
+	void OnBet1(wxCommandEvent &event);
+	void OnBet2(wxCommandEvent &event);
+	void OnBet3(wxCommandEvent &event);
+	void OnBet4(wxCommandEvent &event);
+	void OnBet5(wxCommandEvent &event);
+	void OnBet6(wxCommandEvent &event);
+	void OnBet7(wxCommandEvent &event);
+	void OnBet8(wxCommandEvent &event);
+	void OnBet9(wxCommandEvent &event);
+	void OnBet10(wxCommandEvent &event);
+	void OnBet11(wxCommandEvent &event);
+	void OnBet12(wxCommandEvent &event);
+	void OnBet13(wxCommandEvent &event);
+	void OnBet14(wxCommandEvent &event);
+	void OnBet15(wxCommandEvent &event);
+	void OnBet16(wxCommandEvent &event);
+	void OnBet17(wxCommandEvent &event);
+	void OnBet18(wxCommandEvent &event);
+	void OnBet19(wxCommandEvent &event);
+	void OnBet20(wxCommandEvent &event);
+	void OnBet21(wxCommandEvent &event);
+	void OnBet22(wxCommandEvent &event);
+	void OnBet23(wxCommandEvent &event);
+	void OnBet24(wxCommandEvent &event);
+	void OnBet25(wxCommandEvent &event);
+	void OnBet26(wxCommandEvent &event);
+	void OnBet26(wxCommandEvent &event);
+	void OnBet26(wxCommandEvent &event);
+	void OnBet27(wxCommandEvent &event);
+	void OnBet28(wxCommandEvent &event);
+	void OnBet29(wxCommandEvent &event);
+	void OnBet30(wxCommandEvent &event);
+	void OnBet31(wxCommandEvent &event);
+	void OnBet32(wxCommandEvent &event);
+	void OnBet33(wxCommandEvent &event);
+	void OnBet34(wxCommandEvent &event);
+	void OnBet35(wxCommandEvent &event);
+	void OnBet36(wxCommandEvent &event);
 		
 	// functional buttons
-		void OnSubmitBet(wxCommand &event);
-		void OnSpinWheel(wxCommand &event);
-		void OnInformation(wxCommand &event);
-		void OnPlayAgain(wxCommand &event);
-		void OnExit(wxCommand &event);
+	void OnSubmitBet(wxCommandEvent &event);
+	void OnSpinWheel(wxCommandEvent &event);
+	void OnInformation(wxCommandEvent &event);
+	void OnPlayAgain(wxCommandEvent &event);
+	void OnExit(wxCommandEvent &event);
 };
