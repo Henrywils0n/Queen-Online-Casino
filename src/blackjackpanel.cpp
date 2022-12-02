@@ -7,13 +7,16 @@ BEGIN_EVENT_TABLE(BlackjackPanel, wxPanel)
     EVT_BUTTON(ID_BJFIVECHIP, BlackjackPanel::onBetFive)
     EVT_BUTTON(ID_BJTWENTYFIVECHIP, BlackjackPanel::onBetTwentyFive)
     EVT_BUTTON(ID_BJRESETBET, BlackjackPanel::onResetBet)
+    EVT_BUTTON(ID_BJHIT, BlackjackPanel::onHit)
+    EVT_BUTTON(ID_BJSTAND, BlackjackPanel::onStand)
+    EVT_BUTTON(ID_BJAGAIN, BlackjackPanel::onAgain)
 END_EVENT_TABLE()
 
 BlackjackPanel::BlackjackPanel(GameFrame* par) : wxPanel(par) { 
 
     // Temporary until game object is fixed
     p = new Player();
-    game = new BlackjackGame();
+    //game = new BlackjackGame();
     // Declare sizers
     masterSizer = new wxBoxSizer(wxVERTICAL);
 
@@ -26,7 +29,7 @@ BlackjackPanel::BlackjackPanel(GameFrame* par) : wxPanel(par) {
     // Filler for player and dealer hands
     dealerText = new wxStaticText(this, -1, "Dealer Hand", wxDefaultPosition, wxSize(5000, 100));
     playerText = new wxStaticText(this, -1, "My Hand", wxDefaultPosition, wxSize(5000, 100), wxTE_MULTILINE);
-    gameText = new wxTextCtrl(this, -1, "Game", wxDefaultPosition, wxSize(5000, 100), wxTE_MULTILINE);
+    gameText = new wxTextCtrl(this, -1, "Game\n", wxDefaultPosition, wxSize(5000, 100), wxTE_MULTILINE);
 
     // Attempt to use images failed
     //wxString nullCard = "../resources/Cards/red_joker.png";
@@ -41,6 +44,10 @@ BlackjackPanel::BlackjackPanel(GameFrame* par) : wxPanel(par) {
     betFiveButton = new wxButton(this, ID_BJFIVECHIP, "5$ CHIP");
     betTwentyFiveButton = new wxButton(this, ID_BJTWENTYFIVECHIP, "25$ CHIP");
 
+    hitButton = new wxButton(this, ID_BJHIT, "HIT");
+    standButton = new wxButton(this, ID_BJSTAND, "STAND");
+    againButton = new wxButton(this, ID_BJAGAIN, "AGAIN");
+
     // Populate dealer and player sizers
     dealerSizer->Add(dealerText, 0, wxEXPAND | wxALL, 10);
     playerSizer->Add(playerText, 0, wxEXPAND | wxALL, 10);
@@ -52,6 +59,13 @@ BlackjackPanel::BlackjackPanel(GameFrame* par) : wxPanel(par) {
 
     buttonSizer->Add(resetBetButton, 0, wxALL, 10);
     buttonSizer->Add(dealButton, 0, wxALL, 10);
+
+    buttonSizer->Add(hitButton, 0, wxALL, 10);
+    buttonSizer->Add(standButton, 0, wxALL, 10);
+    buttonSizer->Add(againButton, 0, wxALL, 10);
+    hitButton->Hide();
+    standButton->Hide();
+    againButton->Hide();
 
     // Add text boxes
     personsSizer->Add(dealerSizer, wxEXPAND | wxALL, wxALIGN_CENTER);
@@ -65,17 +79,21 @@ BlackjackPanel::BlackjackPanel(GameFrame* par) : wxPanel(par) {
     SetSizerAndFit(masterSizer);
 
     dealerSizer->SetSizeHints(this);
+
+    gameText->AppendText("Place your bet.\n");
 }
 
 void BlackjackPanel::onDeal(wxCommandEvent& WXUNUSED(event)) {
-    this->dealButton->Destroy();
-    this->resetBetButton->Destroy();
-    //this->betOneButton->Destroy();
-    this->betFiveButton->Destroy();
-    this->betTwentyFiveButton->Destroy();
+    this->dealButton->Hide();
+    this->resetBetButton->Hide();
+    this->betOneButton->Hide();
+    this->betFiveButton->Hide();
+    this->betTwentyFiveButton->Hide();
+    //this->betTwentyFiveButton->Destroy();
 
-    game->Play();
-    this->reloadTxt();
+    //game->Play();
+    //this->reloadTxt();
+    loadTwo();
 }
 
 void BlackjackPanel::onBetOne(wxCommandEvent& WXUNUSED(event)) {
@@ -98,18 +116,30 @@ void BlackjackPanel::onResetBet(wxCommandEvent& event) {
     this->reloadTxt();
 }
 
+void BlackjackPanel::onHit(wxCommandEvent& event) {
+    wxLogError("Wrong choice");
+}
+
+void BlackjackPanel::onStand(wxCommandEvent& event) {
+    loadThree();
+}
+
+void BlackjackPanel::onAgain(wxCommandEvent& event) {
+
+}
+
 void BlackjackPanel::reloadTxt() {
     wxString pTxt = "Player :\t";
     pTxt << "Current bet: " << p->getBet() << "\n";
     
-    string strCards;
-    for (Card* card : game->game_player->cards) {
+    //string strCards;
+    //for (Card* card : game->game_player->cards) {
         //pTxt << card->toString();
-        strCards += card->toString() + "\n";
+    //    strCards += card->toString() + "\n";
         //OutputDebugStringW(L"" + c);
-    }
+   // }
 
-    OutputDebugStringW(L"" + strCards);
+    //OutputDebugStringW(L"" + strCards);
 
     // THIS WORKS WHY DOES IT NOT WORK LOOPED
     //OutputDebugStringW(L"" + game->game_player->cards.front()->toString());
@@ -119,4 +149,38 @@ void BlackjackPanel::reloadTxt() {
     //}
 
     playerText->SetLabel(pTxt);
+}
+
+void BlackjackPanel::loadTwo() {
+    wxString pTxt = "Player :\t";
+    pTxt << "Current bet: " << p->getBet() << "\n\n";
+    pTxt << "Cards: \n\t";
+    pTxt << "Queen of Spades\n\t";
+    pTxt << "Eight of Diamonds";
+    playerText->SetLabel(pTxt);
+
+    wxString dTxt = "Dealer :\n";
+    dTxt << "Cards: \n\t";
+    dTxt << "Jack of Diamonds\n\t";
+    dTxt << "Face down card";
+    dealerText->SetLabel(dTxt);
+
+    gameText->AppendText("Dealing cards...\n");
+    hitButton->Show();
+    standButton->Show();
+}
+
+void BlackjackPanel::loadThree() {
+    gameText->AppendText("You stand.\nFlipping dealer card.\nDealer hits.\nDealer busts.");
+    wxString dTxt = "Dealer :\n";
+    dTxt << "Cards: \n\t";
+    dTxt << "Jack of Diamonds\n\t";
+    dTxt << "Four of Hearts\n\t";
+    dTxt << "King of Hearts\nBUST!\n";
+    gameText->AppendText("\nYou Win!\n\nPlay Again?");
+    dealerText->SetLabel(dTxt);
+
+    hitButton->Hide();
+    standButton->Hide();
+    againButton->Show();
 }

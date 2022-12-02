@@ -45,7 +45,9 @@ private:
 	wxButton* betOneButton;
 	wxButton* betFiveButton;
 	wxButton* betTwentyFiveButton;
-
+	wxButton* hitButton;
+	wxButton* standButton;
+	wxButton* againButton;
 
 	/**
 	* When Dealbutton is pressed game begins. deal button and betthing options to be detroyed 
@@ -55,8 +57,13 @@ private:
 	void onBetFive(wxCommandEvent& event);
 	void onBetTwentyFive(wxCommandEvent& event);
 	void onResetBet(wxCommandEvent& event);
+	void onHit(wxCommandEvent& event);
+	void onStand(wxCommandEvent& event);
+	void onAgain(wxCommandEvent& event);
 
 	void reloadTxt();
+	void loadTwo();
+	void loadThree();
 
   DECLARE_EVENT_TABLE()
 };
