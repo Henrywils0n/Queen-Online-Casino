@@ -5,6 +5,7 @@
 #ifndef TEAM_23_MONTREAL_BLACKJACK_H
 #define TEAM_23_MONTREAL_BLACKJACK_H
 
+#include "header.h"
 #include <vector>
 #include <string>
 #include <iostream>
@@ -113,8 +114,11 @@ public:
     BlackjackGame(Player*);
     ~BlackjackGame();
     void Play();
+
+    // Temp public
+    Deck* game_deck;
+
 private:
-    Deck game_deck;
     Dealer game_dealer;
     vector<Player> game_players;
 };

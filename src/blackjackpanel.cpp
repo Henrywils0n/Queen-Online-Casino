@@ -70,7 +70,7 @@ BlackjackPanel::BlackjackPanel(GameFrame* par) : wxPanel(par) {
 void BlackjackPanel::onDeal(wxCommandEvent& WXUNUSED(event)) {
     this->dealButton->Destroy();
     this->resetBetButton->Destroy();
-    this->betOneButton->Destroy();
+    //this->betOneButton->Destroy();
     this->betFiveButton->Destroy();
     this->betTwentyFiveButton->Destroy();
 
@@ -102,8 +102,13 @@ void BlackjackPanel::reloadTxt() {
     wxString pTxt = "Player :\t";
     pTxt << "Current bet: " << p->getBet() << "\n";
     for (Card *card : p->getCards()) {
+        wxLogError("PANEL SEES CARD");
         pTxt << card->toString();
     }
     
+    //for (Card* c : game->game_deck.getCards()) {
+    //    gameText->AppendText(c->toString());
+    //}
+
     playerText->SetLabel(pTxt);
 }

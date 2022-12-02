@@ -71,16 +71,20 @@ string Card::toString() {
 Deck::Deck()
 {
     cards.reserve(52);
-    init();
+    //init();
 }
 
 Deck::~Deck(){}
 
 void Deck::init(){
     clear();
-    for (int i = Card::CLUBS; i <= Card::SPADES; ++i)
-        for (int j = Card::ACE; j <= Card::KING; ++j)
-            addCard(new Card(static_cast<Card::rank>(i), static_cast<Card::suit>(j), true));
+    for (int i = Card::CLUBS; i <= Card::SPADES; ++i) {
+        for (int j = Card::ACE; j <= Card::KING; ++j) {
+            Card* c = new Card(static_cast<Card::rank>(i), static_cast<Card::suit>(j), true);
+            addCard(c);
+            OutputDebugStringW(L"" + to_string(i) + " " + to_string(j) + "\n");
+        }
+    }
 }
 
 void Deck::shuffle()
@@ -93,6 +97,7 @@ void Deck::deal(Hand& h)
     if (cards.empty())
     {
         init();
+        wxLogError("Deck was empty");
     }
     h.addCard(cards.back());
     cards.pop_back();
@@ -112,19 +117,23 @@ void Deck::anotherCard(GenericParticipant& participant)
 }
 //-----------------------------------------------------------------------------------------------------------
 BlackjackGame::BlackjackGame(const vector<string>& names){
+    game_deck = new Deck();
+    
     vector<string>::const_iterator pName;
     for (pName = names.begin(); pName != names.end(); ++pName)
         game_players.push_back(Player(*pName));
     srand(time(0));
-    game_deck.init();
-    game_deck.shuffle();
+    game_deck->init();
+    game_deck->shuffle();
 }
 
 BlackjackGame::BlackjackGame(Player* p) {
+    game_deck = new Deck();
+
     game_players.push_back(*p);
     srand(time(0));
-    game_deck.init();
-    game_deck.shuffle();
+    game_deck->init();
+    game_deck->shuffle();
 }
 
 BlackjackGame::~BlackjackGame(){}
@@ -134,9 +143,10 @@ void BlackjackGame::Play() {
     vector<Player>::iterator pPlayer;
     for (int i = 0; i < 2; ++i)
     {
-        for (pPlayer = game_players.begin(); pPlayer != game_players.end();++pPlayer)
-            game_deck.deal(*pPlayer);
-        game_deck.deal(game_dealer);
+        for (pPlayer = game_players.begin(); pPlayer != game_players.end(); ++pPlayer) {
+            game_deck->deal(*pPlayer);
+        }
+        game_deck->deal(game_dealer);
     }
 
     game_dealer.flipCard(); //hide dealer's first card
