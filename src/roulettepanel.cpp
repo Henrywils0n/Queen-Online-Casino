@@ -1,6 +1,7 @@
 #pragma once
 #include "../include/roulettepanel.h"
 #include <wx/animate.h>
+#include <dos.h>
 
 BEGIN_EVENT_TABLE(RoulettePanel, wxPanel)
     EVT_BUTTON(ID_00, RoulettePanel :: OnBetDoubleZero)
@@ -212,8 +213,9 @@ RoulettePanel::RoulettePanel(GameFrame* par) : wxPanel(par) {
     button_36->SetBackgroundColour(*wxRED);
     wxButton* button_nothing = new wxButton(this, ID_NOTHING, " ");
 
-    wxAnimationCtrl* m_animationCtrl = new wxAnimationCtrl(this, wxID_ANY);
-    if (m_animationCtrl->LoadFile("../resources/roulette.gif")) m_animationCtrl->Play();
+    gif = new wxAnimationCtrl(this, wxID_ANY);
+    gif->LoadFile("../resources/roulette.gif");
+    gif->Stop();
 
 
     // create array for inside bets
@@ -275,7 +277,7 @@ RoulettePanel::RoulettePanel(GameFrame* par) : wxPanel(par) {
     bottomBox->Add(button_34, wxEXPAND);
     bottomBox->Add(button_c1, wxEXPAND);
     
-    vertBox->Add(m_animationCtrl);
+    vertBox->Add(gif, wxALIGN_CENTER);
     vertBox->Add(topBox, 0, wxEXPAND);
     vertBox->Add(midBox, 0, wxEXPAND);
     vertBox->Add(badBox, 0, wxEXPAND);
@@ -555,8 +557,9 @@ void RoulettePanel :: OnSubmitBet(wxCommandEvent &WXUNUSED(event)) {
     controller->checkBets();
 }
 void RoulettePanel :: OnSpinWheel(wxCommandEvent &WXUNUSED(event)) {
-    controller->spinBall();
-    controller->ballOnWheel();
+    gif->Play();
+    delay(5000);
+    gif->Stop();
 }
 void RoulettePanel :: OnInformation(wxCommandEvent &WXUNUSED(event)) {
 }

@@ -15,6 +15,7 @@
 #include <wx/stopwatch.h>
 #include <wx/sizer.h>
 #include <wx/animate.h>
+#include<dos.h>
 
 // This is where all program enums should go, to maintain consistent formatting
 enum {

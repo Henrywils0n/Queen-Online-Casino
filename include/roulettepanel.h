@@ -13,7 +13,7 @@ public:
   ImageButton* exit_button;
   DECLARE_EVENT_TABLE();
 private:
-
+	wxAnimationCtrl* gif;
     GameFrame* parent;
     RouletteController* controller;
 	Table* table = new Table();
