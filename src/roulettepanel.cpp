@@ -1,5 +1,6 @@
 #pragma once
 #include "../include/roulettepanel.h"
+#include <wx/animate.h>
 
 BEGIN_EVENT_TABLE(RoulettePanel, wxPanel)
     EVT_BUTTON(ID_00, RoulettePanel :: OnBetDoubleZero)
@@ -211,9 +212,11 @@ RoulettePanel::RoulettePanel(GameFrame* par) : wxPanel(par) {
     button_36->SetBackgroundColour(*wxRED);
     wxButton* button_nothing = new wxButton(this, ID_NOTHING, " ");
 
+    wxAnimationCtrl* m_animationCtrl = new wxAnimationCtrl(this, wxID_ANY);
+    if (m_animationCtrl->LoadFile("../resources/roulette.gif")) m_animationCtrl->Play();
+
+
     // create array for inside bets
-    const int numRowsI = 4;
-    const int numColsI = 13;
     wxBoxSizer* mainBox = new wxBoxSizer(wxHORIZONTAL);
     wxBoxSizer* topBox = new wxBoxSizer(wxHORIZONTAL);
     wxBoxSizer* midBox = new wxBoxSizer(wxHORIZONTAL);
@@ -272,6 +275,7 @@ RoulettePanel::RoulettePanel(GameFrame* par) : wxPanel(par) {
     bottomBox->Add(button_34, wxEXPAND);
     bottomBox->Add(button_c1, wxEXPAND);
     
+    vertBox->Add(m_animationCtrl);
     vertBox->Add(topBox, 0, wxEXPAND);
     vertBox->Add(midBox, 0, wxEXPAND);
     vertBox->Add(badBox, 0, wxEXPAND);

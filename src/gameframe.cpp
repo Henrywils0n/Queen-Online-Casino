@@ -87,7 +87,6 @@ int  GameFrame::getBalance() {
 void GameFrame::playRoulette() {
   menuPanel->Show(false);
   roulettePanel->Show(true);
-
 }
 void GameFrame::playBlackjack() {
   menuPanel->Show(false);
@@ -102,6 +101,5 @@ void GameFrame::returnToMenu() {
   oddsArePanel->Show(false);
   roulettePanel->Show(false);
   blackjackPanel->Show(false);
-  
   menuPanel->Show(true);
 }
