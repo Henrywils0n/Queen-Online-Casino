@@ -101,6 +101,5 @@ void GameFrame::returnToMenu() {
   oddsArePanel->Show(false);
   roulettePanel->Show(false);
   blackjackPanel->Show(false);
-  
   menuPanel->Show(true);
 }
