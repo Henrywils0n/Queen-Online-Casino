@@ -78,7 +78,6 @@ RoulettePanel::RoulettePanel(GameFrame* par) : wxPanel(par) {
 
     m_textCtrl = new wxStaticText(this, wxID_ANY, "ROULETTE", wxDefaultPosition, wxSize(100, wxDefaultCoord));
     exit_button  = new ImageButton(this, ID_RLQUIT,  "MENU", backpng, wxBITMAP_TYPE_PNG, 40, 40);
-    m_textCtrl = new wxTextCtrl(this, wxID_ANY, "$ BET AMOUNT", wxDefaultPosition, wxSize(200, wxDefault));
     wxBoxSizer* menuBox = new wxBoxSizer(wxHORIZONTAL);
     wxBoxSizer* vertBox = new wxBoxSizer(wxVERTICAL);
     
@@ -88,6 +87,10 @@ RoulettePanel::RoulettePanel(GameFrame* par) : wxPanel(par) {
 
     vertBox->Add(menuBox, 1, wxEXPAND);
     controller = new RouletteController();
+    wxTextCtrl* betBox = new wxTextCtrl(this, wxID_ANY, "$ BET AMOUNT", wxDefaultPosition, wxSize(200, wxDefaultCoord));
+    vertBox->Add(betBox, 0, wxEXPAND);
+
+
     wxButton* button_00 = new wxButton(this, ID_00, "00");
     button_00->SetBackgroundColour(*wxGREEN);
     wxButton* button_0 = new wxButton(this, ID_0, "0");
@@ -216,7 +219,6 @@ RoulettePanel::RoulettePanel(GameFrame* par) : wxPanel(par) {
     wxBoxSizer* midBox = new wxBoxSizer(wxHORIZONTAL);
     wxBoxSizer* badBox = new wxBoxSizer(wxHORIZONTAL);
     wxBoxSizer* bottomBox = new wxBoxSizer(wxHORIZONTAL);
-    wxFlexGridSizer *fgs = new wxFlexGridSizer( numRowsI, numColsI, 5, 5 );
     topBox->Add(button_s1, wxEXPAND);
     topBox->Add(button_s4, wxEXPAND);
     topBox->Add(button_s7, wxEXPAND);
@@ -296,10 +298,19 @@ RoulettePanel::RoulettePanel(GameFrame* par) : wxPanel(par) {
     specialBox->Add(button_black, 1);
     specialBox->Add(button_odd, 1);
     specialBox->Add(button_19to36, 1);
-    
+
+    wxButton* submitBox = new wxButton(this, ID_SUBMITROULETTEBET, "SUBMIT BET");
+    wxButton* spinWheel = new wxButton(this, ID_SPINWHEEL, "SPIN WHEEL");
+
+    wxBoxSizer* misc = new wxBoxSizer(wxHORIZONTAL);
+    misc->Add(submitBox);
+    misc->Add(spinWheel);
+
+   
     vertBox->AddSpacer(5);
     vertBox->Add(thirdsBox, 0, wxEXPAND);
     vertBox->Add(specialBox, 0, wxEXPAND);
+    vertBox->Add(misc, 0, wxEXPAND);
     vertBox->AddSpacer(15);
 
     
