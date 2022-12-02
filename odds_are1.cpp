@@ -52,33 +52,40 @@ void OddsAre::playerGuess(int ans, int numsToGuess, int accountBal, int betAmt){
         if(ans == guess){
             win++;
             cout << "You win! \n";
-            bonusMultiplier(win, bet, accountBal, betAmt);
+            bonusMultiplier(win, bet, accountBal, betAmt, numsToGuess);
         }else{
             win = 0;
             cout << "You lost! \n";
-            bonusMultiplier(win, bet, accountBal, betAmt);
+            bonusMultiplier(win, bet, accountBal, betAmt, numsToGuess);
         }
     }
 }
 
-//If player has multiple wins in a row, multiply their score by the bonus points 
-//and return final score.
-int OddsAre::bonusMultiplier(int countWin, int bet, int accountBal, int betAmt) {
+//Calculate the score
+int OddsAre::bonusMultiplier(int countWin, int bet, int accountBal, int betAmt, int numsToGuess){
     int bonusAmount;
     int updateBalance;
-    if (countWin == 1) {
-        bonusAmount = 2 * countWin;
-        updateBalance = bonusAmount * betAmt;
-        accountBal = updateBalance + accountBal;
-    } else if (countWin == 2) {
-        bonusAmount = 4 * countWin;
-        updateBalance = bonusAmount * betAmt;
-        accountBal = updateBalance + accountBal;
-    } else if (countWin > 2) {
-        bonusAmount = 10 * countWin;
-        updateBalance = bonusAmount * betAmt;
-        accountBal = updateBalance + accountBal;
-    } else {
+    if(countWin >= 1){
+        if(numsToGuess == 2){
+            bonusAmount = 2 * countWin;
+            updateBalance = bonusAmount * betAmt;
+            accountBal = updateBalance + accountBal;
+        }else if(2 < numsToGuess < 5){
+            bonusAmount = 5 * countWin;
+            updateBalance = bonusAmount * betAmt;
+            accountBal = updateBalance + accountBal;
+        }else if(5 < numsToGuess < 10){
+            bonusAmount = 7 * countWin;
+            updateBalance = bonusAmount * betAmt;
+            accountBal = updateBalance + accountBal;
+        }else if(10 < numsToGuess){
+            bonusAmount = 10 * countWin;
+            updateBalance = bonusAmount * betAmt;
+            accountBal = updateBalance + accountBal;
+        }else{
+            ;
+        }
+    }else{
         bonusAmount = 1 * countWin;
         accountBal = accountBal - betAmt;
     }
