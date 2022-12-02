@@ -1,7 +1,7 @@
-#pragma once
+
 #include "../include/roulettepanel.h"
 #include <wx/animate.h>
-#include <dos.h>
+#include <ctime>
 
 BEGIN_EVENT_TABLE(RoulettePanel, wxPanel)
     EVT_BUTTON(ID_00, RoulettePanel :: OnBetDoubleZero)
@@ -72,6 +72,7 @@ BEGIN_EVENT_TABLE(RoulettePanel, wxPanel)
     EVT_BUTTON(ID_PLAYROULETTEAGAIN, RoulettePanel :: OnPlayAgain)
     EVT_BUTTON(ID_EXITROULETTE, RoulettePanel :: OnExit)
     EVT_BUTTON(ID_RLQUIT, RoulettePanel::onQuitRoulette)
+    EVT_BUTTON(ID_NOTHING, RoulettePanel::OnNothing)
 END_EVENT_TABLE()
 
 RoulettePanel::RoulettePanel(GameFrame* par) : wxPanel(par) {
@@ -558,8 +559,6 @@ void RoulettePanel :: OnSubmitBet(wxCommandEvent &WXUNUSED(event)) {
 }
 void RoulettePanel :: OnSpinWheel(wxCommandEvent &WXUNUSED(event)) {
     gif->Play();
-    delay(5000);
-    gif->Stop();
 }
 void RoulettePanel :: OnInformation(wxCommandEvent &WXUNUSED(event)) {
 }
@@ -570,4 +569,8 @@ void RoulettePanel :: OnExit(wxCommandEvent &WXUNUSED(event)) {
 void RoulettePanel::onQuitRoulette(wxCommandEvent &WXUNUSED(event)){
   parent->returnToMenu();
 
+}
+
+void RoulettePanel :: OnNothing(wxCommandEvent &WXUNUSED(event)) {
+    gif->Stop();
 }
