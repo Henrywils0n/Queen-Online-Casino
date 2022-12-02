@@ -34,7 +34,7 @@ MenuPanel::MenuPanel(GameFrame* par) : wxPanel(par) {
   inputBox->Add(oddsare_button,   1, wxEXPAND);
   inputBox->AddSpacer(20);
   
-  vertBox->AddSpacer(15);
+  vertBox->AddSpacer(30);
   vertBox->Add(titleBox, 10, wxEXPAND);
   vertBox->Add(inputBox, 1, wxEXPAND);
   vertBox->AddSpacer(20);
