@@ -53,9 +53,8 @@ void Card::flip(){
 }
 
 string Card::toString() {
-    string res;
     if (this->facedUp) {
-        return this->getRank() + " of " + this->getSuit();
+        return getRank() + " of " + getSuit();
     }
     return "Face down card";
 }
@@ -74,15 +73,13 @@ Deck::Deck()
     //init();
 }
 
-Deck::~Deck(){}
-
 void Deck::init(){
     clear();
     for (int i = Card::CLUBS; i <= Card::SPADES; ++i) {
         for (int j = Card::ACE; j <= Card::KING; ++j) {
             Card* c = new Card(static_cast<Card::rank>(i), static_cast<Card::suit>(j), true);
             addCard(c);
-            OutputDebugStringW(L"" + to_string(i) + " " + to_string(j) + "\n");
+            //OutputDebugStringW(L"" + to_string(i) + " " + to_string(j) + "\n");
         }
     }
 }
@@ -116,40 +113,26 @@ void Deck::anotherCard(GenericParticipant& participant)
     }
 }
 //-----------------------------------------------------------------------------------------------------------
-BlackjackGame::BlackjackGame(const vector<string>& names){
+BlackjackGame::BlackjackGame(){
     game_deck = new Deck();
+    game_player = new Player();
+    game_dealer = new Dealer();
     
-    vector<string>::const_iterator pName;
-    for (pName = names.begin(); pName != names.end(); ++pName)
-        game_players.push_back(Player(*pName));
     srand(time(0));
     game_deck->init();
     game_deck->shuffle();
 }
-
-BlackjackGame::BlackjackGame(Player* p) {
-    game_deck = new Deck();
-
-    game_players.push_back(*p);
-    srand(time(0));
-    game_deck->init();
-    game_deck->shuffle();
-}
-
-BlackjackGame::~BlackjackGame(){}
 
 void BlackjackGame::Play() {
-    //deal two cards to each person
-    vector<Player>::iterator pPlayer;
+    // Deal
     for (int i = 0; i < 2; ++i)
     {
-        for (pPlayer = game_players.begin(); pPlayer != game_players.end(); ++pPlayer) {
-            game_deck->deal(*pPlayer);
-        }
-        game_deck->deal(game_dealer);
+        game_deck->deal(*game_player);
+        game_deck->deal(*game_dealer);
     }
 
-    game_dealer.flipCard(); //hide dealer's first card
+    //hide dealer's first card
+    game_dealer->flipCard();
 
     //display hands
     //for (pPlayer = game_players.begin(); pPlayer != game_players.end(); ++pPlayer)
@@ -189,15 +172,13 @@ void BlackjackGame::Play() {
     //}
 
 //remove cards
-    for (pPlayer = game_players.begin(); pPlayer != game_players.end(); ++pPlayer)
-        pPlayer->clear();
-    game_dealer.clear();
+    //for (pPlayer = game_players.begin(); pPlayer != game_players.end(); ++pPlayer)
+    //    pPlayer->clear();
+    //game_dealer.clear();
 }
 
 //-----------------------------------------------------------------------------------------------------------
-GenericParticipant::GenericParticipant(const string& name): m_name(name){}
-
-GenericParticipant::~GenericParticipant(){}
+GenericParticipant::GenericParticipant() {}
 
 bool GenericParticipant::isBusted() const {
     return (sumOfHand()>21);
@@ -266,9 +247,7 @@ vector<Card*> Hand::getCards() {
     return this->cards;
 }
 //---------------------------------------------------------------------------------------------------------------
-Dealer::Dealer(const string& name): GenericParticipant(name){}
-
-Dealer::~Dealer(){}
+Dealer::Dealer(): GenericParticipant(){}
 
 bool Dealer::isHitting() const{
     return (sumOfHand() <= 16);
@@ -283,11 +262,9 @@ void Dealer::flipCard()
 }
 
 //-----------------------------------------------------------------------------------------------------------
-Player::Player(const string& name): GenericParticipant(name) {
+Player::Player(): GenericParticipant() {
     this->bet = 0;
 }
-
-Player::~Player(){}
 
 bool Player::isHitting() const{
     cout << "Do you want a hit (Y/N): ";

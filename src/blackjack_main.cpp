@@ -26,11 +26,11 @@ int main()
     cout << endl;
 
 
-    BlackjackGame aGame(names);
+    BlackjackGame aGame();
     char again = 'y';
     while (again != 'n' && again != 'N')
     {
-        aGame.Play();
+        //aGame.play();
         cout << "\nDo you want to play again? (Y/N): ";
         cin >> again;
     }

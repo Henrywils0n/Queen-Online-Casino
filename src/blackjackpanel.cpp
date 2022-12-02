@@ -13,7 +13,7 @@ BlackjackPanel::BlackjackPanel(GameFrame* par) : wxPanel(par) {
 
     // Temporary until game object is fixed
     p = new Player();
-    game = new BlackjackGame(p);
+    game = new BlackjackGame();
     // Declare sizers
     masterSizer = new wxBoxSizer(wxVERTICAL);
 
@@ -101,12 +101,20 @@ void BlackjackPanel::onResetBet(wxCommandEvent& event) {
 void BlackjackPanel::reloadTxt() {
     wxString pTxt = "Player :\t";
     pTxt << "Current bet: " << p->getBet() << "\n";
-    for (Card *card : p->getCards()) {
-        wxLogError("PANEL SEES CARD");
-        pTxt << card->toString();
-    }
     
-    //for (Card* c : game->game_deck.getCards()) {
+    string strCards;
+    for (Card* card : game->game_player->cards) {
+        //pTxt << card->toString();
+        strCards += card->toString() + "\n";
+        //OutputDebugStringW(L"" + c);
+    }
+
+    OutputDebugStringW(L"" + strCards);
+
+    // THIS WORKS WHY DOES IT NOT WORK LOOPED
+    //OutputDebugStringW(L"" + game->game_player->cards.front()->toString());
+
+    //for (Card* c : game->gma.getCards()) {
     //    gameText->AppendText(c->toString());
     //}
 
