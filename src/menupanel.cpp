@@ -12,7 +12,12 @@ MenuPanel::MenuPanel(GameFrame* par) : wxPanel(par) {
   wxString gametitle = "../resources/gametitle.png";
   
   m_title = new ImagePanel(this, gametitle, wxBITMAP_TYPE_PNG);
-  
+  wxBoxSizer* titleBox = new wxBoxSizer(wxHORIZONTAL);
+
+  titleBox->AddSpacer(30);
+  titleBox->Add(m_title, 1, wxEXPAND);
+  titleBox->AddSpacer(30);
+
   roulette_button  = new wxButton(this, ID_ROULETTE,  "PLAY ROULETTE");
   blackjack_button = new wxButton(this, ID_BLACKJACK, "PLAY BLACKJACK");
   oddsare_button   = new wxButton(this, ID_ODDSARE,   "PLAY ODDS ARE");
@@ -29,7 +34,8 @@ MenuPanel::MenuPanel(GameFrame* par) : wxPanel(par) {
   inputBox->Add(oddsare_button,   1, wxEXPAND);
   inputBox->AddSpacer(20);
   
-  vertBox->Add(m_title, 10, wxEXPAND);
+  vertBox->AddSpacer(15);
+  vertBox->Add(titleBox, 10, wxEXPAND);
   vertBox->Add(inputBox, 1, wxEXPAND);
   vertBox->AddSpacer(20);
   
