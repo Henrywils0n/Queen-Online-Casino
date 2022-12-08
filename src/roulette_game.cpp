@@ -58,8 +58,9 @@ void RouletteController :: spinBall() {
 }
 
 void RouletteController :: ballOnWheel() {
-	int num =getRolledNumber();
-	switch (num) {
+	// int num =getRolledNumber();
+	int test = 0;
+	switch (test) {
 		case 0:
 			break;
 		case 1:
@@ -153,7 +154,7 @@ int RouletteController :: checkBets () {
 		k = 0;
 		for (k; k < bet.numbersBet.size(); k++) {
 			// current bet has hit
-			if (rolledNumber == bet.numbersBet.at(k)) {
+			if (bet.numbersBet.at(k) == bet.numbersBet.at(k)) {
 				winnings = bet.mul * bet.moneyBet;
 				newFunds += bet.mul * bet.moneyBet;
 				numBetsHit += 1;
