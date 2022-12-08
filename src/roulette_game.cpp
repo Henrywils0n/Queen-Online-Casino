@@ -54,6 +54,7 @@ void RouletteController::storeBets(vector<int> betNumbers, int money_bet) {
 void RouletteController :: spinBall() {
 	// modulo 37 where 37 is double 0
 	rolledNumber = rand() % 37;
+    
 	return;
 }
 
@@ -147,21 +148,22 @@ void RouletteController :: ballOnWheel() {
 int RouletteController :: checkBets () {
 	int numBetsHit = 0;
 	int newFunds = 0;
-	int winnings = 0;
 	int k = 0;
+    totalBet = 0;
 	for (Bet bet: placedBets) {
 		k = 0;
 		for (k; k < bet.numbersBet.size(); k++) {
 			// current bet has hit
 			if (rolledNumber == bet.numbersBet.at(k)) {
-				winnings = bet.mul * bet.moneyBet;
 				newFunds += bet.mul * bet.moneyBet;
+                totalBet += bet.moneyBet;
 				numBetsHit += 1;
 				break;
 			}
 		}
 	}
-	return winnings;
+    gameframe.setBalance(balance + newFunds - totalBet); // not sure where to call set balance fromm or how to access user balance
+	return newFunds;
 }
 		
 	// Chips
