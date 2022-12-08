@@ -93,7 +93,7 @@ class Table {
 		//		for even bet: mul = 1, numbersBet[] = even[], moneyBet = 20
 		//		for single num 1 bet: mul = 35, numbersBet[] = {1}, moneyBet = 10
 		//		for single num 19 bet: nul = 35, numbersBet[] = {19}, moneyBet = 10
-class Bet : RouletteController {
+class Bet {
 public:
 	// constructor 
 	Bet();
@@ -168,4 +168,3 @@ class InsufficientFundsException {
 	private:
 		string message;
 };
-
