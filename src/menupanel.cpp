@@ -10,7 +10,7 @@ END_EVENT_TABLE()
 MenuPanel::MenuPanel(GameFrame* par) : wxPanel(par) {
   parent = par;
   
-  wxString gametitle = "C:/Users/grayd/team-23-montreal/resources/gametitle.png";
+  wxString gametitle = "../resources/gametitle.png"; // need to change back ../resources/gametitle.png
   
   m_title = new ImagePanel(this, gametitle, wxBITMAP_TYPE_PNG);
   wxBoxSizer* titleBox = new wxBoxSizer(wxHORIZONTAL);

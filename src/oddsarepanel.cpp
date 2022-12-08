@@ -9,7 +9,7 @@ END_EVENT_TABLE()
 OddsArePanel::OddsArePanel(GameFrame* par) : wxPanel(par) {
   parent = par;
   oa = new OddsAre(parent->getBalance());
-  wxString backpng = "C:/Users/grayd/team-23-montreal/resources/back_button.png";
+  wxString backpng = "../resources/back_button.png";
   
   title_static = new wxStaticText(this, wxID_ANY, "ODDS ARE", wxDefaultPosition, wxSize(100, wxDefaultCoord));
   exit_button  = new ImageButton(this, ID_OAQUIT,  "MENU", backpng, wxBITMAP_TYPE_PNG, 40, 40);
