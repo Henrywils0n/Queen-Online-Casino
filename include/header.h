@@ -106,4 +106,5 @@ enum {
 	ID_S31,
 	ID_S34,
   ID_NOTHING,
+	ID_userBet,
 };

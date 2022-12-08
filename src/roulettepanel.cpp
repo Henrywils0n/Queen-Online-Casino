@@ -72,7 +72,7 @@ BEGIN_EVENT_TABLE(RoulettePanel, wxPanel)
     EVT_BUTTON(ID_PLAYROULETTEAGAIN, RoulettePanel :: OnPlayAgain)
     EVT_BUTTON(ID_EXITROULETTE, RoulettePanel :: OnExit)
     EVT_BUTTON(ID_RLQUIT, RoulettePanel::onQuitRoulette)
-    // removed nothing event.
+    EVT_BUTTON(ID_NOTHING, RoulettePanel::OnNothing)
 END_EVENT_TABLE()
 
 RoulettePanel::RoulettePanel(GameFrame* par) : wxPanel(par) {
@@ -566,7 +566,7 @@ void RoulettePanel :: OnSpinWheel(wxCommandEvent &WXUNUSED(event)) {
     gif->Play();
     controller->spinBall();
     controller->checkBets();
-    // std::ctime::delay(5);
+    std::ctime::delay(5);
     gif->Stop();
     controller->ballOnWheel();
 }
@@ -577,5 +577,10 @@ void RoulettePanel :: OnPlayAgain(wxCommandEvent &WXUNUSED(event)) {
     parent->playRoulette();
 }
 void RoulettePanel::onQuitRoulette(wxCommandEvent &WXUNUSED(event)){
-    parent->returnToMenu();
+  parent->returnToMenu();
+}
+
+void RoulettePanel :: OnNothing(wxCommandEvent &WXUNUSED(event)) {
+    gif->Stop();
+    parent->setBalance(300);
 }

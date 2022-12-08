@@ -1,10 +1,8 @@
-#pragma once
 #include "../include/gameframe.h"
 #include "../include/menupanel.h"
 #include "../include/roulettepanel.h"
 #include "../include/oddsarepanel.h"
 #include "../include/blackjackpanel.h"
-#include "gameframe.h"
 
 wxIMPLEMENT_DYNAMIC_CLASS(GameFrame, wxFrame);
 BEGIN_EVENT_TABLE(GameFrame, wxFrame)
@@ -78,10 +76,7 @@ void GameFrame::OnReset(wxCommandEvent &WXUNUSED(event)) {
   balance = 500;
 }
 
-GameFrame::GameFrame(){ // Added definition for default constructor
-  this->balance;
-}
-void GameFrame::setBalance(int val){ 
+void GameFrame::setBalance(int val) {
   balance = val;
 }
 int  GameFrame::getBalance() {

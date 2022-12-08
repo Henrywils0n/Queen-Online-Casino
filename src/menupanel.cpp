@@ -4,20 +4,20 @@ BEGIN_EVENT_TABLE(MenuPanel, wxPanel)
   EVT_BUTTON(ID_ROULETTE, MenuPanel::OnPlayRoulette)
   EVT_BUTTON(ID_BLACKJACK, MenuPanel::OnPlayBlackjack)
   EVT_BUTTON(ID_ODDSARE, MenuPanel::OnPlayOddsAre)
-  EVT_SHOW(MenuPanel::updateBalance)
 END_EVENT_TABLE()
 
 MenuPanel::MenuPanel(GameFrame* par) : wxPanel(par) {
   parent = par;
   
-  wxString gametitle = "../resources/gametitle.png"; // need to change back ../resources/gametitle.png
+  wxString gametitle = "../resources/gametitle.png";
   
   m_title = new ImagePanel(this, gametitle, wxBITMAP_TYPE_PNG);
   wxBoxSizer* titleBox = new wxBoxSizer(wxHORIZONTAL);
+
   titleBox->AddSpacer(30);
   titleBox->Add(m_title, 1, wxEXPAND);
   titleBox->AddSpacer(30);
-  score_static = new wxStaticText(this, ID_MENUSCORE, "CURRENT SCORE: 500", wxDefaultPosition, wxSize(100, wxDefaultCoord));
+
   roulette_button  = new wxButton(this, ID_ROULETTE,  "PLAY ROULETTE");
   blackjack_button = new wxButton(this, ID_BLACKJACK, "PLAY BLACKJACK");
   oddsare_button   = new wxButton(this, ID_ODDSARE,   "PLAY ODDS ARE");
@@ -54,12 +54,4 @@ void MenuPanel::OnPlayBlackjack(wxCommandEvent &WXUNUSED(event)) {
 
 void MenuPanel::OnPlayOddsAre(wxCommandEvent &WXUNUSED(event)) {
   parent->playOddsAre();
-}
-
-void MenuPanel::updateBalance(wxShowEvent &WXUNUSED(event)) {
-    if (score_static) {
-      std::wstringstream contents;
-      contents << "CURRENT SCORE: " << parent->getBalance();
-      score_static->SetLabel(contents.str());
-    }
 }

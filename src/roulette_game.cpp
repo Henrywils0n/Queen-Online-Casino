@@ -2,7 +2,6 @@
 // for american roulette (including double 0)
 #pragma once
 #include "../include/roullette_game.h"
-#include "../include/gameframe.h"
 #include <vector>
 #include <string>
 #include <iostream>
@@ -150,7 +149,7 @@ int RouletteController :: checkBets () {
 	int numBetsHit = 0;
 	int newFunds = 0;
 	int k = 0;
-    int totalBet = 0;
+    totalBet = 0;
 	for (Bet bet: placedBets) {
 		k = 0;
 		for (k; k < bet.numbersBet.size(); k++) {
@@ -163,12 +162,7 @@ int RouletteController :: checkBets () {
 			}
 		}
 	}
-	int bal;
-	GameFrame* curBalance = new GameFrame();
-	bal = curBalance->getBalance();
-	GameFrame* newBalance = new GameFrame(); // I dont think I need this extra object but might work.
-	
-    newBalance->setBalance(bal + newFunds - totalBet); // not sure where to call set balance fromm or how to access user balance
+    gameframe.setBalance(balance + newFunds - totalBet); // not sure where to call set balance fromm or how to access user balance
 	return newFunds;
 }
 		
