@@ -149,7 +149,7 @@ int RouletteController :: checkBets () {
 	int numBetsHit = 0;
 	int newFunds = 0;
 	int k = 0;
-    totalBet = 0;
+    int totalBet = 0;
 	for (Bet bet: placedBets) {
 		k = 0;
 		for (k; k < bet.numbersBet.size(); k++) {
@@ -162,9 +162,10 @@ int RouletteController :: checkBets () {
 			}
 		}
 	}
-    gameframe.setBalance(balance + newFunds - totalBet); // not sure where to call set balance fromm or how to access user balance
+    // gameframe.setBalance(balance + newFunds - totalBet); // not sure where to call set balance fromm or how to access user balance
 	return newFunds;
 }
+
 		
 	// Chips
 		// really just remove specified amount of funds

@@ -2,6 +2,7 @@
 #include "../include/roulettepanel.h"
 #include <wx/animate.h>
 #include <ctime>
+#include <wx/spinctrl.h>
 
 BEGIN_EVENT_TABLE(RoulettePanel, wxPanel)
     EVT_BUTTON(ID_00, RoulettePanel :: OnBetDoubleZero)
@@ -70,19 +71,19 @@ BEGIN_EVENT_TABLE(RoulettePanel, wxPanel)
     EVT_BUTTON(ID_SPINWHEEL, RoulettePanel :: OnSpinWheel)
     EVT_BUTTON(ID_ROULETTEINFORMATION, RoulettePanel :: OnInformation)
     EVT_BUTTON(ID_PLAYROULETTEAGAIN, RoulettePanel :: OnPlayAgain)
-    EVT_BUTTON(ID_EXITROULETTE, RoulettePanel :: OnExit)
+    // EVT_BUTTON(ID_EXITROULETTE, RoulettePanel :: OnExit)
     EVT_BUTTON(ID_RLQUIT, RoulettePanel::onQuitRoulette)
-    EVT_BUTTON(ID_NOTHING, RoulettePanel::OnNothing)
 END_EVENT_TABLE()
 
 RoulettePanel::RoulettePanel(GameFrame* par) : wxPanel(par) {
     parent = par;
     wxString backpng = "../resources/back_button.png";
 
-    m_textCtrl = new wxStaticText(this, wxID_ANY, "ROULETTE", wxDefaultPosition, wxSize(100, wxDefaultCoord));
+    wxStaticText* m_textCtrl = new wxStaticText(this, wxID_ANY, "ROULETTE", wxDefaultPosition, wxSize(100, wxDefaultCoord)); //changed
     exit_button  = new ImageButton(this, ID_RLQUIT,  "MENU", backpng, wxBITMAP_TYPE_PNG, 40, 40);
     wxBoxSizer* menuBox = new wxBoxSizer(wxHORIZONTAL);
     wxBoxSizer* vertBox = new wxBoxSizer(wxVERTICAL);
+    wxBoxSizer* splitBetBox = new wxBoxSizer(wxHORIZONTAL);
     
 
     menuBox->Add(exit_button, 1, wxSTRETCH_NOT);
@@ -90,13 +91,16 @@ RoulettePanel::RoulettePanel(GameFrame* par) : wxPanel(par) {
 
     vertBox->Add(menuBox, 1, wxEXPAND);
     controller = new RouletteController();
-    wxTextCtrl* betBox = new wxTextCtrl(this, wxID_ANY, "$ BET AMOUNT", wxDefaultPosition, wxSize(200, wxDefaultCoord));
+    wxTextCtrl* betBox = new wxTextCtrl(this, wxID_ANY, "BET AMOUNT $", wxDefaultPosition, wxSize(100, wxDefaultCoord));
+    userBet = new wxSpinCtrl(this, ID_userBet, " ", wxDefaultPosition, wxSize(100, wxDefaultCoord));
     // will need to implement this as a non static textbox as well as 
     //declare button in event table, declare in header, implement logic and 
     //set the field in rouletteController "moneyOnBet" to the user input. 
     //the rest should be already implemented but ive got some syntax errors 
     //somewhere so it probably wont build
-    vertBox->Add(betBox, 0, wxEXPAND);
+    splitBetBox->Add(betBox, 0, wxSTRETCH_NOT);
+    splitBetBox->Add(userBet, 0, wxSTRETCH_NOT);
+    vertBox->Add(splitBetBox, 0, wxEXPAND);
 
 
     wxButton* button_00 = new wxButton(this, ID_00, "00");
@@ -217,7 +221,6 @@ RoulettePanel::RoulettePanel(GameFrame* par) : wxPanel(par) {
     button_35->SetForegroundColour(*wxRED);
     wxButton* button_36 = new wxButton(this, ID_36, "36");
     button_36->SetBackgroundColour(*wxRED);
-    wxButton* button_nothing = new wxButton(this, ID_NOTHING, " ");
 
     gif = new wxAnimationCtrl(this, wxID_ANY);
     gif->LoadFile("../resources/roulette.gif");
@@ -242,7 +245,6 @@ RoulettePanel::RoulettePanel(GameFrame* par) : wxPanel(par) {
     topBox->Add(button_s28, wxEXPAND);
     topBox->Add(button_s31, wxEXPAND);
     topBox->Add(button_s34, wxEXPAND); 
-    topBox->Add(button_nothing, wxEXPAND); 
     midBox->Add(button_3, wxEXPAND);
     midBox->Add(button_6, wxEXPAND);
     midBox->Add(button_9, wxEXPAND);
@@ -561,26 +563,33 @@ void RoulettePanel :: OnBet36(wxCommandEvent &WXUNUSED(event)) {
 	// functional buttons
 void RoulettePanel :: OnSubmitBet(wxCommandEvent &WXUNUSED(event)) {
     // dont need this button anymore, functionality transferred to OnSpinWheel
+    RouletteController* placedMoney = new RouletteController();
+    Bet* bet = new Bet();
+    vector<int> nums;
+    
+    nums = bet->numbersBet;
+    moneyBet = userBet->GetValue();
+    placedMoney->moneyOnBet = moneyBet;
+    
+    controller->storeBets(nums, moneyBet);
+    
 }
 void RoulettePanel :: OnSpinWheel(wxCommandEvent &WXUNUSED(event)) {
     gif->Play();
     controller->spinBall();
     controller->checkBets();
-    std::ctime::delay(5);
-    gif->Stop();
+    //std::ctime::delay(5);
     controller->ballOnWheel();
+    gif->Stop();
 }
 void RoulettePanel :: OnInformation(wxCommandEvent &WXUNUSED(event)) {
     // did not end up implementing this feature
+    
 }
 void RoulettePanel :: OnPlayAgain(wxCommandEvent &WXUNUSED(event)) { 
     parent->playRoulette();
 }
 void RoulettePanel::onQuitRoulette(wxCommandEvent &WXUNUSED(event)){
   parent->returnToMenu();
-}
-
-void RoulettePanel :: OnNothing(wxCommandEvent &WXUNUSED(event)) {
-    gif->Stop();
-    parent->setBalance(300);
+  gif->Stop();
 }

@@ -113,6 +113,7 @@ class RouletteController {
 // fields 
 	vector<Bet> placedBets;
 	int rolledNumber;
+	int moneyOnBet;
 	
 // accessors
 	// access fields of struct bet
@@ -136,6 +137,8 @@ class RouletteController {
 	// checks all bets to see if any hit
 		// checks all bet objects numbersBet[] field to see if random number is found in any bets
 	int checkBets();
+	
+	int getBets(vector<int>);
 };
 
 // exceptions

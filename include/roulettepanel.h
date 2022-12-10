@@ -3,13 +3,15 @@
 #include "gameframe.h"
 #include "roullette_game.h"
 #include "imagebutton.h"
+#include <wx/spinctrl.h>
 
 
 class RoulettePanel : public wxPanel {
 public:
   RoulettePanel(GameFrame* parent);
 
-  wxStaticText* m_textCtrl;
+ 
+  wxSpinCtrl* userBet;
   ImageButton* exit_button;
   DECLARE_EVENT_TABLE();
 private:
@@ -92,6 +94,6 @@ private:
 	void OnSpinWheel(wxCommandEvent &event);
 	void OnInformation(wxCommandEvent &event);
 	void OnPlayAgain(wxCommandEvent &event);
-	void OnExit(wxCommandEvent &event);
+	// void OnExit(wxCommandEvent &event);
 	void onQuitRoulette(wxCommandEvent &WXUNUSED(event));
 };
