@@ -1,5 +1,11 @@
+/* 
+
 #include "../include/blackjack.h"
 
+Contains command line blackjack roulette game. Note this is excluded from all application builds to avoid the redeclaration of main
+which is in the predifined macro IMPLEMENT_APP from wxWidgets.
+
+######################################## We have left it here for you to take a look though #########################################
 
 ostream& operator << (ostream& os, const Card& aCard);
 ostream& operator << (ostream& os, const GenericParticipant& aGenericPlayer);
@@ -74,3 +80,5 @@ ostream& operator<<(ostream& os, const GenericParticipant& aGenericPlayer)
 
     return os;
 }
+
+*/
