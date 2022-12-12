@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="CMakePresetLoader"><![CDATA[{
+  "useNewFormat": true
+}]]></component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="01a4a3f5-afba-454c-8141-8c48d98d52de" name="Changes" comment="Hi">
+      <change afterPath="$PROJECT_DIR$/blackjack_main.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/include/Blackjack.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/include/oddsare.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/Border.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/CardImage/10C.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/CardImage/10D.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/CardImage/10H.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/CardImage/10S.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/CardImage/2C.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/CardImage/2D.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/CardImage/2H.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/CardImage/2S.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/CardImage/3C.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/CardImage/3D.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/CardImage/3H.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/CardImage/3S.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/CardImage/4C.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/CardImage/4D.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/CardImage/4H.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/CardImage/4S.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/CardImage/5C.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/CardImage/5D.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/CardImage/5H.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/CardImage/5S.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/CardImage/6C.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/CardImage/6D.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/CardImage/6H.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/CardImage/6S.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/CardImage/7C.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/CardImage/7D.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/CardImage/7H.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/CardImage/7S.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/CardImage/8C.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/CardImage/8D.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/CardImage/8H.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/CardImage/8S.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/CardImage/9C.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/CardImage/9D.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/CardImage/9H.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/CardImage/9S.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/CardImage/AC.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/CardImage/AD.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/CardImage/AH.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/CardImage/AS.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/CardImage/JC.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/CardImage/JD.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/CardImage/JH.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/CardImage/JS.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/CardImage/KC.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/CardImage/KD.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/CardImage/KH.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/CardImage/KS.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/CardImage/QC.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/CardImage/QD.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/CardImage/QH.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/CardImage/QS.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/ValueMenue.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/background.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/balance.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/betAmount.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/betFail.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/blackJack.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/blue.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/bust.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/buttons.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/card.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/chipTip.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/dealButton.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/dealerborder.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/green.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/hint.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/hitButton.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/instructionButton.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/loseGraphic.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/pauseButton.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/playAgainButton.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/playButton.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/playerborder.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/red.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/settingButton.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/splitButton.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/white.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Blackjack_Images/winGraphic.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/roulette.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Blackjack.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/oddsare.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/blackjackpanel.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/blackjackpanel.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/header.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/header.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/menupanel.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/menupanel.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/oddsarepanel.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/oddsarepanel.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/odds_are1.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/odds_are1.h" beforeDir="false" afterPath="$PROJECT_DIR$/odds_are1.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/odds_are_panel.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/blackjackpanel.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/blackjackpanel.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gameframe.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/gameframe.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/menupanel.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/menupanel.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/oddsarepanel.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/oddsarepanel.cpp" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2INAscFK61guFijsSfTYopg2BlL" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "configurable.group.editor"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="01a4a3f5-afba-454c-8141-8c48d98d52de" name="Changes" comment="" />
+      <created>1670011875783</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1670011875783</updated>
+      <workItem from="1670011877015" duration="3268000" />
+    </task>
+    <task id="LOCAL-00001" summary="Hi">
+      <created>1670020569860</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1670020569860</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Hi">
+      <created>1670020581367</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1670020581367</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Hi" />
+    <option name="LAST_COMMIT_MESSAGE" value="Hi" />
+  </component>
+</project>
