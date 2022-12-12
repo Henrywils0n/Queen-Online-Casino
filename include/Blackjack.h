@@ -1,17 +1,10 @@
-//
-// Created by Cam Overvelde on 2022-11-29.
-//
-
-#ifndef TEAM_23_MONTREAL_BLACKJACK_H
-#define TEAM_23_MONTREAL_BLACKJACK_H
-
+#pragma once
 #include "header.h"
 #include <vector>
 #include <string>
 #include <iostream>
 #include <algorithm>
 #include <ctime>
-#pragma once
 using namespace std;
 
 class Card{
@@ -70,6 +63,7 @@ class GenericParticipant : public Hand{
     friend ostream& operator << (ostream& os, const GenericParticipant& participant);
 public:
     GenericParticipant();
+    GenericParticipant(const string& name);
     virtual ~GenericParticipant();
     virtual bool isHitting() const = 0; //indicates if player wants to keep hitting
     bool isBusted() const; //if total >21, isBusted = true
@@ -90,7 +84,6 @@ public:
 
 class Dealer : public GenericParticipant{
 public:
-    Dealer();
     Dealer(const string& name = "Dealer");
     ~Dealer();
     virtual bool isHitting() const;
@@ -99,7 +92,6 @@ public:
 
 class Player : public GenericParticipant{
 public:
-    Player();
     Player(const string& name = "");
     ~Player();
     virtual bool isHitting() const;
@@ -165,6 +157,3 @@ public:
 private:
     string message;
 };
-
-
-#endif //TEAM_23_MONTREAL_BLACKJACK_H

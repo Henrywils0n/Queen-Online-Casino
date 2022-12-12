@@ -122,7 +122,7 @@ void Deck::anotherCard(GenericParticipant& participant)
 //-----------------------------------------------------------------------------------------------------------
 BlackjackGame::BlackjackGame(){
     game_deck = new Deck();
-    game_player = new Player();
+    game_players = new Player();
     game_dealer = new Dealer();
     
     srand(time(0));
@@ -144,7 +144,7 @@ void BlackjackGame::Play() {
     // Deal
     for (int i = 0; i < 2; ++i)
     {
-        game_deck->deal(*game_player);
+        game_deck->deal(*game_players);
         game_deck->deal(*game_dealer);
     }
 
@@ -263,7 +263,6 @@ vector<Card*> Hand::getCards() {
     return this->cards;
 }
 //---------------------------------------------------------------------------------------------------------------
-Dealer::Dealer(): GenericParticipant(){}
 
 bool Dealer::isHitting() const{
     return (sumOfHand() <= 16);
@@ -278,9 +277,9 @@ void Dealer::flipCard()
 }
 
 //-----------------------------------------------------------------------------------------------------------
-Player::Player(): GenericParticipant() {
+Player::Player(const string& player): GenericParticipant() {
     bet = 0;
-    setBalance(100); //NEED TO REPLACE THIS WITH A CALL TO A VARIABLE THAT HOLDS THE GLOBAL BALANCE
+    setBalance(100);
 }
 
 bool Player::isHitting() const{
