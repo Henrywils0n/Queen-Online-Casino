@@ -1,4 +1,3 @@
-// ROULETTE HEADER FILE
 // for american roulette (includes double 0)
 #pragma once
 #include "imagepanel.h"
@@ -10,8 +9,8 @@ using namespace std;
 
 // FRAMEWORK CLASS has been moved to rolettepanel.h
 
+/* Contains Utility classes used by the main Roulette Panel*/
 		
-// GAME CLASSES
 class Table {
 	public:
 // gloabl variables
@@ -19,13 +18,9 @@ class Table {
 	int minBet = 10;
 	int maxBet = 10000;
 	
-	// betting number combinations
-		// inside bets 
-			// includes straight and street. does not include split sixline, corner, trio, basket
-			// https://www.roulettesites.org/rules/#:~:text=Basic%20Roulette%20Rules%201%20Place%20a%20bet%20on,winning%20number%20during%20any%20playing%20session.%20More%20items
 	vector<int> numbers{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36};
 	
-			// street (variable name "streetX" where X denotes the first number in the street)
+	// street (variable name "streetX" where X denotes the first number in the street)
 	vector<int> street1{1, 2, 3};
 	vector<int> street4{4, 5, 6};
 	vector<int> street7{7, 8, 9};
@@ -85,14 +80,8 @@ class Table {
 };
 
 // structures
-	// holds all bet information
-	
-		// a bet object will be created for each bet the player makes in a single betting session
-		// EX. player bets $20 on even and $10 on numbers 1, and 19
-		// 		bet objects will be created with the following fields: 
-		//		for even bet: mul = 1, numbersBet[] = even[], moneyBet = 20
-		//		for single num 1 bet: mul = 35, numbersBet[] = {1}, moneyBet = 10
-		//		for single num 19 bet: nul = 35, numbersBet[] = {19}, moneyBet = 10
+// holds all bet information
+// a bet object will be created for each bet the player makes in a single betting session
 class Bet {
 public:
 	// constructor 
@@ -122,28 +111,27 @@ class RouletteController {
 	int moneyBet() const;
 	int getRolledNumber() const;
 	
-// functions
 	// stores information for each individual bets in bet objects
-		// would assign the information in the above structire EX.
+	// would assign the information in the above structire EX.
 	void storeBets(vector<int> betNumbers, int money_bet);
 	
 	// returns randomly generated number
 	void spinBall();
 	
 	// determines at what number wheel will stop spinning at given random number
-		// positions ball at that number 
+	// positions ball at that number 
 	void ballOnWheel();
 	
 	// checks all bets to see if any hit
-		// checks all bet objects numbersBet[] field to see if random number is found in any bets
+	// checks all bet objects numbersBet[] field to see if random number is found in any bets
 	int checkBets();
 	
 	int getBets(vector<int>);
 };
 
-// exceptions
-	// minimum bet excpetion
-		// when player does not provide sufficient funds to meet minimum bet requirement
+
+// minimum bet excpetion
+// when player does not provide sufficient funds to meet minimum bet requirement
 class MinimumBetException {
 	public:
 		MinimumBetException(const string& message);
@@ -152,8 +140,8 @@ class MinimumBetException {
 		string message;
 };
 
-	// maximum bet exception
-		// when player provides excesive funds for maximum bet requirement
+// maximum bet exception
+// when player provides excesive funds for maximum bet requirement
 class MaximumBetException {
 	public:
 		MaximumBetException(const string& message);
@@ -162,8 +150,8 @@ class MaximumBetException {
 		string message;
 };
 
-	// insufficient funds exception
-		// when player does not possess sufficient funds to play game
+// insufficient funds exception
+// when player does not possess sufficient funds to play game
 class InsufficientFundsException {
 	public:
 		InsufficientFundsException(const string& message);
