@@ -43,7 +43,7 @@ OddsArePanel::OddsArePanel(GameFrame* par) : wxPanel(par) {
   gameBox->Add(guess_button, wxEXPAND);
 
   vertBox->Add(menuBox, 0, wxSTRETCH_NOT);
-  vertBox->Add(gameBox, 10, wxEXPAND);
+  vertBox->Add(gameBox, 20, wxEXPAND);
   
   SetSizer(vertBox);
   vertBox->SetSizeHints(this);
